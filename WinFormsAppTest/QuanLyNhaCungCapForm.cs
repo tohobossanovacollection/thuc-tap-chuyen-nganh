@@ -29,5 +29,10 @@ namespace WinFormsAppTest
         {
 
         }
+
+        private void _top_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

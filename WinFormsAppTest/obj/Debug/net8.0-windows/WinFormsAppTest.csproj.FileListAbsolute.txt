@@ -127,11 +127,19 @@ D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\bin\Debug\net8.0-windows\runti
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\bin\Debug\net8.0-windows\runtimes\win\lib\net8.0\System.Runtime.Caching.dll
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.csproj.AssemblyReference.cache
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.BanHangForm.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.BaoCaoDoanhThuForm.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.BaoCaoMainForm.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.BaoCaoTonKhoForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.CaiDatProfileForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.DangKy.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.DangNhap.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.Dashboard.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.Properties.Resources.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyDanhMucForm.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyGiamGiaForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyHoaDon.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyKhachHangForm.resources
+D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyNhaCungCapForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyNhanVienForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyPhieuNhapForm.resources
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyTaiKhoanForm.resources
@@ -148,5 +156,3 @@ D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\refin
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.pdb
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.genruntimeconfig.cache
 D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\ref\WinFormsAppTest.dll
-D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.Properties.Resources.resources
-D:\VsStudio\thuc-tap-chuyen-nganh\WinFormsAppTest\obj\Debug\net8.0-windows\WinFormsAppTest.QuanLyDanhMucForm.resources

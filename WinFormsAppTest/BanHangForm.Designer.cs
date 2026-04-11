@@ -111,7 +111,7 @@ namespace WinFormsAppTest
             pnlHeader.Location = new Point(0, 0);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlHeader.Size = new Size(1262, 90);
+            pnlHeader.Size = new Size(1262, 96);
             pnlHeader.TabIndex = 3;
             // 
             // lblTitle
@@ -130,7 +130,7 @@ namespace WinFormsAppTest
             lblSub.BackColor = Color.Transparent;
             lblSub.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblSub.ForeColor = Color.White;
-            lblSub.Location = new Point(22, 56);
+            lblSub.Location = new Point(20, 53);
             lblSub.Name = "lblSub";
             lblSub.Size = new Size(310, 25);
             lblSub.TabIndex = 1;

@@ -19,6 +19,8 @@ namespace WinFormsAppTest
         private Guna2Button btnMenuNhanVienTaiKhoan;
         private Guna2Button btnMenuKhuyenMai;
         private Guna2Button btnMenuBaoCao;
+        private Guna2Button btnMenuNhaCungCap;
+        private Guna2Button btnMenuHoaDon;
         private Guna2Button btnMenuCaiDat;
         private Guna2Panel cardTodayRevenue;
         private Guna2Panel cardMonthRevenue;
@@ -64,6 +66,10 @@ namespace WinFormsAppTest
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges18 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges19 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges33 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges34 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges35 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges36 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges23 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges24 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -90,6 +96,8 @@ namespace WinFormsAppTest
             btnMenuNhanVienTaiKhoan = new Guna2Button();
             btnMenuKhuyenMai = new Guna2Button();
             btnMenuBaoCao = new Guna2Button();
+            btnMenuNhaCungCap = new Guna2Button();
+            btnMenuHoaDon = new Guna2Button();
             btnMenuCaiDat = new Guna2Button();
             cardTodayRevenue = new Guna2Panel();
             lblTodayRevenueTitle = new Guna2HtmlLabel();
@@ -177,6 +185,8 @@ namespace WinFormsAppTest
             pnlMenu.Controls.Add(btnMenuNhanVienTaiKhoan);
             pnlMenu.Controls.Add(btnMenuKhuyenMai);
             pnlMenu.Controls.Add(btnMenuBaoCao);
+            pnlMenu.Controls.Add(btnMenuNhaCungCap);
+            pnlMenu.Controls.Add(btnMenuHoaDon);
             pnlMenu.Controls.Add(btnMenuCaiDat);
             pnlMenu.CustomizableEdges = customizableEdges21;
             pnlMenu.Location = new Point(10, 100);
@@ -308,13 +318,43 @@ namespace WinFormsAppTest
             btnMenuCaiDat.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuCaiDat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuCaiDat.ForeColor = Color.White;
-            btnMenuCaiDat.Location = new Point(15, 405);
+            btnMenuCaiDat.Location = new Point(15, 505);
             btnMenuCaiDat.Name = "btnMenuCaiDat";
             btnMenuCaiDat.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnMenuCaiDat.Size = new Size(220, 42);
             btnMenuCaiDat.TabIndex = 8;
-            btnMenuCaiDat.Text = "8. Cài đặt";
+            btnMenuCaiDat.Text = "10. Cài đặt";
             btnMenuCaiDat.Click += btnMenuCaiDat_Click;
+            // 
+            // btnMenuNhaCungCap
+            // 
+            btnMenuNhaCungCap.BorderRadius = 8;
+            btnMenuNhaCungCap.CustomizableEdges = customizableEdges33;
+            btnMenuNhaCungCap.FillColor = Color.FromArgb(198, 40, 40);
+            btnMenuNhaCungCap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnMenuNhaCungCap.ForeColor = Color.White;
+            btnMenuNhaCungCap.Location = new Point(15, 405);
+            btnMenuNhaCungCap.Name = "btnMenuNhaCungCap";
+            btnMenuNhaCungCap.ShadowDecoration.CustomizableEdges = customizableEdges34;
+            btnMenuNhaCungCap.Size = new Size(220, 42);
+            btnMenuNhaCungCap.TabIndex = 9;
+            btnMenuNhaCungCap.Text = "8. Nhà cung cấp";
+            btnMenuNhaCungCap.Click += btnMenuNhaCungCap_Click;
+            // 
+            // btnMenuHoaDon
+            // 
+            btnMenuHoaDon.BorderRadius = 8;
+            btnMenuHoaDon.CustomizableEdges = customizableEdges35;
+            btnMenuHoaDon.FillColor = Color.FromArgb(198, 40, 40);
+            btnMenuHoaDon.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnMenuHoaDon.ForeColor = Color.White;
+            btnMenuHoaDon.Location = new Point(15, 455);
+            btnMenuHoaDon.Name = "btnMenuHoaDon";
+            btnMenuHoaDon.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            btnMenuHoaDon.Size = new Size(220, 42);
+            btnMenuHoaDon.TabIndex = 10;
+            btnMenuHoaDon.Text = "9. Hóa đơn";
+            btnMenuHoaDon.Click += btnMenuHoaDon_Click;
             // 
             // cardTodayRevenue
             // 

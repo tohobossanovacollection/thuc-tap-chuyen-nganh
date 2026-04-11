@@ -32,7 +32,7 @@ namespace WinFormsAppTest
 
         private void btnMenuSanPham_Click(object sender, EventArgs e)
         {
-            using SanPham form = new SanPham();
+            using QuanLySanPhamForm form = new QuanLySanPhamForm();
             form.ShowDialog(this);
         }
 
@@ -62,13 +62,25 @@ namespace WinFormsAppTest
 
         private void btnMenuBaoCao_Click(object sender, EventArgs e)
         {
-            using BaoCaoDoanhThuForm form = new BaoCaoDoanhThuForm();
+            using BaoCaoMainForm form = new BaoCaoMainForm();
             form.ShowDialog(this);
         }
 
         private void btnMenuCaiDat_Click(object sender, EventArgs e)
         {
             using CaiDatProfileForm form = new CaiDatProfileForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuNhaCungCap_Click(object sender, EventArgs e)
+        {
+            using QuanLyNhaCungCapForm form = new QuanLyNhaCungCapForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuHoaDon_Click(object sender, EventArgs e)
+        {
+            using QuanLyHoaDon form = new QuanLyHoaDon();
             form.ShowDialog(this);
         }
 

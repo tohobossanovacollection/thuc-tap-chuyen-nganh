@@ -16,5 +16,15 @@ namespace WinFormsAppTest
         {
             MessageBox.Show("Cập nhật profile thành công (demo)");
         }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void CaiDatProfileForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -197,7 +197,7 @@ namespace WinFormsAppTest
             // lblFrom
             // 
             lblFrom.BackColor = Color.Transparent;
-            lblFrom.Location = new Point(34, 58);
+            lblFrom.Location = new Point(25, 64);
             lblFrom.Name = "lblFrom";
             lblFrom.Size = new Size(56, 22);
             lblFrom.TabIndex = 0;
@@ -211,7 +211,7 @@ namespace WinFormsAppTest
             dtpFrom.Font = new Font("Segoe UI", 9F);
             dtpFrom.ForeColor = Color.White;
             dtpFrom.Format = DateTimePickerFormat.Short;
-            dtpFrom.Location = new Point(96, 58);
+            dtpFrom.Location = new Point(102, 64);
             dtpFrom.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpFrom.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpFrom.Name = "dtpFrom";
@@ -219,11 +219,12 @@ namespace WinFormsAppTest
             dtpFrom.Size = new Size(130, 36);
             dtpFrom.TabIndex = 1;
             dtpFrom.Value = new DateTime(2026, 4, 11, 17, 57, 13, 446);
+            dtpFrom.ValueChanged += dtpFrom_ValueChanged;
             // 
             // lblTo
             // 
             lblTo.BackColor = Color.Transparent;
-            lblTo.Location = new Point(281, 58);
+            lblTo.Location = new Point(330, 64);
             lblTo.Name = "lblTo";
             lblTo.Size = new Size(66, 22);
             lblTo.TabIndex = 2;
@@ -237,7 +238,7 @@ namespace WinFormsAppTest
             dtpTo.Font = new Font("Segoe UI", 9F);
             dtpTo.ForeColor = Color.White;
             dtpTo.Format = DateTimePickerFormat.Short;
-            dtpTo.Location = new Point(353, 58);
+            dtpTo.Location = new Point(428, 64);
             dtpTo.MaxDate = new DateTime(9998, 12, 31, 0, 0, 0, 0);
             dtpTo.MinDate = new DateTime(1753, 1, 1, 0, 0, 0, 0);
             dtpTo.Name = "dtpTo";

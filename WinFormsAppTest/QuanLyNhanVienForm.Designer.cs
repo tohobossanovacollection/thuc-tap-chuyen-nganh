@@ -6,8 +6,8 @@ namespace WinFormsAppTest
         private DataGridView _dgv;
         private Panel _top;
         private Label _title;
-        private Button _btnCrud;
-        private Button _btnGanTk;
+        private Button btnThem;
+        private Button btnGanTk;
 
         protected override void Dispose(bool disposing)
         {
@@ -17,57 +17,116 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             _dgv = new DataGridView();
             _top = new Panel();
             _title = new Label();
-            _btnCrud = new Button();
-            _btnGanTk = new Button();
-
+            btnThem = new Button();
+            btnGanTk = new Button();
+            btnSua = new Button();
+            btnXoa = new Button();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
-
-            Text = "10. Quản lý Nhân viên";
-            StartPosition = FormStartPosition.CenterScreen;
-            ClientSize = new Size(1100, 650);
-
-            _top.Dock = DockStyle.Top;
-            _top.Height = 80;
-            _top.BackColor = Color.FromArgb(255, 241, 118);
-
-            _title.Text = "Quản lý Nhân viên";
-            _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            _title.ForeColor = Color.FromArgb(198, 40, 40);
-            _title.AutoSize = true;
-            _title.Location = new Point(12, 10);
-
-            _btnCrud.Text = "CRUD";
-            _btnCrud.SetBounds(12, 42, 85, 30);
-            _btnCrud.BackColor = Color.FromArgb(198, 40, 40);
-            _btnCrud.ForeColor = Color.White;
-            _btnCrud.Click += btnCrud_Click;
-
-            _btnGanTk.Text = "Gán tài khoản";
-            _btnGanTk.SetBounds(102, 42, 100, 30);
-            _btnGanTk.BackColor = Color.FromArgb(198, 40, 40);
-            _btnGanTk.ForeColor = Color.White;
-            _btnGanTk.Click += btnGanTk_Click;
-
-            _top.Controls.AddRange(new Control[] { _title, _btnCrud, _btnGanTk });
-
+            // 
+            // _dgv
+            // 
+            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            _dgv.ColumnHeadersHeight = 29;
             _dgv.Dock = DockStyle.Fill;
+            _dgv.Location = new Point(0, 91);
+            _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
-            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+            _dgv.RowHeadersWidth = 51;
+            _dgv.Size = new Size(1100, 559);
+            _dgv.TabIndex = 0;
+            // 
+            // _top
+            // 
+            _top.BackColor = Color.FromArgb(255, 241, 118);
+            _top.Controls.Add(btnXoa);
+            _top.Controls.Add(btnSua);
+            _top.Controls.Add(_title);
+            _top.Controls.Add(btnThem);
+            _top.Controls.Add(btnGanTk);
+            _top.Dock = DockStyle.Top;
+            _top.Location = new Point(0, 0);
+            _top.Name = "_top";
+            _top.Size = new Size(1100, 91);
+            _top.TabIndex = 1;
+            // 
+            // _title
+            // 
+            _title.AutoSize = true;
+            _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            _title.ForeColor = Color.FromArgb(198, 40, 40);
+            _title.Location = new Point(12, 10);
+            _title.Name = "_title";
+            _title.Size = new Size(250, 37);
+            _title.TabIndex = 0;
+            _title.Text = "Quản lý Nhân viên";
+            // 
+            // btnThem
+            // 
+            btnThem.BackColor = Color.FromArgb(198, 40, 40);
+            btnThem.ForeColor = Color.White;
+            btnThem.Location = new Point(13, 55);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(85, 30);
+            btnThem.TabIndex = 1;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnCrud_Click;
+            // 
+            // btnGanTk
+            // 
+            btnGanTk.BackColor = Color.FromArgb(198, 40, 40);
+            btnGanTk.ForeColor = Color.White;
+            btnGanTk.Location = new Point(286, 55);
+            btnGanTk.Name = "btnGanTk";
+            btnGanTk.Size = new Size(141, 30);
+            btnGanTk.TabIndex = 2;
+            btnGanTk.Text = "Gán tài khoản";
+            btnGanTk.UseVisualStyleBackColor = false;
+            btnGanTk.Click += btnGanTk_Click;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.FromArgb(198, 40, 40);
+            btnSua.ForeColor = Color.White;
+            btnSua.Location = new Point(104, 55);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(85, 30);
+            btnSua.TabIndex = 3;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Location = new Point(195, 55);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(85, 30);
+            btnXoa.TabIndex = 4;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            // 
+            // QuanLyNhanVienForm
+            // 
+            ClientSize = new Size(1100, 650);
             Controls.Add(_dgv);
             Controls.Add(_top);
-
+            Name = "QuanLyNhanVienForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "10. Quản lý Nhân viên";
+            ((System.ComponentModel.ISupportInitialize)_dgv).EndInit();
             _top.ResumeLayout(false);
             _top.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)_dgv).EndInit();
             ResumeLayout(false);
         }
+
+        private Button btnXoa;
+        private Button btnSua;
     }
 }

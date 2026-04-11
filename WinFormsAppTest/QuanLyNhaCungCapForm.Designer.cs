@@ -17,10 +17,10 @@ namespace WinFormsAppTest
         {
             _dgv = new DataGridView();
             _top = new Panel();
-            _title = new Label();
-            btnThem = new Button();
-            btnSua = new Button();
             btnXoa = new Button();
+            btnSua = new Button();
+            btnThem = new Button();
+            _title = new Label();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
@@ -30,12 +30,12 @@ namespace WinFormsAppTest
             _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dgv.ColumnHeadersHeight = 29;
             _dgv.Dock = DockStyle.Fill;
-            _dgv.Location = new Point(0, 80);
+            _dgv.Location = new Point(0, 103);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
-            _dgv.Size = new Size(1000, 570);
+            _dgv.Size = new Size(1000, 547);
             _dgv.TabIndex = 0;
             // 
             // _top
@@ -48,8 +48,43 @@ namespace WinFormsAppTest
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
-            _top.Size = new Size(1000, 80);
+            _top.Size = new Size(1000, 103);
             _top.TabIndex = 1;
+            _top.Paint += _top_Paint;
+            // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Location = new Point(195, 62);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(83, 30);
+            btnXoa.TabIndex = 4;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.FromArgb(198, 40, 40);
+            btnSua.ForeColor = Color.White;
+            btnSua.Location = new Point(106, 62);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(83, 30);
+            btnSua.TabIndex = 3;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            // 
+            // btnThem
+            // 
+            btnThem.BackColor = Color.FromArgb(198, 40, 40);
+            btnThem.ForeColor = Color.White;
+            btnThem.Location = new Point(17, 62);
+            btnThem.Name = "btnThem";
+            btnThem.Size = new Size(83, 30);
+            btnThem.TabIndex = 2;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // _title
             // 
@@ -61,40 +96,6 @@ namespace WinFormsAppTest
             _title.Size = new Size(294, 37);
             _title.TabIndex = 0;
             _title.Text = "Quản lý Nhà cung cấp";
-            // 
-            // btnThem
-            // 
-            btnThem.BackColor = Color.FromArgb(198, 40, 40);
-            btnThem.ForeColor = Color.White;
-            btnThem.Location = new Point(12, 47);
-            btnThem.Name = "btnThem";
-            btnThem.Size = new Size(83, 30);
-            btnThem.TabIndex = 2;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = false;
-            btnThem.Click += btnThem_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.BackColor = Color.FromArgb(198, 40, 40);
-            btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(101, 47);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(83, 30);
-            btnSua.TabIndex = 3;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
-            // 
-            // btnXoa
-            // 
-            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
-            btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(190, 47);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(83, 30);
-            btnXoa.TabIndex = 4;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
             // 
             // QuanLyNhaCungCapForm
             // 
