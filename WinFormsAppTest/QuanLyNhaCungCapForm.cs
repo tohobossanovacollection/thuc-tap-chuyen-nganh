@@ -24,5 +24,10 @@ namespace WinFormsAppTest
         {
             MessageBox.Show("Thêm/Sửa/Xóa nhà cung cấp");
         }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

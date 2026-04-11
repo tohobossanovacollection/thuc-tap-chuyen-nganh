@@ -59,6 +59,10 @@
               "target": "Package",
               "version": "[5.2.2, )"
             },
+            "System.Data.SqlClient": {
+              "target": "Package",
+              "version": "[4.8.6, )"
+            },
             "System.Windows.Forms.DataVisualization": {
               "target": "Package",
               "version": "[1.0.0-prerelease.20110.1, )"

@@ -76,8 +76,12 @@ namespace WinFormsAppTest
             MessageBox.Show($"Đăng nhập thành công!\nTài khoản: {username}\nVai trò: {roleDisplay}",
                 "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            // Close login form and open main application
-            this.Hide();
+            Hide();
+            using (Dashboard dashboard = new Dashboard(username, roleDisplay))
+            {
+                dashboard.ShowDialog(this);
+            }
+            Close();
         }
 
 
@@ -124,6 +128,11 @@ namespace WinFormsAppTest
                 "Nhân viên" => "NHAN_VIEN",
                 _ => string.Empty
             };
+        }
+
+        private void lblSubTitle_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

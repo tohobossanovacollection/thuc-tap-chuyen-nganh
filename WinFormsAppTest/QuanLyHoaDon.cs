@@ -292,5 +292,15 @@ namespace WinFormsAppTest
 
             e.HasMorePages = false;
         }
+
+        private void lblGiamGiaText_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblThanhTienText_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

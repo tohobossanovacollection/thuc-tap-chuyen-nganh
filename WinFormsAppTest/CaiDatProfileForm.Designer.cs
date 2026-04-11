@@ -3,8 +3,6 @@ namespace WinFormsAppTest
     partial class CaiDatProfileForm
     {
         private System.ComponentModel.IContainer components = null;
-        private Panel _top;
-        private Label _title;
         private Label _lblUser;
         private TextBox _txtUser;
         private Label _lblOld;
@@ -22,9 +20,6 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
-            _top = new Panel();
-            _title = new Label();
             _lblUser = new Label();
             _txtUser = new TextBox();
             _lblOld = new Label();
@@ -33,64 +28,97 @@ namespace WinFormsAppTest
             _txtNew = new TextBox();
             _btnDoiMatKhau = new Button();
             _btnCapNhat = new Button();
-
-            _top.SuspendLayout();
             SuspendLayout();
-
-            Text = "15. Cài đặt / Profile";
-            StartPosition = FormStartPosition.CenterScreen;
-            ClientSize = new Size(800, 500);
-
-            _top.Dock = DockStyle.Top;
-            _top.Height = 80;
-            _top.BackColor = Color.FromArgb(255, 241, 118);
-
-            _title.Text = "Trang cài đặt / profile";
-            _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            _title.ForeColor = Color.FromArgb(198, 40, 40);
-            _title.AutoSize = true;
-            _title.Location = new Point(12, 10);
-            _top.Controls.Add(_title);
-
-            _lblUser.Text = "Tên đăng nhập:";
-            _lblUser.Location = new Point(20, 110);
+            // 
+            // _lblUser
+            // 
             _lblUser.AutoSize = true;
-            _txtUser.Location = new Point(140, 106);
-            _txtUser.Width = 220;
+            _lblUser.Location = new Point(34, 45);
+            _lblUser.Name = "_lblUser";
+            _lblUser.Size = new Size(110, 20);
+            _lblUser.TabIndex = 1;
+            _lblUser.Text = "Tên đăng nhập:";
+            // 
+            // _txtUser
+            // 
+            _txtUser.Location = new Point(154, 41);
+            _txtUser.Name = "_txtUser";
+            _txtUser.Size = new Size(220, 27);
+            _txtUser.TabIndex = 2;
             _txtUser.Text = "user_demo";
-
-            _lblOld.Text = "Mật khẩu cũ:";
-            _lblOld.Location = new Point(20, 150);
+            // 
+            // _lblOld
+            // 
             _lblOld.AutoSize = true;
-            _txtOld.Location = new Point(140, 146);
-            _txtOld.Width = 220;
+            _lblOld.Location = new Point(34, 85);
+            _lblOld.Name = "_lblOld";
+            _lblOld.Size = new Size(92, 20);
+            _lblOld.TabIndex = 3;
+            _lblOld.Text = "Mật khẩu cũ:";
+            // 
+            // _txtOld
+            // 
+            _txtOld.Location = new Point(154, 81);
+            _txtOld.Name = "_txtOld";
+            _txtOld.Size = new Size(220, 27);
+            _txtOld.TabIndex = 4;
             _txtOld.UseSystemPasswordChar = true;
-
-            _lblNew.Text = "Mật khẩu mới:";
-            _lblNew.Location = new Point(20, 190);
+            // 
+            // _lblNew
+            // 
             _lblNew.AutoSize = true;
-            _txtNew.Location = new Point(140, 186);
-            _txtNew.Width = 220;
+            _lblNew.Location = new Point(34, 125);
+            _lblNew.Name = "_lblNew";
+            _lblNew.Size = new Size(103, 20);
+            _lblNew.TabIndex = 5;
+            _lblNew.Text = "Mật khẩu mới:";
+            // 
+            // _txtNew
+            // 
+            _txtNew.Location = new Point(154, 121);
+            _txtNew.Name = "_txtNew";
+            _txtNew.Size = new Size(220, 27);
+            _txtNew.TabIndex = 6;
             _txtNew.UseSystemPasswordChar = true;
-
-            _btnDoiMatKhau.Text = "Đổi mật khẩu";
-            _btnDoiMatKhau.Location = new Point(140, 230);
-            _btnDoiMatKhau.Size = new Size(120, 32);
+            // 
+            // _btnDoiMatKhau
+            // 
             _btnDoiMatKhau.BackColor = Color.FromArgb(198, 40, 40);
             _btnDoiMatKhau.ForeColor = Color.White;
+            _btnDoiMatKhau.Location = new Point(154, 165);
+            _btnDoiMatKhau.Name = "_btnDoiMatKhau";
+            _btnDoiMatKhau.Size = new Size(120, 32);
+            _btnDoiMatKhau.TabIndex = 7;
+            _btnDoiMatKhau.Text = "Đổi mật khẩu";
+            _btnDoiMatKhau.UseVisualStyleBackColor = false;
             _btnDoiMatKhau.Click += btnDoiMatKhau_Click;
-
-            _btnCapNhat.Text = "Cập nhật profile";
-            _btnCapNhat.Location = new Point(270, 230);
-            _btnCapNhat.Size = new Size(120, 32);
+            // 
+            // _btnCapNhat
+            // 
             _btnCapNhat.BackColor = Color.FromArgb(198, 40, 40);
             _btnCapNhat.ForeColor = Color.White;
+            _btnCapNhat.Location = new Point(284, 165);
+            _btnCapNhat.Name = "_btnCapNhat";
+            _btnCapNhat.Size = new Size(120, 32);
+            _btnCapNhat.TabIndex = 8;
+            _btnCapNhat.Text = "Cập nhật profile";
+            _btnCapNhat.UseVisualStyleBackColor = false;
             _btnCapNhat.Click += btnCapNhat_Click;
-
-            Controls.AddRange(new Control[] { _top, _lblUser, _txtUser, _lblOld, _txtOld, _lblNew, _txtNew, _btnDoiMatKhau, _btnCapNhat });
-
-            _top.ResumeLayout(false);
-            _top.PerformLayout();
+            // 
+            // CaiDatProfileForm
+            // 
+            ClientSize = new Size(800, 500);
+            Controls.Add(_lblUser);
+            Controls.Add(_txtUser);
+            Controls.Add(_lblOld);
+            Controls.Add(_txtOld);
+            Controls.Add(_lblNew);
+            Controls.Add(_txtNew);
+            Controls.Add(_btnDoiMatKhau);
+            Controls.Add(_btnCapNhat);
+            Name = "CaiDatProfileForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "15. Cài đặt / Profile";
             ResumeLayout(false);
             PerformLayout();
         }

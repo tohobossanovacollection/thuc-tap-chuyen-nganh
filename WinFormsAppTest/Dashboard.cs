@@ -24,6 +24,54 @@ namespace WinFormsAppTest
             LoadDashboardData();
         }
 
+        private void btnMenuBanHang_Click(object sender, EventArgs e)
+        {
+            using BanHangForm form = new BanHangForm("NV01");
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuSanPham_Click(object sender, EventArgs e)
+        {
+            using SanPham form = new SanPham();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuNhapHang_Click(object sender, EventArgs e)
+        {
+            using QuanLyPhieuNhapForm form = new QuanLyPhieuNhapForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuKhachHang_Click(object sender, EventArgs e)
+        {
+            using QuanLyKhachHangForm form = new QuanLyKhachHangForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuNhanVienTaiKhoan_Click(object sender, EventArgs e)
+        {
+            using QuanLyNhanVienForm form = new QuanLyNhanVienForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuKhuyenMai_Click(object sender, EventArgs e)
+        {
+            using QuanLyGiamGiaForm form = new QuanLyGiamGiaForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuBaoCao_Click(object sender, EventArgs e)
+        {
+            using BaoCaoDoanhThuForm form = new BaoCaoDoanhThuForm();
+            form.ShowDialog(this);
+        }
+
+        private void btnMenuCaiDat_Click(object sender, EventArgs e)
+        {
+            using CaiDatProfileForm form = new CaiDatProfileForm();
+            form.ShowDialog(this);
+        }
+
         private void btnRefresh_Click(object sender, EventArgs e)
         {
             LoadDashboardData();
@@ -147,6 +195,11 @@ WHERE TABLE_NAME = @tableName;";
             }
 
             throw new InvalidOperationException($"Không tìm thấy cột phù hợp trong bảng '{tableName}'.");
+        }
+
+        private void grpRevenueChart_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

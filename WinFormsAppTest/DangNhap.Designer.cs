@@ -31,6 +31,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges3 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges4 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangNhap));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -45,6 +46,7 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Guna.UI2.WinForms.Guna2Panel();
+            lblBrand = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             pnlRight = new Guna.UI2.WinForms.Guna2Panel();
@@ -59,7 +61,6 @@
             btnLogin = new Guna.UI2.WinForms.Guna2Button();
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
             lnkForgotPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblBrand = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlRight.SuspendLayout();
@@ -79,21 +80,34 @@
             pnlLeft.Size = new Size(350, 681);
             pnlLeft.TabIndex = 0;
             // 
+            // lblBrand
+            // 
+            lblBrand.BackColor = Color.Transparent;
+            lblBrand.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblBrand.ForeColor = Color.Yellow;
+            lblBrand.Location = new Point(61, 217);
+            lblBrand.Name = "lblBrand";
+            lblBrand.Size = new Size(234, 59);
+            lblBrand.TabIndex = 3;
+            lblBrand.Text = "WinMart+";
+            // 
             // lblSubTitle
             // 
             lblSubTitle.BackColor = Color.Transparent;
-            lblSubTitle.Font = new Font("Segoe UI", 14F);
+            lblSubTitle.Font = new Font("Cambria", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubTitle.ForeColor = Color.White;
-            lblSubTitle.Location = new Point(29, 285);
+            lblSubTitle.Location = new Point(35, 282);
             lblSubTitle.Name = "lblSubTitle";
-            lblSubTitle.Size = new Size(296, 33);
+            lblSubTitle.Size = new Size(283, 29);
             lblSubTitle.TabIndex = 1;
             lblSubTitle.Text = "Hệ Thống Quản Lý Bán Hàng";
+            lblSubTitle.Click += lblSubTitle_Click;
             // 
             // picLogo
             // 
             picLogo.BackColor = Color.Transparent;
             picLogo.CustomizableEdges = customizableEdges1;
+            picLogo.Image = (Image)resources.GetObject("picLogo.Image");
             picLogo.ImageRotate = 0F;
             picLogo.Location = new Point(125, 80);
             picLogo.Name = "picLogo";
@@ -105,7 +119,7 @@
             // 
             // pnlRight
             // 
-            pnlRight.BackColor = Color.White;
+            pnlRight.BackColor = Color.FromArgb(255, 253, 231);
             pnlRight.Controls.Add(lblLogin);
             pnlRight.Controls.Add(lblUsername);
             pnlRight.Controls.Add(txtUsername);
@@ -128,22 +142,22 @@
             // lblLogin
             // 
             lblLogin.BackColor = Color.Transparent;
-            lblLogin.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
+            lblLogin.Font = new Font("Cambria", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogin.ForeColor = Color.FromArgb(211, 47, 47);
             lblLogin.Location = new Point(50, 80);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(252, 64);
+            lblLogin.Size = new Size(236, 57);
             lblLogin.TabIndex = 0;
             lblLogin.Text = "Đăng Nhập";
             // 
             // lblUsername
             // 
             lblUsername.BackColor = Color.Transparent;
-            lblUsername.Font = new Font("Segoe UI", 12F);
+            lblUsername.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.FromArgb(64, 64, 64);
             lblUsername.Location = new Point(50, 160);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(139, 30);
+            lblUsername.Size = new Size(143, 25);
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Tên Đăng Nhập";
             // 
@@ -154,7 +168,7 @@
             txtUsername.DefaultText = "";
             txtUsername.Font = new Font("Segoe UI", 12F);
             txtUsername.Location = new Point(50, 189);
-            txtUsername.Margin = new Padding(5, 5, 5, 5);
+            txtUsername.Margin = new Padding(5);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Nhập tên đăng nhập";
             txtUsername.SelectedText = "";
@@ -165,11 +179,11 @@
             // lblPassword
             // 
             lblPassword.BackColor = Color.Transparent;
-            lblPassword.Font = new Font("Segoe UI", 12F);
+            lblPassword.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPassword.ForeColor = Color.FromArgb(64, 64, 64);
             lblPassword.Location = new Point(50, 251);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(87, 30);
+            lblPassword.Size = new Size(91, 25);
             lblPassword.TabIndex = 3;
             lblPassword.Text = "Mật Khẩu";
             // 
@@ -180,7 +194,7 @@
             txtPassword.DefaultText = "";
             txtPassword.Font = new Font("Segoe UI", 12F);
             txtPassword.Location = new Point(50, 280);
-            txtPassword.Margin = new Padding(5, 5, 5, 5);
+            txtPassword.Margin = new Padding(5);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderText = "Nhập mật khẩu";
@@ -193,11 +207,11 @@
             // lblRole
             // 
             lblRole.BackColor = Color.Transparent;
-            lblRole.Font = new Font("Segoe UI", 12F);
+            lblRole.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.ForeColor = Color.FromArgb(64, 64, 64);
             lblRole.Location = new Point(50, 340);
             lblRole.Name = "lblRole";
-            lblRole.Size = new Size(64, 30);
+            lblRole.Size = new Size(70, 25);
             lblRole.TabIndex = 5;
             lblRole.Text = "Vai Trò";
             // 
@@ -227,10 +241,10 @@
             chkRemember.CheckedState.BorderRadius = 0;
             chkRemember.CheckedState.BorderThickness = 0;
             chkRemember.CheckedState.FillColor = Color.FromArgb(0, 150, 136);
-            chkRemember.Font = new Font("Segoe UI", 10F);
+            chkRemember.Font = new Font("Cambria", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
             chkRemember.Location = new Point(50, 420);
             chkRemember.Name = "chkRemember";
-            chkRemember.Size = new Size(181, 27);
+            chkRemember.Size = new Size(164, 24);
             chkRemember.TabIndex = 7;
             chkRemember.Text = "Ghi nhớ đăng nhập";
             chkRemember.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
@@ -281,17 +295,6 @@
             lnkForgotPassword.TabIndex = 10;
             lnkForgotPassword.Text = "Quên mật khẩu?";
             lnkForgotPassword.Click += lnkForgotPassword_Click;
-            // 
-            // lblBrand
-            // 
-            lblBrand.BackColor = Color.Transparent;
-            lblBrand.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
-            lblBrand.ForeColor = Color.FromArgb(255, 241, 118);
-            lblBrand.Location = new Point(47, 210);
-            lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(246, 69);
-            lblBrand.TabIndex = 3;
-            lblBrand.Text = "WinMart+";
             // 
             // DangNhap
             // 

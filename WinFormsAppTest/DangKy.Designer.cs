@@ -60,10 +60,9 @@ namespace WinFormsAppTest
             pnlLeft.CustomizableEdges = customizableEdges1;
             pnlLeft.Dock = DockStyle.Left;
             pnlLeft.Location = new Point(0, 0);
-            pnlLeft.Margin = new Padding(3, 2, 3, 2);
             pnlLeft.Name = "pnlLeft";
             pnlLeft.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            pnlLeft.Size = new Size(280, 524);
+            pnlLeft.Size = new Size(320, 699);
             pnlLeft.TabIndex = 0;
             // 
             // lblBrand
@@ -71,10 +70,9 @@ namespace WinFormsAppTest
             lblBrand.BackColor = Color.Transparent;
             lblBrand.Font = new Font("Segoe UI", 30F, FontStyle.Bold);
             lblBrand.ForeColor = Color.FromArgb(255, 241, 118);
-            lblBrand.Location = new Point(38, 136);
-            lblBrand.Margin = new Padding(3, 2, 3, 2);
+            lblBrand.Location = new Point(43, 181);
             lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(198, 56);
+            lblBrand.Size = new Size(246, 69);
             lblBrand.TabIndex = 0;
             lblBrand.Text = "WinMart+";
             // 
@@ -83,10 +81,9 @@ namespace WinFormsAppTest
             lblSubTitle.BackColor = Color.Transparent;
             lblSubTitle.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             lblSubTitle.ForeColor = Color.White;
-            lblSubTitle.Location = new Point(38, 204);
-            lblSubTitle.Margin = new Padding(3, 2, 3, 2);
+            lblSubTitle.Location = new Point(43, 272);
             lblSubTitle.Name = "lblSubTitle";
-            lblSubTitle.Size = new Size(149, 25);
+            lblSubTitle.Size = new Size(189, 32);
             lblSubTitle.TabIndex = 1;
             lblSubTitle.Text = "Tạo tài khoản mới";
             // 
@@ -106,11 +103,10 @@ namespace WinFormsAppTest
             pnlRight.Controls.Add(lblTitle);
             pnlRight.CustomizableEdges = customizableEdges15;
             pnlRight.Dock = DockStyle.Fill;
-            pnlRight.Location = new Point(280, 0);
-            pnlRight.Margin = new Padding(3, 2, 3, 2);
+            pnlRight.Location = new Point(320, 0);
             pnlRight.Name = "pnlRight";
             pnlRight.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            pnlRight.Size = new Size(528, 524);
+            pnlRight.Size = new Size(603, 699);
             pnlRight.TabIndex = 1;
             // 
             // btnBack
@@ -122,11 +118,10 @@ namespace WinFormsAppTest
             btnBack.FillColor = Color.FromArgb(255, 253, 231);
             btnBack.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnBack.ForeColor = Color.FromArgb(211, 47, 47);
-            btnBack.Location = new Point(226, 394);
-            btnBack.Margin = new Padding(3, 2, 3, 2);
+            btnBack.Location = new Point(258, 525);
             btnBack.Name = "btnBack";
             btnBack.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            btnBack.Size = new Size(158, 38);
+            btnBack.Size = new Size(181, 51);
             btnBack.TabIndex = 10;
             btnBack.Text = "Quay Lại";
             btnBack.Click += btnBack_Click;
@@ -138,11 +133,10 @@ namespace WinFormsAppTest
             btnCreateAccount.FillColor = Color.FromArgb(211, 47, 47);
             btnCreateAccount.Font = new Font("Segoe UI", 13F, FontStyle.Bold);
             btnCreateAccount.ForeColor = Color.White;
-            btnCreateAccount.Location = new Point(51, 394);
-            btnCreateAccount.Margin = new Padding(3, 2, 3, 2);
+            btnCreateAccount.Location = new Point(58, 525);
             btnCreateAccount.Name = "btnCreateAccount";
             btnCreateAccount.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnCreateAccount.Size = new Size(158, 38);
+            btnCreateAccount.Size = new Size(181, 51);
             btnCreateAccount.TabIndex = 9;
             btnCreateAccount.Text = "Tạo Tài Khoản";
             btnCreateAccount.Click += btnCreateAccount_Click;
@@ -160,22 +154,20 @@ namespace WinFormsAppTest
             cmbRole.ForeColor = Color.FromArgb(68, 88, 112);
             cmbRole.ItemHeight = 30;
             cmbRole.Items.AddRange(new object[] { "Admin", "Quản lý", "Nhân viên" });
-            cmbRole.Location = new Point(51, 339);
-            cmbRole.Margin = new Padding(3, 2, 3, 2);
+            cmbRole.Location = new Point(58, 452);
             cmbRole.Name = "cmbRole";
             cmbRole.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            cmbRole.Size = new Size(333, 36);
+            cmbRole.Size = new Size(380, 36);
             cmbRole.TabIndex = 8;
             // 
             // lblRole
             // 
             lblRole.BackColor = Color.Transparent;
-            lblRole.Font = new Font("Segoe UI", 12F);
+            lblRole.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblRole.ForeColor = Color.FromArgb(97, 97, 97);
-            lblRole.Location = new Point(51, 316);
-            lblRole.Margin = new Padding(3, 2, 3, 2);
+            lblRole.Location = new Point(58, 421);
             lblRole.Name = "lblRole";
-            lblRole.Size = new Size(52, 23);
+            lblRole.Size = new Size(71, 30);
             lblRole.TabIndex = 7;
             lblRole.Text = "Vai Trò";
             // 
@@ -185,26 +177,24 @@ namespace WinFormsAppTest
             txtConfirmPassword.CustomizableEdges = customizableEdges9;
             txtConfirmPassword.DefaultText = "";
             txtConfirmPassword.Font = new Font("Segoe UI", 12F);
-            txtConfirmPassword.Location = new Point(51, 272);
-            txtConfirmPassword.Margin = new Padding(3, 2, 3, 2);
+            txtConfirmPassword.Location = new Point(58, 363);
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.PasswordChar = '●';
             txtConfirmPassword.PlaceholderText = "Nhập lại mật khẩu";
             txtConfirmPassword.SelectedText = "";
             txtConfirmPassword.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            txtConfirmPassword.Size = new Size(332, 34);
+            txtConfirmPassword.Size = new Size(379, 45);
             txtConfirmPassword.TabIndex = 6;
             txtConfirmPassword.UseSystemPasswordChar = true;
             // 
             // lblConfirmPassword
             // 
             lblConfirmPassword.BackColor = Color.Transparent;
-            lblConfirmPassword.Font = new Font("Segoe UI", 12F);
+            lblConfirmPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblConfirmPassword.ForeColor = Color.FromArgb(97, 97, 97);
-            lblConfirmPassword.Location = new Point(51, 249);
-            lblConfirmPassword.Margin = new Padding(3, 2, 3, 2);
+            lblConfirmPassword.Location = new Point(58, 332);
             lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(139, 23);
+            lblConfirmPassword.Size = new Size(192, 30);
             lblConfirmPassword.TabIndex = 5;
             lblConfirmPassword.Text = "Xác Nhận Mật Khẩu";
             // 
@@ -214,26 +204,24 @@ namespace WinFormsAppTest
             txtPassword.CustomizableEdges = customizableEdges11;
             txtPassword.DefaultText = "";
             txtPassword.Font = new Font("Segoe UI", 12F);
-            txtPassword.Location = new Point(51, 204);
-            txtPassword.Margin = new Padding(3, 2, 3, 2);
+            txtPassword.Location = new Point(58, 272);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
             txtPassword.PlaceholderText = "Nhập mật khẩu";
             txtPassword.SelectedText = "";
             txtPassword.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            txtPassword.Size = new Size(332, 34);
+            txtPassword.Size = new Size(379, 45);
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             // 
             // lblPassword
             // 
             lblPassword.BackColor = Color.Transparent;
-            lblPassword.Font = new Font("Segoe UI", 12F);
+            lblPassword.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPassword.ForeColor = Color.FromArgb(97, 97, 97);
-            lblPassword.Location = new Point(51, 182);
-            lblPassword.Margin = new Padding(3, 2, 3, 2);
+            lblPassword.Location = new Point(58, 243);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(69, 23);
+            lblPassword.Size = new Size(95, 30);
             lblPassword.TabIndex = 3;
             lblPassword.Text = "Mật Khẩu";
             // 
@@ -243,24 +231,22 @@ namespace WinFormsAppTest
             txtUsername.CustomizableEdges = customizableEdges13;
             txtUsername.DefaultText = "";
             txtUsername.Font = new Font("Segoe UI", 12F);
-            txtUsername.Location = new Point(51, 136);
-            txtUsername.Margin = new Padding(3, 2, 3, 2);
+            txtUsername.Location = new Point(58, 181);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Nhập tên đăng nhập";
             txtUsername.SelectedText = "";
             txtUsername.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            txtUsername.Size = new Size(332, 34);
+            txtUsername.Size = new Size(379, 45);
             txtUsername.TabIndex = 2;
             // 
             // lblUsername
             // 
             lblUsername.BackColor = Color.Transparent;
-            lblUsername.Font = new Font("Segoe UI", 12F);
+            lblUsername.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.FromArgb(97, 97, 97);
-            lblUsername.Location = new Point(51, 114);
-            lblUsername.Margin = new Padding(3, 2, 3, 2);
+            lblUsername.Location = new Point(58, 152);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(111, 23);
+            lblUsername.Size = new Size(151, 30);
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Tên Đăng Nhập";
             // 
@@ -269,23 +255,21 @@ namespace WinFormsAppTest
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(191, 54, 12);
-            lblTitle.Location = new Point(51, 54);
-            lblTitle.Margin = new Padding(3, 2, 3, 2);
+            lblTitle.Location = new Point(58, 72);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(149, 52);
+            lblTitle.Size = new Size(189, 64);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Đăng Ký";
             // 
             // DangKy
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(808, 524);
+            ClientSize = new Size(923, 699);
             Controls.Add(pnlRight);
             Controls.Add(pnlLeft);
             FormBorderStyle = FormBorderStyle.FixedDialog;
-            Margin = new Padding(3, 2, 3, 2);
             MaximizeBox = false;
             Name = "DangKy";
             StartPosition = FormStartPosition.CenterParent;
