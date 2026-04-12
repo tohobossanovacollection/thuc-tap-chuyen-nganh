@@ -4,7 +4,10 @@ namespace WinFormsAppTest
 {
     public partial class DangNhap : Form
     {
-        private readonly string _connectionString = DatabaseConfig.ConnectionString;
+        // Don't access DatabaseConfig at field initialization time because the WinForms
+        // designer may load this type at design-time and DatabaseConfig may depend
+        // on runtime-only resources. Initialize at runtime in the Load event.
+        private string _connectionString = string.Empty;
 
         public DangNhap()
         {
@@ -13,6 +16,9 @@ namespace WinFormsAppTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Initialize connection string at runtime (avoid design-time access)
+            _connectionString = DatabaseConfig.ConnectionString;
+
             // Focus on username field
             txtUsername.Focus();
         }
