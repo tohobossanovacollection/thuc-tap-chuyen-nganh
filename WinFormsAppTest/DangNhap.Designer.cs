@@ -33,16 +33,16 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges1 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DangNhap));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges2 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges15 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges16 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges14 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Guna.UI2.WinForms.Guna2Panel();
             lblBrand = new Guna.UI2.WinForms.Guna2HtmlLabel();
             lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
@@ -125,11 +125,11 @@
             pnlRight.Controls.Add(btnLogin);
             pnlRight.Controls.Add(btnRegister);
             pnlRight.Controls.Add(lnkForgotPassword);
-            pnlRight.CustomizableEdges = customizableEdges15;
+            pnlRight.CustomizableEdges = customizableEdges13;
             pnlRight.Dock = DockStyle.Fill;
             pnlRight.Location = new Point(350, 0);
             pnlRight.Name = "pnlRight";
-            pnlRight.ShadowDecoration.CustomizableEdges = customizableEdges16;
+            pnlRight.ShadowDecoration.CustomizableEdges = customizableEdges14;
             pnlRight.Size = new Size(568, 681);
             pnlRight.TabIndex = 1;
             // 
@@ -219,13 +219,13 @@
             // btnLogin
             // 
             btnLogin.BorderRadius = 10;
-            btnLogin.CustomizableEdges = customizableEdges11;
+            btnLogin.CustomizableEdges = customizableEdges9;
             btnLogin.FillColor = Color.FromArgb(211, 47, 47);
             btnLogin.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(50, 400);
             btnLogin.Name = "btnLogin";
-            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges12;
+            btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnLogin.Size = new Size(170, 51);
             btnLogin.TabIndex = 6;
             btnLogin.Text = "Đăng Nhập";
@@ -236,13 +236,13 @@
             btnRegister.BorderColor = Color.FromArgb(211, 47, 47);
             btnRegister.BorderRadius = 10;
             btnRegister.BorderThickness = 2;
-            btnRegister.CustomizableEdges = customizableEdges13;
+            btnRegister.CustomizableEdges = customizableEdges11;
             btnRegister.FillColor = Color.White;
             btnRegister.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnRegister.ForeColor = Color.FromArgb(211, 47, 47);
             btnRegister.Location = new Point(230, 400);
             btnRegister.Name = "btnRegister";
-            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges14;
+            btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnRegister.Size = new Size(170, 51);
             btnRegister.TabIndex = 7;
             btnRegister.Text = "Đăng Ký";

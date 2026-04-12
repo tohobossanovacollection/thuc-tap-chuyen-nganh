@@ -225,7 +225,7 @@ namespace WinFormsAppTest
             btnMenuBanHang.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnMenuBanHang.Size = new Size(220, 42);
             btnMenuBanHang.TabIndex = 1;
-            btnMenuBanHang.Text = "1. Bán hàng";
+            btnMenuBanHang.Text = "Bán hàng";
             btnMenuBanHang.Click += btnMenuBanHang_Click;
             // 
             // btnMenuQuanLy
@@ -240,7 +240,7 @@ namespace WinFormsAppTest
             btnMenuQuanLy.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnMenuQuanLy.Size = new Size(220, 42);
             btnMenuQuanLy.TabIndex = 2;
-            btnMenuQuanLy.Text = "2. Quản lý ▼";
+            btnMenuQuanLy.Text = "Quản lý ▼";
             btnMenuQuanLy.Click += btnMenuQuanLy_Click;
             // 
             // btnMenuSanPham
@@ -255,7 +255,7 @@ namespace WinFormsAppTest
             btnMenuSanPham.ShadowDecoration.CustomizableEdges = customizableEdges10;
             btnMenuSanPham.Size = new Size(220, 42);
             btnMenuSanPham.TabIndex = 3;
-            btnMenuSanPham.Text = "Quản lý sản phẩm";
+            btnMenuSanPham.Text = "Sản phẩm";
             btnMenuSanPham.Click += btnMenuSanPham_Click;
             // 
             // btnMenuNhapHang
@@ -270,7 +270,7 @@ namespace WinFormsAppTest
             btnMenuNhapHang.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnMenuNhapHang.Size = new Size(220, 42);
             btnMenuNhapHang.TabIndex = 9;
-            btnMenuNhapHang.Text = "3. Nhập hàng";
+            btnMenuNhapHang.Text = "Nhập hàng";
             btnMenuNhapHang.Click += btnMenuNhapHang_Click;
             // 
             // btnMenuKhachHang
@@ -285,7 +285,7 @@ namespace WinFormsAppTest
             btnMenuKhachHang.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnMenuKhachHang.Size = new Size(220, 42);
             btnMenuKhachHang.TabIndex = 4;
-            btnMenuKhachHang.Text = "Quản lý khách hàng";
+            btnMenuKhachHang.Text = "Khách hàng";
             btnMenuKhachHang.Click += btnMenuKhachHang_Click;
             // 
             // btnMenuNhanVienTaiKhoan
@@ -300,7 +300,7 @@ namespace WinFormsAppTest
             btnMenuNhanVienTaiKhoan.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnMenuNhanVienTaiKhoan.Size = new Size(220, 42);
             btnMenuNhanVienTaiKhoan.TabIndex = 5;
-            btnMenuNhanVienTaiKhoan.Text = "Quản lý nhân viên";
+            btnMenuNhanVienTaiKhoan.Text = "Nhân viên";
             btnMenuNhanVienTaiKhoan.Click += btnMenuNhanVienTaiKhoan_Click;
             // 
             // btnMenuKhuyenMai
@@ -315,7 +315,7 @@ namespace WinFormsAppTest
             btnMenuKhuyenMai.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnMenuKhuyenMai.Size = new Size(220, 42);
             btnMenuKhuyenMai.TabIndex = 6;
-            btnMenuKhuyenMai.Text = "Quản lý khuyến mãi";
+            btnMenuKhuyenMai.Text = "Khuyến mãi";
             btnMenuKhuyenMai.Click += btnMenuKhuyenMai_Click;
             // 
             // btnMenuBaoCao
@@ -330,7 +330,7 @@ namespace WinFormsAppTest
             btnMenuBaoCao.ShadowDecoration.CustomizableEdges = customizableEdges20;
             btnMenuBaoCao.Size = new Size(220, 42);
             btnMenuBaoCao.TabIndex = 10;
-            btnMenuBaoCao.Text = "4. Báo cáo";
+            btnMenuBaoCao.Text = "Báo cáo";
             btnMenuBaoCao.Click += btnMenuBaoCao_Click;
             // 
             // btnMenuNhaCungCap
@@ -345,7 +345,7 @@ namespace WinFormsAppTest
             btnMenuNhaCungCap.ShadowDecoration.CustomizableEdges = customizableEdges22;
             btnMenuNhaCungCap.Size = new Size(220, 42);
             btnMenuNhaCungCap.TabIndex = 7;
-            btnMenuNhaCungCap.Text = "Quản lý nhà cung cấp";
+            btnMenuNhaCungCap.Text = "Nhà cung cấp";
             btnMenuNhaCungCap.Click += btnMenuNhaCungCap_Click;
             // 
             // btnMenuHoaDon
@@ -360,7 +360,7 @@ namespace WinFormsAppTest
             btnMenuHoaDon.ShadowDecoration.CustomizableEdges = customizableEdges24;
             btnMenuHoaDon.Size = new Size(220, 42);
             btnMenuHoaDon.TabIndex = 8;
-            btnMenuHoaDon.Text = "Quản lý hóa đơn";
+            btnMenuHoaDon.Text = "Hóa đơn";
             btnMenuHoaDon.Click += btnMenuHoaDon_Click;
             // 
             // btnMenuCaiDat
@@ -375,7 +375,7 @@ namespace WinFormsAppTest
             btnMenuCaiDat.ShadowDecoration.CustomizableEdges = customizableEdges26;
             btnMenuCaiDat.Size = new Size(220, 42);
             btnMenuCaiDat.TabIndex = 11;
-            btnMenuCaiDat.Text = "5. Cài đặt";
+            btnMenuCaiDat.Text = "Cài đặt";
             btnMenuCaiDat.Click += btnMenuCaiDat_Click;
             // 
             // cardTodayRevenue
@@ -597,6 +597,17 @@ namespace WinFormsAppTest
             StartPosition = FormStartPosition.CenterScreen;
             Text = "WinMart+ - Dashboard";
             Load += Dashboard_Load;
+            btnMenuBanHang.Image = Icons.IconGenerator.GenerateShoppingIcon();
+            btnMenuQuanLy.Image = Icons.IconGenerator.GenerateManageIcon();
+            btnMenuSanPham.Image = Icons.IconGenerator.GenerateProductIcon();
+            btnMenuNhapHang.Image = Icons.IconGenerator.GenerateImportIcon();
+            btnMenuKhachHang.Image = Icons.IconGenerator.GenerateCustomerIcon();
+            btnMenuNhanVienTaiKhoan.Image = Icons.IconGenerator.GenerateStaffIcon();
+            btnMenuKhuyenMai.Image = Icons.IconGenerator.GenerateDiscountIcon();
+            btnMenuBaoCao.Image = Icons.IconGenerator.GenerateReportIcon();
+            btnMenuNhaCungCap.Image = Icons.IconGenerator.GenerateSupplierIcon();
+            btnMenuHoaDon.Image = Icons.IconGenerator.GenerateInvoiceIcon();
+            btnMenuCaiDat.Image = Icons.IconGenerator.GenerateSettingIcon();
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             pnlMenu.ResumeLayout(false);
