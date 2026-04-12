@@ -17,13 +17,14 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhanVienForm));
             _dgv = new DataGridView();
             _top = new Panel();
+            btnXoa = new Button();
+            btnSua = new Button();
             _title = new Label();
             btnThem = new Button();
             btnGanTk = new Button();
-            btnSua = new Button();
-            btnXoa = new Button();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
@@ -55,6 +56,32 @@ namespace WinFormsAppTest
             _top.Size = new Size(1100, 91);
             _top.TabIndex = 1;
             // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
+            btnXoa.ForeColor = Color.White;
+            btnXoa.Location = new Point(195, 55);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(85, 30);
+            btnXoa.TabIndex = 4;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
+            btnXoa.ImageAlign = ContentAlignment.MiddleRight;
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.FromArgb(198, 40, 40);
+            btnSua.ForeColor = Color.White;
+            btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
+            btnSua.ImageAlign = ContentAlignment.MiddleRight;
+            btnSua.Location = new Point(104, 55);
+            btnSua.Name = "btnSua";
+            btnSua.Size = new Size(85, 30);
+            btnSua.TabIndex = 3;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            // 
             // _title
             // 
             _title.AutoSize = true;
@@ -70,6 +97,8 @@ namespace WinFormsAppTest
             // 
             btnThem.BackColor = Color.FromArgb(198, 40, 40);
             btnThem.ForeColor = Color.White;
+            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.ImageAlign = ContentAlignment.MiddleRight;
             btnThem.Location = new Point(13, 55);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(85, 30);
@@ -89,28 +118,6 @@ namespace WinFormsAppTest
             btnGanTk.Text = "Gán tài khoản";
             btnGanTk.UseVisualStyleBackColor = false;
             btnGanTk.Click += btnGanTk_Click;
-            // 
-            // btnSua
-            // 
-            btnSua.BackColor = Color.FromArgb(198, 40, 40);
-            btnSua.ForeColor = Color.White;
-            btnSua.Location = new Point(104, 55);
-            btnSua.Name = "btnSua";
-            btnSua.Size = new Size(85, 30);
-            btnSua.TabIndex = 3;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
-            // 
-            // btnXoa
-            // 
-            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
-            btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(195, 55);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(85, 30);
-            btnXoa.TabIndex = 4;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
             // 
             // QuanLyNhanVienForm
             // 

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WinFormsAppTest")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09988331202d857a045bc37c620612273c500a54")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c0f20dc7e647e9605bf09045800847fc3c5da644")]
 [assembly: System.Reflection.AssemblyProductAttribute("WinFormsAppTest")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WinFormsAppTest")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

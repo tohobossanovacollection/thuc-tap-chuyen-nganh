@@ -15,6 +15,7 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhaCungCapForm));
             _dgv = new DataGridView();
             _top = new Panel();
             btnXoa = new Button();
@@ -62,11 +63,15 @@ namespace WinFormsAppTest
             btnXoa.TabIndex = 4;
             btnXoa.Text = "Xóa";
             btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
+            btnXoa.ImageAlign = ContentAlignment.MiddleRight;
             // 
             // btnSua
             // 
             btnSua.BackColor = Color.FromArgb(198, 40, 40);
             btnSua.ForeColor = Color.White;
+            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
+            btnSua.ImageAlign = ContentAlignment.MiddleRight;
             btnSua.Location = new Point(106, 62);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(83, 30);
@@ -78,6 +83,8 @@ namespace WinFormsAppTest
             // 
             btnThem.BackColor = Color.FromArgb(198, 40, 40);
             btnThem.ForeColor = Color.White;
+            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.ImageAlign = ContentAlignment.MiddleRight;
             btnThem.Location = new Point(17, 62);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(83, 30);

@@ -197,12 +197,91 @@ namespace WinFormsAppTest.Icons
             using var g = Graphics.FromImage(bmp);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.Clear(Color.Transparent);
-            
+
             // Folder/Management
             var pen = new Pen(Color.White, 2f);
             g.DrawRectangle(pen, 2, 4, 16, 12);
             g.DrawRectangle(pen, 2, 4, 6, 2);
-            
+
+            pen.Dispose();
+            return bmp;
+        }
+
+        public static Bitmap GenerateAddIcon()
+        {
+            var bmp = new Bitmap(IconSize, IconSize);
+            using var g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.Clear(Color.Transparent);
+
+            // Plus sign
+            var pen = new Pen(Color.White, 2f);
+            g.DrawLine(pen, 10, 3, 10, 17);
+            g.DrawLine(pen, 3, 10, 17, 10);
+
+            pen.Dispose();
+            return bmp;
+        }
+
+        public static Bitmap GenerateEditIcon()
+        {
+            var bmp = new Bitmap(IconSize, IconSize);
+            using var g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.Clear(Color.Transparent);
+
+            // Pencil/Edit
+            var pen = new Pen(Color.White, 1.5f);
+            // Pencil shaft
+            g.DrawLine(pen, 3, 17, 13, 7);
+            // Pencil tip
+            g.DrawLine(pen, 13, 7, 16, 4);
+            g.DrawLine(pen, 16, 4, 17, 3);
+            // Eraser
+            g.DrawRectangle(pen, 15, 14, 3, 3);
+
+            pen.Dispose();
+            return bmp;
+        }
+
+        public static Bitmap GenerateDeleteIcon()
+        {
+            var bmp = new Bitmap(IconSize, IconSize);
+            using var g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.Clear(Color.Transparent);
+
+            // Trash/Delete icon
+            var pen = new Pen(Color.White, 1.5f);
+            // Handle
+            g.DrawRectangle(pen, 7, 1, 6, 2);
+            // Lid
+            g.DrawLine(pen, 4, 3, 16, 3);
+            // Can body
+            g.DrawRectangle(pen, 3, 3, 14, 13);
+            // Lines inside
+            g.DrawLine(pen, 8, 6, 8, 14);
+            g.DrawLine(pen, 10, 6, 10, 14);
+            g.DrawLine(pen, 12, 6, 12, 14);
+
+            pen.Dispose();
+            return bmp;
+        }
+
+        public static Bitmap GenerateSearchIcon()
+        {
+            var bmp = new Bitmap(IconSize, IconSize);
+            using var g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.Clear(Color.Transparent);
+
+            // Magnifying glass
+            var pen = new Pen(Color.White, 1.5f);
+            // Circle
+            g.DrawEllipse(pen, 2, 2, 10, 10);
+            // Handle
+            g.DrawLine(pen, 11, 11, 17, 17);
+
             pen.Dispose();
             return bmp;
         }
