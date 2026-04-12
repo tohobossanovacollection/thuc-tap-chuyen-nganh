@@ -86,6 +86,7 @@ namespace WinFormsAppTest
             btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
             // 
             // _title
             // 
@@ -94,7 +95,7 @@ namespace WinFormsAppTest
             _title.ForeColor = Color.FromArgb(198, 40, 40);
             _title.Location = new Point(12, 10);
             _title.Name = "_title";
-            _title.Size = new Size(270, 37);
+            _title.Size = new Size(219, 30);
             _title.TabIndex = 0;
             _title.Text = "Quản lý Khách hàng";
             // 

@@ -29,5 +29,10 @@ namespace WinFormsAppTest
         {
             MessageBox.Show("Xem lịch sử mua hàng");
         }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
