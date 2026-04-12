@@ -13,9 +13,6 @@ namespace WinFormsAppTest
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // Set default role selection
-            cmbRole.SelectedIndex = 0;
-
             // Focus on username field
             txtUsername.Focus();
         }
@@ -39,27 +36,18 @@ namespace WinFormsAppTest
                 return;
             }
 
-            if (cmbRole.SelectedIndex == -1 || cmbRole.SelectedItem == null)
-            {
-                MessageBox.Show("Vui lòng chọn vai trò!", "Thông báo",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbRole.Focus();
-                return;
-            }
-
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
-            string roleDisplay = cmbRole.SelectedItem?.ToString() ?? string.Empty;
-            string roleCode = MapRoleCode(roleDisplay);
+            string roleCode;
 
             try
             {
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 connection.Open();
 
-                if (!IsValidLogin(connection, username, password, roleCode))
+                if (!TryGetUserRole(connection, username, password, out roleCode))
                 {
-                    MessageBox.Show("Sai tên đăng nhập, mật khẩu hoặc vai trò.", "Đăng nhập thất bại",
+                    MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu.", "Đăng nhập thất bại",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtPassword.Clear();
                     txtPassword.Focus();
@@ -72,6 +60,8 @@ namespace WinFormsAppTest
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+
+            string roleDisplay = MapRoleDisplay(roleCode);
 
             MessageBox.Show($"Đăng nhập thành công!\nTài khoản: {username}\nVai trò: {roleDisplay}",
                 "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -108,25 +98,32 @@ namespace WinFormsAppTest
             // Remove this if not needed
         }
 
-        private static bool IsValidLogin(SqlConnection connection, string username, string password, string roleCode)
+        private static bool TryGetUserRole(SqlConnection connection, string username, string password, out string roleCode)
         {
-            const string query = "SELECT COUNT(1) FROM tai_khoan WHERE ten_dang_nhap = @username AND mat_khau = @password AND quyen_han = @roleCode";
+            const string query = "SELECT quyen_han FROM tai_khoan WHERE ten_dang_nhap = @username AND mat_khau = @password";
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
-            command.Parameters.AddWithValue("@roleCode", roleCode);
-            int count = Convert.ToInt32(command.ExecuteScalar());
-            return count > 0;
+
+            object? result = command.ExecuteScalar();
+            if (result is null || result == DBNull.Value)
+            {
+                roleCode = string.Empty;
+                return false;
+            }
+
+            roleCode = result.ToString() ?? string.Empty;
+            return !string.IsNullOrWhiteSpace(roleCode);
         }
 
-        private static string MapRoleCode(string? displayRole)
+        private static string MapRoleDisplay(string roleCode)
         {
-            return displayRole switch
+            return roleCode.ToUpperInvariant() switch
             {
-                "Admin" => "ADMIN",
-                "Quản lý" => "QUAN_LY",
-                "Nhân viên" => "NHAN_VIEN",
-                _ => string.Empty
+                "ADMIN" => "Admin",
+                "QUAN_LY" => "Quản lý",
+                "NHAN_VIEN" => "Nhân viên",
+                _ => roleCode
             };
         }
 

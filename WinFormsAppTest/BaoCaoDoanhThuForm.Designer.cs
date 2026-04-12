@@ -25,6 +25,7 @@ namespace WinFormsAppTest
         private void InitializeComponent()
         {
             _dgv = new DataGridView();
+            _chart = new Chart();
             _top = new Panel();
             _title = new Label();
             _lblFrom = new Label();
@@ -33,10 +34,15 @@ namespace WinFormsAppTest
             _dtpTo = new DateTimePicker();
             _btnXemBieuDo = new Button();
             _split = new SplitContainer();
+            ChartArea chartArea1 = new ChartArea();
+            Legend legend1 = new Legend();
+            Series series1 = new Series();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)_chart).BeginInit();
             _top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)_split).BeginInit();
             _split.Panel1.SuspendLayout();
+            _split.Panel2.SuspendLayout();
             _split.SuspendLayout();
             SuspendLayout();
             // 
@@ -136,9 +142,31 @@ namespace WinFormsAppTest
             // _split.Panel1
             // 
             _split.Panel1.Controls.Add(_dgv);
+            // 
+            // _split.Panel2
+            // 
+            _split.Panel2.Controls.Add(_chart);
             _split.Size = new Size(1200, 587);
             _split.SplitterDistance = 416;
             _split.TabIndex = 0;
+            // 
+            // _chart
+            // 
+            chartArea1.Name = "ChartArea1";
+            _chart.ChartAreas.Add(chartArea1);
+            _chart.Dock = DockStyle.Fill;
+            legend1.Name = "Legend1";
+            _chart.Legends.Add(legend1);
+            _chart.Location = new Point(0, 0);
+            _chart.Name = "_chart";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "DoanhThu";
+            series1.ChartType = SeriesChartType.Column;
+            _chart.Series.Add(series1);
+            _chart.Size = new Size(1200, 167);
+            _chart.TabIndex = 0;
+            _chart.Text = "chart1";
             // 
             // BaoCaoDoanhThuForm
             // 
@@ -149,9 +177,11 @@ namespace WinFormsAppTest
             StartPosition = FormStartPosition.CenterScreen;
             Text = "13. Báo cáo doanh thu";
             ((System.ComponentModel.ISupportInitialize)_dgv).EndInit();
+            ((System.ComponentModel.ISupportInitialize)_chart).EndInit();
             _top.ResumeLayout(false);
             _top.PerformLayout();
             _split.Panel1.ResumeLayout(false);
+            _split.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_split).EndInit();
             _split.ResumeLayout(false);
             ResumeLayout(false);

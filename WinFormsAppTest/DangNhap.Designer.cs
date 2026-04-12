@@ -39,8 +39,6 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges9 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges10 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges13 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -55,8 +53,6 @@
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
             lblPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            lblRole = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            cmbRole = new Guna.UI2.WinForms.Guna2ComboBox();
             chkRemember = new Guna.UI2.WinForms.Guna2CheckBox();
             btnLogin = new Guna.UI2.WinForms.Guna2Button();
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
@@ -125,8 +121,6 @@
             pnlRight.Controls.Add(txtUsername);
             pnlRight.Controls.Add(lblPassword);
             pnlRight.Controls.Add(txtPassword);
-            pnlRight.Controls.Add(lblRole);
-            pnlRight.Controls.Add(cmbRole);
             pnlRight.Controls.Add(chkRemember);
             pnlRight.Controls.Add(btnLogin);
             pnlRight.Controls.Add(btnRegister);
@@ -204,36 +198,6 @@
             txtPassword.TabIndex = 4;
             txtPassword.UseSystemPasswordChar = true;
             // 
-            // lblRole
-            // 
-            lblRole.BackColor = Color.Transparent;
-            lblRole.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblRole.ForeColor = Color.FromArgb(64, 64, 64);
-            lblRole.Location = new Point(50, 340);
-            lblRole.Name = "lblRole";
-            lblRole.Size = new Size(70, 25);
-            lblRole.TabIndex = 5;
-            lblRole.Text = "Vai Trò";
-            // 
-            // cmbRole
-            // 
-            cmbRole.BackColor = Color.Transparent;
-            cmbRole.BorderRadius = 10;
-            cmbRole.CustomizableEdges = customizableEdges9;
-            cmbRole.DrawMode = DrawMode.OwnerDrawFixed;
-            cmbRole.DropDownStyle = ComboBoxStyle.DropDownList;
-            cmbRole.FocusedColor = Color.FromArgb(94, 148, 255);
-            cmbRole.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
-            cmbRole.Font = new Font("Segoe UI", 12F);
-            cmbRole.ForeColor = Color.FromArgb(68, 88, 112);
-            cmbRole.ItemHeight = 30;
-            cmbRole.Items.AddRange(new object[] { "Admin", "Quản lý", "Nhân viên" });
-            cmbRole.Location = new Point(50, 371);
-            cmbRole.Name = "cmbRole";
-            cmbRole.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            cmbRole.Size = new Size(350, 36);
-            cmbRole.TabIndex = 6;
-            // 
             // chkRemember
             // 
             chkRemember.AutoSize = true;
@@ -242,10 +206,10 @@
             chkRemember.CheckedState.BorderThickness = 0;
             chkRemember.CheckedState.FillColor = Color.FromArgb(0, 150, 136);
             chkRemember.Font = new Font("Cambria", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            chkRemember.Location = new Point(50, 420);
+            chkRemember.Location = new Point(50, 351);
             chkRemember.Name = "chkRemember";
             chkRemember.Size = new Size(164, 24);
-            chkRemember.TabIndex = 7;
+            chkRemember.TabIndex = 5;
             chkRemember.Text = "Ghi nhớ đăng nhập";
             chkRemember.UncheckedState.BorderColor = Color.FromArgb(125, 137, 149);
             chkRemember.UncheckedState.BorderRadius = 0;
@@ -259,11 +223,11 @@
             btnLogin.FillColor = Color.FromArgb(211, 47, 47);
             btnLogin.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(50, 469);
+            btnLogin.Location = new Point(50, 400);
             btnLogin.Name = "btnLogin";
             btnLogin.ShadowDecoration.CustomizableEdges = customizableEdges12;
             btnLogin.Size = new Size(170, 51);
-            btnLogin.TabIndex = 8;
+            btnLogin.TabIndex = 6;
             btnLogin.Text = "Đăng Nhập";
             btnLogin.Click += btnLogin_Click;
             // 
@@ -276,11 +240,11 @@
             btnRegister.FillColor = Color.White;
             btnRegister.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             btnRegister.ForeColor = Color.FromArgb(211, 47, 47);
-            btnRegister.Location = new Point(230, 469);
+            btnRegister.Location = new Point(230, 400);
             btnRegister.Name = "btnRegister";
             btnRegister.ShadowDecoration.CustomizableEdges = customizableEdges14;
             btnRegister.Size = new Size(170, 51);
-            btnRegister.TabIndex = 9;
+            btnRegister.TabIndex = 7;
             btnRegister.Text = "Đăng Ký";
             btnRegister.Click += btnRegister_Click;
             // 
@@ -289,10 +253,10 @@
             lnkForgotPassword.BackColor = Color.Transparent;
             lnkForgotPassword.Font = new Font("Segoe UI", 10F);
             lnkForgotPassword.ForeColor = Color.FromArgb(211, 47, 47);
-            lnkForgotPassword.Location = new Point(50, 540);
+            lnkForgotPassword.Location = new Point(50, 469);
             lnkForgotPassword.Name = "lnkForgotPassword";
             lnkForgotPassword.Size = new Size(130, 25);
-            lnkForgotPassword.TabIndex = 10;
+            lnkForgotPassword.TabIndex = 8;
             lnkForgotPassword.Text = "Quên mật khẩu?";
             lnkForgotPassword.Click += lnkForgotPassword_Click;
             // 
@@ -329,8 +293,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
         private Guna.UI2.WinForms.Guna2HtmlLabel lblPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblRole;
-        private Guna.UI2.WinForms.Guna2ComboBox cmbRole;
         private Guna.UI2.WinForms.Guna2CheckBox chkRemember;
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private Guna.UI2.WinForms.Guna2Button btnRegister;

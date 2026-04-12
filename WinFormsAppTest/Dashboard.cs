@@ -96,7 +96,7 @@ namespace WinFormsAppTest
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 connection.Open();
 
-                string invoiceDateCol = ResolveColumn(connection, "hoa_don", "ngay_lap", "ngay_tao", "created_at", "ngay");
+                string invoiceDateCol = ResolveColumn(connection, "hoa_don", "ngay_gio_ban");
                 string invoiceAmountCol = ResolveColumn(connection, "hoa_don", "tong_tien", "thanh_tien", "tri_gia");
                 string detailProductCol = ResolveColumn(connection, "chi_tiet_hoa_don", "ten_san_pham", "ma_san_pham", "san_pham_id");
                 string detailQtyCol = ResolveColumn(connection, "chi_tiet_hoa_don", "so_luong", "sl", "quantity");
@@ -146,7 +146,37 @@ ORDER BY [Số lượng bán] DESC;";
 
         private void LoadRevenueChart(SqlConnection connection, string dateCol, string amountCol)
         {
-            chartRevenue.Series["DoanhThu"].Points.Clear();
+            if (chartRevenue is null)
+            {
+                chartRevenue = new Chart
+                {
+                    Dock = DockStyle.Fill
+                };
+
+                chartRevenue.ChartAreas.Add(new ChartArea("MainArea"));
+                chartRevenue.Legends.Add(new Legend("MainLegend"));
+                grpRevenueChart.Controls.Add(chartRevenue);
+            }
+
+            Series revenueSeries;
+            if (chartRevenue.Series.IndexOf("DoanhThu") >= 0)
+            {
+                revenueSeries = chartRevenue.Series["DoanhThu"];
+            }
+            else
+            {
+                revenueSeries = new Series("DoanhThu")
+                {
+                    ChartType = SeriesChartType.Column,
+                    XValueType = ChartValueType.String,
+                    YValueType = ChartValueType.Double,
+                    ChartArea = chartRevenue.ChartAreas[0].Name,
+                    Legend = chartRevenue.Legends[0].Name
+                };
+                chartRevenue.Series.Add(revenueSeries);
+            }
+
+            revenueSeries.Points.Clear();
 
             string query = $@"
 SELECT
@@ -163,7 +193,7 @@ ORDER BY Ngay;";
             {
                 DateTime date = reader.GetDateTime(0);
                 decimal revenue = reader.GetDecimal(1);
-                chartRevenue.Series["DoanhThu"].Points.AddXY(date.ToString("dd/MM"), revenue);
+                revenueSeries.Points.AddXY(date.ToString("dd/MM"), revenue);
             }
         }
 
