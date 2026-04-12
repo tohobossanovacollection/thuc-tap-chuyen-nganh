@@ -10,12 +10,19 @@ namespace WinFormsAppTest
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
         private readonly string _username;
         private readonly string _role;
+        private bool _isQuanLyMenuExpanded;
+        private int _quanLyMenuOffset;
+        private Point _nhapHangExpandedLocation;
+        private Point _baoCaoExpandedLocation;
+        private Point _caiDatExpandedLocation;
 
         public Dashboard(string username, string role)
         {
             InitializeComponent();
             _username = username;
             _role = role;
+            CaptureMenuLayout();
+            SetQuanLyMenuExpanded(false);
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -82,6 +89,11 @@ namespace WinFormsAppTest
         {
             using QuanLyHoaDon form = new QuanLyHoaDon();
             form.ShowDialog(this);
+        }
+
+        private void btnMenuQuanLy_Click(object sender, EventArgs e)
+        {
+            SetQuanLyMenuExpanded(!_isQuanLyMenuExpanded);
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
@@ -237,6 +249,40 @@ WHERE TABLE_NAME = @tableName;";
             }
 
             throw new InvalidOperationException($"Không tìm thấy cột phù hợp trong bảng '{tableName}'.");
+        }
+
+        private void SetQuanLyMenuExpanded(bool expanded)
+        {
+            _isQuanLyMenuExpanded = expanded;
+
+            btnMenuQuanLy.Text = expanded ? "2. Quản lý ▲" : "2. Quản lý ▼";
+
+            btnMenuSanPham.Visible = expanded;
+            btnMenuKhachHang.Visible = expanded;
+            btnMenuNhanVienTaiKhoan.Visible = expanded;
+            btnMenuKhuyenMai.Visible = expanded;
+            btnMenuNhaCungCap.Visible = expanded;
+            btnMenuHoaDon.Visible = expanded;
+
+            if (expanded)
+            {
+                btnMenuNhapHang.Location = _nhapHangExpandedLocation;
+                btnMenuBaoCao.Location = _baoCaoExpandedLocation;
+                btnMenuCaiDat.Location = _caiDatExpandedLocation;
+                return;
+            }
+
+            btnMenuNhapHang.Location = new Point(_nhapHangExpandedLocation.X, _nhapHangExpandedLocation.Y - _quanLyMenuOffset);
+            btnMenuBaoCao.Location = new Point(_baoCaoExpandedLocation.X, _baoCaoExpandedLocation.Y - _quanLyMenuOffset);
+            btnMenuCaiDat.Location = new Point(_caiDatExpandedLocation.X, _caiDatExpandedLocation.Y - _quanLyMenuOffset);
+        }
+
+        private void CaptureMenuLayout()
+        {
+            _nhapHangExpandedLocation = btnMenuNhapHang.Location;
+            _baoCaoExpandedLocation = btnMenuBaoCao.Location;
+            _caiDatExpandedLocation = btnMenuCaiDat.Location;
+            _quanLyMenuOffset = Math.Max(0, btnMenuNhapHang.Top - btnMenuSanPham.Top);
         }
 
         private void grpRevenueChart_Click(object sender, EventArgs e)

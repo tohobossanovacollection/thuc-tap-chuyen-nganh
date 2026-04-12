@@ -120,5 +120,15 @@ namespace WinFormsAppTest
         {
             MessageBox.Show("Cập nhật tồn kho");
         }
+
+        private void pnlSummary_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void _dgvChiTiet_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
