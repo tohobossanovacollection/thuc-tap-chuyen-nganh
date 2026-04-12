@@ -99,6 +99,7 @@ namespace WinFormsAppTest
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
+            btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
             // 
             // btnXoa
             // 

@@ -21,6 +21,7 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyDanhMucForm));
             _dgv = new DataGridView();
             _txtMa = new TextBox();
             _txtTen = new TextBox();
@@ -94,6 +95,8 @@ namespace WinFormsAppTest
             // 
             _btnThem.BackColor = Color.FromArgb(198, 40, 40);
             _btnThem.ForeColor = Color.White;
+            _btnThem.Image = Icons.IconGenerator.GenerateAddIcon();
+            _btnThem.ImageAlign = ContentAlignment.MiddleRight;
             _btnThem.Location = new Point(430, 53);
             _btnThem.Name = "_btnThem";
             _btnThem.Size = new Size(85, 32);
@@ -106,6 +109,7 @@ namespace WinFormsAppTest
             // 
             _btnSua.BackColor = Color.FromArgb(198, 40, 40);
             _btnSua.ForeColor = Color.White;
+            _btnSua.ImageAlign = ContentAlignment.MiddleRight;
             _btnSua.Location = new Point(520, 53);
             _btnSua.Name = "_btnSua";
             _btnSua.Size = new Size(85, 32);
@@ -113,11 +117,14 @@ namespace WinFormsAppTest
             _btnSua.Text = "Sửa";
             _btnSua.UseVisualStyleBackColor = false;
             _btnSua.Click += btnSua_Click;
+            _btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
             // 
             // _btnXoa
             // 
             _btnXoa.BackColor = Color.FromArgb(198, 40, 40);
             _btnXoa.ForeColor = Color.White;
+            _btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
+            _btnXoa.ImageAlign = ContentAlignment.MiddleRight;
             _btnXoa.Location = new Point(610, 53);
             _btnXoa.Name = "_btnXoa";
             _btnXoa.Size = new Size(85, 32);
@@ -125,6 +132,7 @@ namespace WinFormsAppTest
             _btnXoa.Text = "Xóa";
             _btnXoa.UseVisualStyleBackColor = false;
             _btnXoa.Click += btnXoa_Click;
+            
             // 
             // _btnGan
             // 

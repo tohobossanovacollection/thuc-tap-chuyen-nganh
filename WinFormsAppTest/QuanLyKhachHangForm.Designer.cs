@@ -16,6 +16,7 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyKhachHangForm));
             _dgv = new DataGridView();
             _top = new Panel();
             btnXoa = new Button();
@@ -58,6 +59,8 @@ namespace WinFormsAppTest
             // 
             btnXoa.BackColor = Color.FromArgb(198, 40, 40);
             btnXoa.ForeColor = Color.White;
+            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
+            btnXoa.ImageAlign = ContentAlignment.MiddleRight;
             btnXoa.Location = new Point(195, 66);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(85, 30);
@@ -69,6 +72,8 @@ namespace WinFormsAppTest
             // 
             btnSua.BackColor = Color.FromArgb(198, 40, 40);
             btnSua.ForeColor = Color.White;
+            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
+            btnSua.ImageAlign = ContentAlignment.MiddleRight;
             btnSua.Location = new Point(104, 66);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(85, 30);
@@ -80,6 +85,8 @@ namespace WinFormsAppTest
             // 
             btnThem.BackColor = Color.FromArgb(198, 40, 40);
             btnThem.ForeColor = Color.White;
+            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.ImageAlign = ContentAlignment.MiddleRight;
             btnThem.Location = new Point(13, 66);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(85, 30);
@@ -95,7 +102,7 @@ namespace WinFormsAppTest
             _title.ForeColor = Color.FromArgb(198, 40, 40);
             _title.Location = new Point(12, 10);
             _title.Name = "_title";
-            _title.Size = new Size(219, 30);
+            _title.Size = new Size(270, 37);
             _title.TabIndex = 0;
             _title.Text = "Quản lý Khách hàng";
             // 

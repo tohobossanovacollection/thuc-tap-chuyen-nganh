@@ -37,6 +37,7 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyPhieuNhapForm));
             lblTitle = new Label();
             lblSubTitle = new Label();
             grpFilter = new GroupBox();
@@ -122,6 +123,8 @@ namespace WinFormsAppTest
             _btnTim.FlatStyle = FlatStyle.Flat;
             _btnTim.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _btnTim.ForeColor = Color.White;
+            _btnTim.Image = (Image)resources.GetObject("_btnTim.Image");
+            _btnTim.ImageAlign = ContentAlignment.MiddleRight;
             _btnTim.Location = new Point(600, 75);
             _btnTim.Margin = new Padding(3, 4, 3, 4);
             _btnTim.Name = "_btnTim";
@@ -136,6 +139,7 @@ namespace WinFormsAppTest
             _btnTao.FlatStyle = FlatStyle.Flat;
             _btnTao.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             _btnTao.ForeColor = Color.Red;
+            _btnTao.Image = (Image)resources.GetObject("_btnTao.Image");
             _btnTao.Location = new Point(1380, 72);
             _btnTao.Margin = new Padding(3, 4, 3, 4);
             _btnTao.Name = "_btnTao";

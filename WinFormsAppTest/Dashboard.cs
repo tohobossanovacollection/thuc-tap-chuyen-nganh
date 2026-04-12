@@ -2,6 +2,7 @@ using System.Data;
 using System.Globalization;
 using System.Windows.Forms.DataVisualization.Charting;
 using Microsoft.Data.SqlClient;
+using WinFormsAppTest.Icons;
 
 namespace WinFormsAppTest
 {
@@ -23,6 +24,7 @@ namespace WinFormsAppTest
             _role = role;
             CaptureMenuLayout();
             SetQuanLyMenuExpanded(false);
+            LoadMenuIcons();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -283,6 +285,28 @@ WHERE TABLE_NAME = @tableName;";
             _baoCaoExpandedLocation = btnMenuBaoCao.Location;
             _caiDatExpandedLocation = btnMenuCaiDat.Location;
             _quanLyMenuOffset = Math.Max(0, btnMenuNhapHang.Top - btnMenuSanPham.Top);
+        }
+
+        private void LoadMenuIcons()
+        {
+            try
+            {
+                btnMenuBanHang.Image = IconGenerator.GenerateShoppingIcon();
+                btnMenuQuanLy.Image = IconGenerator.GenerateManageIcon();
+                btnMenuSanPham.Image = IconGenerator.GenerateProductIcon();
+                btnMenuNhapHang.Image = IconGenerator.GenerateImportIcon();
+                btnMenuKhachHang.Image = IconGenerator.GenerateCustomerIcon();
+                btnMenuNhanVienTaiKhoan.Image = IconGenerator.GenerateStaffIcon();
+                btnMenuKhuyenMai.Image = IconGenerator.GenerateDiscountIcon();
+                btnMenuBaoCao.Image = IconGenerator.GenerateReportIcon();
+                btnMenuNhaCungCap.Image = IconGenerator.GenerateSupplierIcon();
+                btnMenuHoaDon.Image = IconGenerator.GenerateInvoiceIcon();
+                btnMenuCaiDat.Image = IconGenerator.GenerateSettingIcon();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi tải icon: {ex.Message}", "Thông báo");
+            }
         }
 
         private void grpRevenueChart_Click(object sender, EventArgs e)
