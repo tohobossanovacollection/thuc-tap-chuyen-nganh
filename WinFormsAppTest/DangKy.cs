@@ -4,7 +4,10 @@ namespace WinFormsAppTest
 {
     public partial class DangKy : Form
     {
-        private readonly string _connectionString = DatabaseConfig.ConnectionString;
+        // Don't access DatabaseConfig at field initialization time because the WinForms
+        // designer may load this type at design-time and DatabaseConfig may depend
+        // on runtime-only resources. Initialize at runtime in the Load event.
+        private string _connectionString = string.Empty;
 
         public string RegisteredUsername { get; private set; } = string.Empty;
 
@@ -15,6 +18,7 @@ namespace WinFormsAppTest
 
         private void DangKy_Load(object sender, EventArgs e)
         {
+            _connectionString = DatabaseConfig.ConnectionString;
             cmbRole.SelectedIndex = 0;
             txtUsername.Focus();
         }

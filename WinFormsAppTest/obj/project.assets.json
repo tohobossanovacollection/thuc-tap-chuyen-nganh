@@ -2280,6 +2280,7 @@
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
+      "Azure.Core >= 1.38.0",
       "Guna.UI2.WinForms >= 2.0.4.7",
       "Microsoft.Data.SqlClient >= 5.2.2",
       "System.Data.SqlClient >= 4.8.6",
@@ -2337,6 +2338,10 @@
       "net8.0-windows7.0": {
         "targetAlias": "net8.0-windows",
         "dependencies": {
+          "Azure.Core": {
+            "target": "Package",
+            "version": "[1.38.0, )"
+          },
           "Guna.UI2.WinForms": {
             "target": "Package",
             "version": "[2.0.4.7, )"
