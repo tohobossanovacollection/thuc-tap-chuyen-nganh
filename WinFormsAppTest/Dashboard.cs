@@ -11,6 +11,8 @@ namespace WinFormsAppTest
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
         private readonly string _username;
         private readonly string _role;
+        private readonly Panel _contentHost;
+        private Form? _activeChildForm;
         private bool _isQuanLyMenuExpanded;
         private int _quanLyMenuOffset;
         private Point _nhapHangExpandedLocation;
@@ -25,6 +27,17 @@ namespace WinFormsAppTest
             CaptureMenuLayout();
             SetQuanLyMenuExpanded(false);
             LoadMenuIcons();
+
+            _contentHost = new Panel
+            {
+                Location = new Point(280, 110),
+                Size = new Size(1051, 598),
+                Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
+                BackColor = Color.White,
+                Visible = false
+            };
+            Controls.Add(_contentHost);
+            _contentHost.BringToFront();
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
@@ -35,60 +48,52 @@ namespace WinFormsAppTest
 
         private void btnMenuBanHang_Click(object sender, EventArgs e)
         {
-            using BanHangForm form = new BanHangForm("NV01");
-            form.ShowDialog(this);
+            ShowChildFormInMain(new BanHangForm("NV01"));
         }
 
         private void btnMenuSanPham_Click(object sender, EventArgs e)
         {
-            using QuanLySanPhamForm form = new QuanLySanPhamForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLySanPhamForm());
         }
 
         private void btnMenuNhapHang_Click(object sender, EventArgs e)
         {
-            using QuanLyPhieuNhapForm form = new QuanLyPhieuNhapForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLyPhieuNhapForm());
         }
 
         private void btnMenuKhachHang_Click(object sender, EventArgs e)
         {
-            using QuanLyKhachHangForm form = new QuanLyKhachHangForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLyKhachHangForm());
         }
 
         private void btnMenuNhanVienTaiKhoan_Click(object sender, EventArgs e)
         {
-            using QuanLyNhanVienForm form = new QuanLyNhanVienForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLyNhanVienForm());
         }
 
         private void btnMenuKhuyenMai_Click(object sender, EventArgs e)
         {
-            using QuanLyGiamGiaForm form = new QuanLyGiamGiaForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLyGiamGiaForm());
         }
 
         private void btnMenuBaoCao_Click(object sender, EventArgs e)
         {
-            using BaoCaoMainForm form = new BaoCaoMainForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new BaoCaoMainForm());
         }
 
         private void btnMenuCaiDat_Click(object sender, EventArgs e)
         {
-            using CaiDatProfileForm form = new CaiDatProfileForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new CaiDatProfileForm());
         }
 
         private void btnMenuNhaCungCap_Click(object sender, EventArgs e)
         {
-            using QuanLyNhaCungCapForm form = new QuanLyNhaCungCapForm();
-            form.ShowDialog(this);
+            ShowChildFormInMain(new QuanLyNhaCungCapForm());
         }
 
         private void btnMenuHoaDon_Click(object sender, EventArgs e)
         {
+            //ShowChildFormInMain(new QuanLyHoaDon());
             using QuanLyHoaDon form = new QuanLyHoaDon();
             form.ShowDialog(this);
         }
@@ -100,7 +105,48 @@ namespace WinFormsAppTest
 
         private void btnRefresh_Click(object sender, EventArgs e)
         {
+            CloseActiveChildForm();
+            SetDashboardWidgetsVisible(true);
             LoadDashboardData();
+        }
+
+        private void ShowChildFormInMain(Form childForm)
+        {
+            CloseActiveChildForm();
+
+            _activeChildForm = childForm;
+            SetDashboardWidgetsVisible(false);
+            _contentHost.Visible = true;
+
+            childForm.TopLevel = false;
+            childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.Dock = DockStyle.Fill;
+
+            _contentHost.Controls.Clear();
+            _contentHost.Controls.Add(childForm);
+            childForm.Show();
+        }
+
+        private void CloseActiveChildForm()
+        {
+            if (_activeChildForm is null)
+            {
+                return;
+            }
+
+            _contentHost.Controls.Clear();
+            _activeChildForm.Dispose();
+            _activeChildForm = null;
+            _contentHost.Visible = false;
+        }
+
+        private void SetDashboardWidgetsVisible(bool visible)
+        {
+            cardTodayRevenue.Visible = visible;
+            cardMonthRevenue.Visible = visible;
+            cardInvoiceCount.Visible = visible;
+            grpTopProducts.Visible = visible;
+            grpRevenueChart.Visible = visible;
         }
 
         private void LoadDashboardData()
