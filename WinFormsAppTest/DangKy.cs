@@ -154,5 +154,15 @@ namespace WinFormsAppTest
                 _ => string.Empty
             };
         }
+
+        private void guna2HtmlLabel1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSubTitle_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

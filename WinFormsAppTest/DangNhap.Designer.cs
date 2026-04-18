@@ -221,7 +221,7 @@
             btnLogin.BorderRadius = 10;
             btnLogin.CustomizableEdges = customizableEdges9;
             btnLogin.FillColor = Color.FromArgb(211, 47, 47);
-            btnLogin.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnLogin.Font = new Font("Cambria", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnLogin.ForeColor = Color.White;
             btnLogin.Location = new Point(50, 400);
             btnLogin.Name = "btnLogin";
@@ -238,7 +238,7 @@
             btnRegister.BorderThickness = 2;
             btnRegister.CustomizableEdges = customizableEdges11;
             btnRegister.FillColor = Color.White;
-            btnRegister.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnRegister.Font = new Font("Cambria", 14F, FontStyle.Bold);
             btnRegister.ForeColor = Color.FromArgb(211, 47, 47);
             btnRegister.Location = new Point(230, 400);
             btnRegister.Name = "btnRegister";
@@ -251,11 +251,11 @@
             // lnkForgotPassword
             // 
             lnkForgotPassword.BackColor = Color.Transparent;
-            lnkForgotPassword.Font = new Font("Segoe UI", 10F);
+            lnkForgotPassword.Font = new Font("Cambria", 10F, FontStyle.Bold);
             lnkForgotPassword.ForeColor = Color.FromArgb(211, 47, 47);
             lnkForgotPassword.Location = new Point(50, 469);
             lnkForgotPassword.Name = "lnkForgotPassword";
-            lnkForgotPassword.Size = new Size(130, 25);
+            lnkForgotPassword.Size = new Size(129, 22);
             lnkForgotPassword.TabIndex = 8;
             lnkForgotPassword.Text = "Quên mật khẩu?";
             lnkForgotPassword.Click += lnkForgotPassword_Click;

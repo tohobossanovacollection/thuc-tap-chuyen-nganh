@@ -18,6 +18,9 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             _dgvTonKho = new DataGridView();
             _lblTrangThai = new Label();
             _cmbTrangThai = new ComboBox();
@@ -30,11 +33,39 @@ namespace WinFormsAppTest
             // 
             // _dgvTonKho
             // 
+            _dgvTonKho.AllowUserToAddRows = false;
+            _dgvTonKho.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            _dgvTonKho.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             _dgvTonKho.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            _dgvTonKho.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            _dgvTonKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             _dgvTonKho.ColumnHeadersHeight = 29;
+            _dgvTonKho.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            _dgvTonKho.DefaultCellStyle = dataGridViewCellStyle3;
+            _dgvTonKho.EnableHeadersVisualStyles = false;
+            _dgvTonKho.GridColor = Color.FromArgb(231, 229, 255);
             _dgvTonKho.Location = new Point(0, 102);
             _dgvTonKho.Name = "_dgvTonKho";
+            _dgvTonKho.ReadOnly = true;
+            _dgvTonKho.RowHeadersVisible = false;
             _dgvTonKho.RowHeadersWidth = 51;
+            _dgvTonKho.RowTemplate.Height = 29;
+            _dgvTonKho.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             _dgvTonKho.Size = new Size(1200, 598);
             _dgvTonKho.TabIndex = 0;
             // 
