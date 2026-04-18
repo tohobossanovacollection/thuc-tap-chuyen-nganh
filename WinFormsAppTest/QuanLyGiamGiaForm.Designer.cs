@@ -18,6 +18,9 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             _dgv = new DataGridView();
             _top = new Panel();
             _btnStatus = new Button();
@@ -31,14 +34,39 @@ namespace WinFormsAppTest
             // 
             // _dgv
             // 
+            _dgv.AllowUserToAddRows = false;
+            _dgv.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = Color.White;
+            _dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle2.ForeColor = Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
+            _dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             _dgv.ColumnHeadersHeight = 29;
+            _dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.White;
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            _dgv.DefaultCellStyle = dataGridViewCellStyle3;
             _dgv.Dock = DockStyle.Fill;
+            _dgv.EnableHeadersVisualStyles = false;
+            _dgv.GridColor = Color.FromArgb(231, 229, 255);
             _dgv.Location = new Point(0, 110);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
+            _dgv.RowTemplate.Height = 29;
+            _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             _dgv.Size = new Size(1100, 540);
             _dgv.TabIndex = 0;
             // 
