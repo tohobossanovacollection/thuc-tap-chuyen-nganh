@@ -15,6 +15,8 @@ namespace WinFormsAppTest
         private Label _lblTo;
         private Button _btnXemBieuDo;
         private SplitContainer _split;
+        private SplitContainer _splitTop;
+        private Chart _chartCategoryPie;
 
         protected override void Dispose(bool disposing)
         {
@@ -37,16 +39,26 @@ namespace WinFormsAppTest
             _dtpTo = new DateTimePicker();
             _btnXemBieuDo = new Button();
             _split = new SplitContainer();
+            _splitTop = new SplitContainer();
+            _chartCategoryPie = new Chart();
             ChartArea chartArea1 = new ChartArea();
             Legend legend1 = new Legend();
             Series series1 = new Series();
+            ChartArea chartArea2 = new ChartArea();
+            Legend legend2 = new Legend();
+            Series series2 = new Series();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             ((System.ComponentModel.ISupportInitialize)_chart).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)_chartCategoryPie).BeginInit();
             _top.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)_split).BeginInit();
             _split.Panel1.SuspendLayout();
             _split.Panel2.SuspendLayout();
             _split.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)_splitTop).BeginInit();
+            _splitTop.Panel1.SuspendLayout();
+            _splitTop.Panel2.SuspendLayout();
+            _splitTop.SuspendLayout();
             SuspendLayout();
             // 
             // _dgv
@@ -169,14 +181,31 @@ namespace WinFormsAppTest
             // 
             // _split.Panel1
             // 
-            _split.Panel1.Controls.Add(_dgv);
+            _split.Panel1.Controls.Add(_splitTop);
             // 
             // _split.Panel2
             // 
             _split.Panel2.Controls.Add(_chart);
             _split.Size = new Size(1200, 587);
-            _split.SplitterDistance = 416;
+            _split.SplitterDistance = 380;
             _split.TabIndex = 0;
+            // 
+            // _splitTop
+            // 
+            _splitTop.Dock = DockStyle.Fill;
+            _splitTop.Location = new Point(0, 0);
+            _splitTop.Name = "_splitTop";
+            // 
+            // _splitTop.Panel1
+            // 
+            _splitTop.Panel1.Controls.Add(_dgv);
+            // 
+            // _splitTop.Panel2
+            // 
+            _splitTop.Panel2.Controls.Add(_chartCategoryPie);
+            _splitTop.Size = new Size(1200, 380);
+            _splitTop.SplitterDistance = 600;
+            _splitTop.TabIndex = 0;
             // 
             // _chart
             // 
@@ -196,6 +225,24 @@ namespace WinFormsAppTest
             _chart.TabIndex = 0;
             _chart.Text = "chart1";
             // 
+            // _chartCategoryPie
+            // 
+            chartArea2.Name = "PieArea";
+            _chartCategoryPie.ChartAreas.Add(chartArea2);
+            _chartCategoryPie.Dock = DockStyle.Fill;
+            legend2.Name = "PieLegend";
+            _chartCategoryPie.Legends.Add(legend2);
+            _chartCategoryPie.Location = new Point(0, 0);
+            _chartCategoryPie.Name = "_chartCategoryPie";
+            series2.ChartArea = "PieArea";
+            series2.ChartType = SeriesChartType.Pie;
+            series2.Legend = "PieLegend";
+            series2.Name = "TyLeDanhMuc";
+            _chartCategoryPie.Series.Add(series2);
+            _chartCategoryPie.Size = new Size(596, 380);
+            _chartCategoryPie.TabIndex = 0;
+            _chartCategoryPie.Text = "chart2";
+            // 
             // BaoCaoDoanhThuForm
             // 
             ClientSize = new Size(1200, 700);
@@ -206,12 +253,17 @@ namespace WinFormsAppTest
             Text = "13. Báo cáo doanh thu";
             ((System.ComponentModel.ISupportInitialize)_dgv).EndInit();
             ((System.ComponentModel.ISupportInitialize)_chart).EndInit();
+            ((System.ComponentModel.ISupportInitialize)_chartCategoryPie).EndInit();
             _top.ResumeLayout(false);
             _top.PerformLayout();
             _split.Panel1.ResumeLayout(false);
             _split.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)_split).EndInit();
             _split.ResumeLayout(false);
+            _splitTop.Panel1.ResumeLayout(false);
+            _splitTop.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)_splitTop).EndInit();
+            _splitTop.ResumeLayout(false);
             ResumeLayout(false);
         }
     }

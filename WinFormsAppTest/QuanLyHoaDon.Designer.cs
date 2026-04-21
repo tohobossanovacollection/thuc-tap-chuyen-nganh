@@ -621,15 +621,15 @@ namespace WinFormsAppTest
             lblGiamGiaText.BackColor = Color.Transparent;
             lblGiamGiaText.Location = new Point(12, 116);
             lblGiamGiaText.Name = "lblGiamGiaText";
-            lblGiamGiaText.Size = new Size(41, 22);
+            lblGiamGiaText.Size = new Size(64, 22);
             lblGiamGiaText.TabIndex = 8;
-            lblGiamGiaText.Text = "Giảm:";
+            lblGiamGiaText.Text = "Giảm giá:";
             lblGiamGiaText.Click += lblGiamGiaText_Click;
             // 
             // lblGiamGiaValue
             // 
             lblGiamGiaValue.BackColor = Color.Transparent;
-            lblGiamGiaValue.Location = new Point(270, 95);
+            lblGiamGiaValue.Location = new Point(98, 116);
             lblGiamGiaValue.Name = "lblGiamGiaValue";
             lblGiamGiaValue.Size = new Size(24, 22);
             lblGiamGiaValue.TabIndex = 9;
@@ -650,7 +650,7 @@ namespace WinFormsAppTest
             lblThanhTienValue.BackColor = Color.Transparent;
             lblThanhTienValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblThanhTienValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblThanhTienValue.Location = new Point(292, 118);
+            lblThanhTienValue.Location = new Point(150, 144);
             lblThanhTienValue.Name = "lblThanhTienValue";
             lblThanhTienValue.Size = new Size(29, 27);
             lblThanhTienValue.TabIndex = 11;
