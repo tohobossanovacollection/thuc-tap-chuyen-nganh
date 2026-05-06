@@ -128,6 +128,20 @@ CREATE TABLE dbo.chi_tiet_phieu_nhap (
 );
 GO
 
+CREATE VIEW dbo.v_chi_tiet_phieu_nhap
+AS
+SELECT ct.ma_phieu_nhap,
+	   ct.ma_san_pham,
+	   sp.ten_san_pham,
+	   dm.ten_danh_muc,
+	   ct.so_luong,
+	   ct.gia_nhap,
+	   ct.thanh_tien
+FROM dbo.chi_tiet_phieu_nhap ct
+JOIN dbo.san_pham sp ON sp.ma_san_pham = ct.ma_san_pham
+JOIN dbo.danh_muc_san_pham dm ON dm.ma_danh_muc = sp.ma_danh_muc;
+GO
+
 CREATE TABLE dbo.giam_gia (
 	ma_giam_gia       VARCHAR(20) NOT NULL,
 	phan_tram_giam    DECIMAL(5,2) NOT NULL CONSTRAINT DF_gg_phan_tram_giam DEFAULT (0),

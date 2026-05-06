@@ -26,6 +26,8 @@ namespace WinFormsAppTest
         private Label lblMaPhieuValue;
         private Label lblNgayNhapText;
         private Label lblNgayNhapValue;
+        private Label lblNhanVienText;
+        private Label lblNhanVienValue;
         private Label lblTongTienText;
         private Label lblTongTienValue;
 
@@ -62,6 +64,8 @@ namespace WinFormsAppTest
             pnlSummary = new Panel();
             lblTongTienValue = new Label();
             lblTongTienText = new Label();
+            lblNhanVienValue = new Label();
+            lblNhanVienText = new Label();
             lblNgayNhapValue = new Label();
             lblNgayNhapText = new Label();
             lblMaPhieuValue = new Label();
@@ -131,10 +135,10 @@ namespace WinFormsAppTest
             _btnTim.ForeColor = Color.White;
             _btnTim.Image = (Image)resources.GetObject("_btnTim.Image");
             _btnTim.ImageAlign = ContentAlignment.MiddleRight;
-            _btnTim.Location = new Point(600, 75);
+            _btnTim.Location = new Point(600, 72);
             _btnTim.Margin = new Padding(3, 4, 3, 4);
             _btnTim.Name = "_btnTim";
-            _btnTim.Size = new Size(110, 31);
+            _btnTim.Size = new Size(109, 40);
             _btnTim.TabIndex = 10;
             _btnTim.Text = "Tìm kiếm";
             _btnTim.UseVisualStyleBackColor = false;
@@ -146,7 +150,8 @@ namespace WinFormsAppTest
             _btnTao.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             _btnTao.ForeColor = Color.Red;
             _btnTao.Image = (Image)resources.GetObject("_btnTao.Image");
-            _btnTao.Location = new Point(1380, 72);
+            _btnTao.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            _btnTao.Location = new Point(720, 72);
             _btnTao.Margin = new Padding(3, 4, 3, 4);
             _btnTao.Name = "_btnTao";
             _btnTao.Size = new Size(109, 40);
@@ -305,6 +310,8 @@ namespace WinFormsAppTest
             pnlSummary.BackColor = Color.FromArgb(255, 253, 231);
             pnlSummary.Controls.Add(lblTongTienValue);
             pnlSummary.Controls.Add(lblTongTienText);
+            pnlSummary.Controls.Add(lblNhanVienValue);
+            pnlSummary.Controls.Add(lblNhanVienText);
             pnlSummary.Controls.Add(lblNgayNhapValue);
             pnlSummary.Controls.Add(lblNgayNhapText);
             pnlSummary.Controls.Add(lblMaPhieuValue);
@@ -313,7 +320,7 @@ namespace WinFormsAppTest
             pnlSummary.Location = new Point(1197, 27);
             pnlSummary.Margin = new Padding(3, 4, 3, 4);
             pnlSummary.Name = "pnlSummary";
-            pnlSummary.Size = new Size(301, 139);
+            pnlSummary.Size = new Size(360, 139);
             pnlSummary.TabIndex = 1;
             pnlSummary.Paint += pnlSummary_Paint;
             // 
@@ -322,7 +329,7 @@ namespace WinFormsAppTest
             lblTongTienValue.AutoSize = true;
             lblTongTienValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblTongTienValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblTongTienValue.Location = new Point(100, 87);
+            lblTongTienValue.Location = new Point(100, 103);
             lblTongTienValue.Name = "lblTongTienValue";
             lblTongTienValue.Size = new Size(36, 23);
             lblTongTienValue.TabIndex = 5;
@@ -331,28 +338,46 @@ namespace WinFormsAppTest
             // lblTongTienText
             // 
             lblTongTienText.AutoSize = true;
-            lblTongTienText.Location = new Point(14, 87);
+            lblTongTienText.Location = new Point(14, 103);
             lblTongTienText.Name = "lblTongTienText";
             lblTongTienText.Size = new Size(92, 23);
             lblTongTienText.TabIndex = 4;
             lblTongTienText.Text = "Tổng tiền:";
             // 
+            // lblNhanVienValue
+            // 
+            lblNhanVienValue.AutoSize = true;
+            lblNhanVienValue.Location = new Point(190, 76);
+            lblNhanVienValue.Name = "lblNhanVienValue";
+            lblNhanVienValue.Size = new Size(17, 23);
+            lblNhanVienValue.TabIndex = 3;
+            lblNhanVienValue.Text = "-";
+            // 
+            // lblNhanVienText
+            // 
+            lblNhanVienText.AutoSize = true;
+            lblNhanVienText.Location = new Point(14, 76);
+            lblNhanVienText.Name = "lblNhanVienText";
+            lblNhanVienText.Size = new Size(175, 23);
+            lblNhanVienText.TabIndex = 2;
+            lblNhanVienText.Text = "Nhân viên phụ trách:";
+            // 
             // lblNgayNhapValue
             // 
             lblNgayNhapValue.AutoSize = true;
-            lblNgayNhapValue.Location = new Point(109, 49);
+            lblNgayNhapValue.Location = new Point(109, 46);
             lblNgayNhapValue.Name = "lblNgayNhapValue";
             lblNgayNhapValue.Size = new Size(17, 23);
-            lblNgayNhapValue.TabIndex = 3;
+            lblNgayNhapValue.TabIndex = 1;
             lblNgayNhapValue.Text = "-";
             // 
             // lblNgayNhapText
             // 
             lblNgayNhapText.AutoSize = true;
-            lblNgayNhapText.Location = new Point(14, 49);
+            lblNgayNhapText.Location = new Point(14, 46);
             lblNgayNhapText.Name = "lblNgayNhapText";
             lblNgayNhapText.Size = new Size(102, 23);
-            lblNgayNhapText.TabIndex = 2;
+            lblNgayNhapText.TabIndex = 0;
             lblNgayNhapText.Text = "Ngày nhập:";
             // 
             // lblMaPhieuValue
@@ -409,7 +434,7 @@ namespace WinFormsAppTest
             _dgvChiTiet.RowHeadersWidth = 51;
             _dgvChiTiet.RowTemplate.Height = 29;
             _dgvChiTiet.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            _dgvChiTiet.Size = new Size(1194, 139);
+            _dgvChiTiet.Size = new Size(1135, 139);
             _dgvChiTiet.TabIndex = 0;
             _dgvChiTiet.CellContentClick += _dgvChiTiet_CellContentClick;
             // 

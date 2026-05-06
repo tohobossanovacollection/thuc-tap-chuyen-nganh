@@ -10,6 +10,7 @@ namespace WinFormsAppTest
         private Guna2HtmlLabel lblTitle;
         private Guna2HtmlLabel lblWelcome;
         private Guna2Button btnRefresh;
+        private Guna2Button btnHome;
         private Guna2Panel pnlMenu;
         private Guna2HtmlLabel lblMenuTitle;
         private Guna2Button btnMenuBanHang;
@@ -52,6 +53,7 @@ namespace WinFormsAppTest
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges5 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges6 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges7 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges8 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -90,6 +92,7 @@ namespace WinFormsAppTest
             lblTitle = new Guna2HtmlLabel();
             lblWelcome = new Guna2HtmlLabel();
             btnRefresh = new Guna2Button();
+            btnHome = new Guna2Button();
             pnlMenu = new Guna2Panel();
             lblMenuTitle = new Guna2HtmlLabel();
             btnMenuBanHang = new Guna2Button();
@@ -127,15 +130,17 @@ namespace WinFormsAppTest
             // pnlHeader
             // 
             pnlHeader.BackColor = Color.FromArgb(198, 40, 40);
+            pnlHeader.Controls.Add(btnHome);
             pnlHeader.Controls.Add(lblTitle);
             pnlHeader.Controls.Add(lblWelcome);
             pnlHeader.Controls.Add(btnRefresh);
             pnlHeader.CustomizableEdges = customizableEdges3;
             pnlHeader.Dock = DockStyle.Top;
             pnlHeader.Location = new Point(0, 0);
+            pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            pnlHeader.Size = new Size(1351, 90);
+            pnlHeader.Size = new Size(1182, 68);
             pnlHeader.TabIndex = 6;
             // 
             // lblTitle
@@ -143,9 +148,10 @@ namespace WinFormsAppTest
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(255, 241, 118);
-            lblTitle.Location = new Point(20, 12);
+            lblTitle.Location = new Point(66, 9);
+            lblTitle.Margin = new Padding(3, 2, 3, 2);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(431, 43);
+            lblTitle.Size = new Size(352, 34);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Dashboard - Trang Tổng Quan";
             // 
@@ -154,27 +160,45 @@ namespace WinFormsAppTest
             lblWelcome.BackColor = Color.Transparent;
             lblWelcome.Font = new Font("Segoe UI", 10F);
             lblWelcome.ForeColor = Color.White;
-            lblWelcome.Location = new Point(22, 52);
+            lblWelcome.Location = new Point(67, 39);
+            lblWelcome.Margin = new Padding(3, 2, 3, 2);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(69, 25);
+            lblWelcome.Size = new Size(53, 19);
             lblWelcome.TabIndex = 1;
             lblWelcome.Text = "Xin chào";
             // 
             // btnRefresh
             // 
-            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            btnRefresh.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnRefresh.BorderRadius = 8;
             btnRefresh.CustomizableEdges = customizableEdges1;
             btnRefresh.FillColor = Color.FromArgb(255, 167, 38);
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.Black;
-            btnRefresh.Location = new Point(1184, 27);
+            btnRefresh.Location = new Point(1036, 20);
+            btnRefresh.Margin = new Padding(3, 2, 3, 2);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.ShadowDecoration.CustomizableEdges = customizableEdges2;
-            btnRefresh.Size = new Size(147, 40);
+            btnRefresh.Size = new Size(129, 30);
             btnRefresh.TabIndex = 2;
             btnRefresh.Text = "Làm mới";
             btnRefresh.Click += btnRefresh_Click;
+            // 
+            // btnHome
+            // 
+            btnHome.BorderRadius = 8;
+            btnHome.CustomizableEdges = customizableEdges31;
+            btnHome.FillColor = Color.FromArgb(255, 167, 38);
+            btnHome.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnHome.ForeColor = Color.Black;
+            btnHome.Location = new Point(12, 18);
+            btnHome.Margin = new Padding(3, 2, 3, 2);
+            btnHome.Name = "btnHome";
+            btnHome.ShadowDecoration.CustomizableEdges = customizableEdges32;
+            btnHome.Size = new Size(44, 32);
+            btnHome.TabIndex = 3;
+            btnHome.Text = "🏠";
+            btnHome.Click += btnHome_Click;
             // 
             // pnlMenu
             // 
@@ -196,10 +220,11 @@ namespace WinFormsAppTest
             pnlMenu.Controls.Add(btnMenuHoaDon);
             pnlMenu.Controls.Add(btnMenuCaiDat);
             pnlMenu.CustomizableEdges = customizableEdges27;
-            pnlMenu.Location = new Point(10, 110);
+            pnlMenu.Location = new Point(9, 82);
+            pnlMenu.Margin = new Padding(3, 2, 3, 2);
             pnlMenu.Name = "pnlMenu";
             pnlMenu.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            pnlMenu.Size = new Size(250, 598);
+            pnlMenu.Size = new Size(219, 448);
             pnlMenu.TabIndex = 0;
             // 
             // lblMenuTitle
@@ -207,9 +232,10 @@ namespace WinFormsAppTest
             lblMenuTitle.BackColor = Color.Transparent;
             lblMenuTitle.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             lblMenuTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            lblMenuTitle.Location = new Point(61, 15);
+            lblMenuTitle.Location = new Point(53, 11);
+            lblMenuTitle.Margin = new Padding(3, 2, 3, 2);
             lblMenuTitle.Name = "lblMenuTitle";
-            lblMenuTitle.Size = new Size(124, 30);
+            lblMenuTitle.Size = new Size(100, 23);
             lblMenuTitle.TabIndex = 0;
             lblMenuTitle.Text = "MAIN MENU";
             // 
@@ -220,10 +246,12 @@ namespace WinFormsAppTest
             btnMenuBanHang.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuBanHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuBanHang.ForeColor = Color.White;
-            btnMenuBanHang.Location = new Point(14, 51);
+            btnMenuBanHang.Image = (Image)resources.GetObject("btnMenuBanHang.Image");
+            btnMenuBanHang.Location = new Point(12, 38);
+            btnMenuBanHang.Margin = new Padding(3, 2, 3, 2);
             btnMenuBanHang.Name = "btnMenuBanHang";
             btnMenuBanHang.ShadowDecoration.CustomizableEdges = customizableEdges6;
-            btnMenuBanHang.Size = new Size(220, 42);
+            btnMenuBanHang.Size = new Size(192, 32);
             btnMenuBanHang.TabIndex = 1;
             btnMenuBanHang.Text = "Bán hàng";
             btnMenuBanHang.Click += btnMenuBanHang_Click;
@@ -235,10 +263,12 @@ namespace WinFormsAppTest
             btnMenuQuanLy.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuQuanLy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuQuanLy.ForeColor = Color.White;
-            btnMenuQuanLy.Location = new Point(14, 101);
+            btnMenuQuanLy.Image = (Image)resources.GetObject("btnMenuQuanLy.Image");
+            btnMenuQuanLy.Location = new Point(12, 76);
+            btnMenuQuanLy.Margin = new Padding(3, 2, 3, 2);
             btnMenuQuanLy.Name = "btnMenuQuanLy";
             btnMenuQuanLy.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            btnMenuQuanLy.Size = new Size(220, 42);
+            btnMenuQuanLy.Size = new Size(192, 32);
             btnMenuQuanLy.TabIndex = 2;
             btnMenuQuanLy.Text = "Quản lý ▼";
             btnMenuQuanLy.Click += btnMenuQuanLy_Click;
@@ -250,10 +280,12 @@ namespace WinFormsAppTest
             btnMenuSanPham.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuSanPham.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuSanPham.ForeColor = Color.White;
-            btnMenuSanPham.Location = new Point(14, 151);
+            btnMenuSanPham.Image = (Image)resources.GetObject("btnMenuSanPham.Image");
+            btnMenuSanPham.Location = new Point(12, 113);
+            btnMenuSanPham.Margin = new Padding(3, 2, 3, 2);
             btnMenuSanPham.Name = "btnMenuSanPham";
             btnMenuSanPham.ShadowDecoration.CustomizableEdges = customizableEdges10;
-            btnMenuSanPham.Size = new Size(220, 42);
+            btnMenuSanPham.Size = new Size(192, 32);
             btnMenuSanPham.TabIndex = 3;
             btnMenuSanPham.Text = "Sản phẩm";
             btnMenuSanPham.Click += btnMenuSanPham_Click;
@@ -265,10 +297,12 @@ namespace WinFormsAppTest
             btnMenuNhapHang.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuNhapHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuNhapHang.ForeColor = Color.White;
-            btnMenuNhapHang.Location = new Point(14, 449);
+            btnMenuNhapHang.Image = (Image)resources.GetObject("btnMenuNhapHang.Image");
+            btnMenuNhapHang.Location = new Point(12, 337);
+            btnMenuNhapHang.Margin = new Padding(3, 2, 3, 2);
             btnMenuNhapHang.Name = "btnMenuNhapHang";
             btnMenuNhapHang.ShadowDecoration.CustomizableEdges = customizableEdges12;
-            btnMenuNhapHang.Size = new Size(220, 42);
+            btnMenuNhapHang.Size = new Size(192, 32);
             btnMenuNhapHang.TabIndex = 9;
             btnMenuNhapHang.Text = "Nhập hàng";
             btnMenuNhapHang.Click += btnMenuNhapHang_Click;
@@ -280,10 +314,12 @@ namespace WinFormsAppTest
             btnMenuKhachHang.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuKhachHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuKhachHang.ForeColor = Color.White;
-            btnMenuKhachHang.Location = new Point(14, 201);
+            btnMenuKhachHang.Image = (Image)resources.GetObject("btnMenuKhachHang.Image");
+            btnMenuKhachHang.Location = new Point(12, 151);
+            btnMenuKhachHang.Margin = new Padding(3, 2, 3, 2);
             btnMenuKhachHang.Name = "btnMenuKhachHang";
             btnMenuKhachHang.ShadowDecoration.CustomizableEdges = customizableEdges14;
-            btnMenuKhachHang.Size = new Size(220, 42);
+            btnMenuKhachHang.Size = new Size(192, 32);
             btnMenuKhachHang.TabIndex = 4;
             btnMenuKhachHang.Text = "Khách hàng";
             btnMenuKhachHang.Click += btnMenuKhachHang_Click;
@@ -295,10 +331,12 @@ namespace WinFormsAppTest
             btnMenuNhanVienTaiKhoan.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuNhanVienTaiKhoan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuNhanVienTaiKhoan.ForeColor = Color.White;
-            btnMenuNhanVienTaiKhoan.Location = new Point(14, 251);
+            btnMenuNhanVienTaiKhoan.Image = (Image)resources.GetObject("btnMenuNhanVienTaiKhoan.Image");
+            btnMenuNhanVienTaiKhoan.Location = new Point(12, 188);
+            btnMenuNhanVienTaiKhoan.Margin = new Padding(3, 2, 3, 2);
             btnMenuNhanVienTaiKhoan.Name = "btnMenuNhanVienTaiKhoan";
             btnMenuNhanVienTaiKhoan.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnMenuNhanVienTaiKhoan.Size = new Size(220, 42);
+            btnMenuNhanVienTaiKhoan.Size = new Size(192, 32);
             btnMenuNhanVienTaiKhoan.TabIndex = 5;
             btnMenuNhanVienTaiKhoan.Text = "Nhân viên";
             btnMenuNhanVienTaiKhoan.Click += btnMenuNhanVienTaiKhoan_Click;
@@ -310,10 +348,12 @@ namespace WinFormsAppTest
             btnMenuKhuyenMai.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuKhuyenMai.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuKhuyenMai.ForeColor = Color.White;
-            btnMenuKhuyenMai.Location = new Point(14, 301);
+            btnMenuKhuyenMai.Image = (Image)resources.GetObject("btnMenuKhuyenMai.Image");
+            btnMenuKhuyenMai.Location = new Point(12, 226);
+            btnMenuKhuyenMai.Margin = new Padding(3, 2, 3, 2);
             btnMenuKhuyenMai.Name = "btnMenuKhuyenMai";
             btnMenuKhuyenMai.ShadowDecoration.CustomizableEdges = customizableEdges18;
-            btnMenuKhuyenMai.Size = new Size(220, 42);
+            btnMenuKhuyenMai.Size = new Size(192, 32);
             btnMenuKhuyenMai.TabIndex = 6;
             btnMenuKhuyenMai.Text = "Khuyến mãi";
             btnMenuKhuyenMai.Click += btnMenuKhuyenMai_Click;
@@ -325,10 +365,12 @@ namespace WinFormsAppTest
             btnMenuBaoCao.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuBaoCao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuBaoCao.ForeColor = Color.White;
-            btnMenuBaoCao.Location = new Point(14, 497);
+            btnMenuBaoCao.Image = (Image)resources.GetObject("btnMenuBaoCao.Image");
+            btnMenuBaoCao.Location = new Point(12, 373);
+            btnMenuBaoCao.Margin = new Padding(3, 2, 3, 2);
             btnMenuBaoCao.Name = "btnMenuBaoCao";
             btnMenuBaoCao.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            btnMenuBaoCao.Size = new Size(220, 42);
+            btnMenuBaoCao.Size = new Size(192, 32);
             btnMenuBaoCao.TabIndex = 10;
             btnMenuBaoCao.Text = "Báo cáo";
             btnMenuBaoCao.Click += btnMenuBaoCao_Click;
@@ -340,10 +382,12 @@ namespace WinFormsAppTest
             btnMenuNhaCungCap.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuNhaCungCap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuNhaCungCap.ForeColor = Color.White;
-            btnMenuNhaCungCap.Location = new Point(14, 351);
+            btnMenuNhaCungCap.Image = (Image)resources.GetObject("btnMenuNhaCungCap.Image");
+            btnMenuNhaCungCap.Location = new Point(12, 263);
+            btnMenuNhaCungCap.Margin = new Padding(3, 2, 3, 2);
             btnMenuNhaCungCap.Name = "btnMenuNhaCungCap";
             btnMenuNhaCungCap.ShadowDecoration.CustomizableEdges = customizableEdges22;
-            btnMenuNhaCungCap.Size = new Size(220, 42);
+            btnMenuNhaCungCap.Size = new Size(192, 32);
             btnMenuNhaCungCap.TabIndex = 7;
             btnMenuNhaCungCap.Text = "Nhà cung cấp";
             btnMenuNhaCungCap.Click += btnMenuNhaCungCap_Click;
@@ -355,10 +399,12 @@ namespace WinFormsAppTest
             btnMenuHoaDon.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuHoaDon.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuHoaDon.ForeColor = Color.White;
-            btnMenuHoaDon.Location = new Point(14, 401);
+            btnMenuHoaDon.Image = (Image)resources.GetObject("btnMenuHoaDon.Image");
+            btnMenuHoaDon.Location = new Point(12, 301);
+            btnMenuHoaDon.Margin = new Padding(3, 2, 3, 2);
             btnMenuHoaDon.Name = "btnMenuHoaDon";
             btnMenuHoaDon.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            btnMenuHoaDon.Size = new Size(220, 42);
+            btnMenuHoaDon.Size = new Size(192, 32);
             btnMenuHoaDon.TabIndex = 8;
             btnMenuHoaDon.Text = "Hóa đơn";
             btnMenuHoaDon.Click += btnMenuHoaDon_Click;
@@ -370,10 +416,12 @@ namespace WinFormsAppTest
             btnMenuCaiDat.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuCaiDat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnMenuCaiDat.ForeColor = Color.White;
-            btnMenuCaiDat.Location = new Point(14, 545);
+            btnMenuCaiDat.Image = (Image)resources.GetObject("btnMenuCaiDat.Image");
+            btnMenuCaiDat.Location = new Point(12, 409);
+            btnMenuCaiDat.Margin = new Padding(3, 2, 3, 2);
             btnMenuCaiDat.Name = "btnMenuCaiDat";
             btnMenuCaiDat.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            btnMenuCaiDat.Size = new Size(220, 42);
+            btnMenuCaiDat.Size = new Size(192, 32);
             btnMenuCaiDat.TabIndex = 11;
             btnMenuCaiDat.Text = "Cài đặt";
             btnMenuCaiDat.Click += btnMenuCaiDat_Click;
@@ -387,10 +435,11 @@ namespace WinFormsAppTest
             cardTodayRevenue.Controls.Add(lblTodayRevenueTitle);
             cardTodayRevenue.Controls.Add(lblTodayRevenueValue);
             cardTodayRevenue.CustomizableEdges = customizableEdges29;
-            cardTodayRevenue.Location = new Point(280, 110);
+            cardTodayRevenue.Location = new Point(245, 82);
+            cardTodayRevenue.Margin = new Padding(3, 2, 3, 2);
             cardTodayRevenue.Name = "cardTodayRevenue";
             cardTodayRevenue.ShadowDecoration.CustomizableEdges = customizableEdges30;
-            cardTodayRevenue.Size = new Size(315, 110);
+            cardTodayRevenue.Size = new Size(276, 82);
             cardTodayRevenue.TabIndex = 5;
             // 
             // lblTodayRevenueTitle
@@ -398,9 +447,10 @@ namespace WinFormsAppTest
             lblTodayRevenueTitle.BackColor = Color.Transparent;
             lblTodayRevenueTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblTodayRevenueTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            lblTodayRevenueTitle.Location = new Point(18, 15);
+            lblTodayRevenueTitle.Location = new Point(16, 11);
+            lblTodayRevenueTitle.Margin = new Padding(3, 2, 3, 2);
             lblTodayRevenueTitle.Name = "lblTodayRevenueTitle";
-            lblTodayRevenueTitle.Size = new Size(172, 27);
+            lblTodayRevenueTitle.Size = new Size(142, 22);
             lblTodayRevenueTitle.TabIndex = 0;
             lblTodayRevenueTitle.Text = "Doanh thu hôm nay";
             // 
@@ -409,9 +459,10 @@ namespace WinFormsAppTest
             lblTodayRevenueValue.BackColor = Color.Transparent;
             lblTodayRevenueValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblTodayRevenueValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblTodayRevenueValue.Location = new Point(18, 45);
+            lblTodayRevenueValue.Location = new Point(16, 34);
+            lblTodayRevenueValue.Margin = new Padding(3, 2, 3, 2);
             lblTodayRevenueValue.Name = "lblTodayRevenueValue";
-            lblTodayRevenueValue.Size = new Size(52, 47);
+            lblTodayRevenueValue.Size = new Size(43, 39);
             lblTodayRevenueValue.TabIndex = 1;
             lblTodayRevenueValue.Text = "0 đ";
             // 
@@ -424,10 +475,11 @@ namespace WinFormsAppTest
             cardMonthRevenue.Controls.Add(lblMonthRevenueTitle);
             cardMonthRevenue.Controls.Add(lblMonthRevenueValue);
             cardMonthRevenue.CustomizableEdges = customizableEdges31;
-            cardMonthRevenue.Location = new Point(665, 110);
+            cardMonthRevenue.Location = new Point(582, 82);
+            cardMonthRevenue.Margin = new Padding(3, 2, 3, 2);
             cardMonthRevenue.Name = "cardMonthRevenue";
             cardMonthRevenue.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            cardMonthRevenue.Size = new Size(311, 110);
+            cardMonthRevenue.Size = new Size(272, 82);
             cardMonthRevenue.TabIndex = 4;
             // 
             // lblMonthRevenueTitle
@@ -435,9 +487,10 @@ namespace WinFormsAppTest
             lblMonthRevenueTitle.BackColor = Color.Transparent;
             lblMonthRevenueTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblMonthRevenueTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            lblMonthRevenueTitle.Location = new Point(18, 15);
+            lblMonthRevenueTitle.Location = new Point(16, 11);
+            lblMonthRevenueTitle.Margin = new Padding(3, 2, 3, 2);
             lblMonthRevenueTitle.Name = "lblMonthRevenueTitle";
-            lblMonthRevenueTitle.Size = new Size(184, 27);
+            lblMonthRevenueTitle.Size = new Size(151, 22);
             lblMonthRevenueTitle.TabIndex = 0;
             lblMonthRevenueTitle.Text = "Doanh thu tháng này";
             // 
@@ -446,9 +499,10 @@ namespace WinFormsAppTest
             lblMonthRevenueValue.BackColor = Color.Transparent;
             lblMonthRevenueValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblMonthRevenueValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblMonthRevenueValue.Location = new Point(18, 45);
+            lblMonthRevenueValue.Location = new Point(16, 34);
+            lblMonthRevenueValue.Margin = new Padding(3, 2, 3, 2);
             lblMonthRevenueValue.Name = "lblMonthRevenueValue";
-            lblMonthRevenueValue.Size = new Size(52, 47);
+            lblMonthRevenueValue.Size = new Size(43, 39);
             lblMonthRevenueValue.TabIndex = 1;
             lblMonthRevenueValue.Text = "0 đ";
             // 
@@ -462,10 +516,11 @@ namespace WinFormsAppTest
             cardInvoiceCount.Controls.Add(lblInvoiceCountTitle);
             cardInvoiceCount.Controls.Add(lblInvoiceCountValue);
             cardInvoiceCount.CustomizableEdges = customizableEdges33;
-            cardInvoiceCount.Location = new Point(1047, 110);
+            cardInvoiceCount.Location = new Point(916, 82);
+            cardInvoiceCount.Margin = new Padding(3, 2, 3, 2);
             cardInvoiceCount.Name = "cardInvoiceCount";
             cardInvoiceCount.ShadowDecoration.CustomizableEdges = customizableEdges34;
-            cardInvoiceCount.Size = new Size(284, 111);
+            cardInvoiceCount.Size = new Size(248, 83);
             cardInvoiceCount.TabIndex = 3;
             // 
             // lblInvoiceCountTitle
@@ -473,9 +528,10 @@ namespace WinFormsAppTest
             lblInvoiceCountTitle.BackColor = Color.Transparent;
             lblInvoiceCountTitle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             lblInvoiceCountTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            lblInvoiceCountTitle.Location = new Point(18, 15);
+            lblInvoiceCountTitle.Location = new Point(16, 11);
+            lblInvoiceCountTitle.Margin = new Padding(3, 2, 3, 2);
             lblInvoiceCountTitle.Name = "lblInvoiceCountTitle";
-            lblInvoiceCountTitle.Size = new Size(178, 27);
+            lblInvoiceCountTitle.Size = new Size(146, 22);
             lblInvoiceCountTitle.TabIndex = 0;
             lblInvoiceCountTitle.Text = "Số hóa đơn hôm nay";
             // 
@@ -484,9 +540,10 @@ namespace WinFormsAppTest
             lblInvoiceCountValue.BackColor = Color.Transparent;
             lblInvoiceCountValue.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
             lblInvoiceCountValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblInvoiceCountValue.Location = new Point(18, 45);
+            lblInvoiceCountValue.Location = new Point(16, 34);
+            lblInvoiceCountValue.Margin = new Padding(3, 2, 3, 2);
             lblInvoiceCountValue.Name = "lblInvoiceCountValue";
-            lblInvoiceCountValue.Size = new Size(22, 47);
+            lblInvoiceCountValue.Size = new Size(19, 39);
             lblInvoiceCountValue.TabIndex = 1;
             lblInvoiceCountValue.Text = "0";
             // 
@@ -500,10 +557,11 @@ namespace WinFormsAppTest
             grpTopProducts.CustomizableEdges = customizableEdges35;
             grpTopProducts.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpTopProducts.ForeColor = Color.FromArgb(198, 40, 40);
-            grpTopProducts.Location = new Point(280, 240);
+            grpTopProducts.Location = new Point(245, 180);
+            grpTopProducts.Margin = new Padding(3, 2, 3, 2);
             grpTopProducts.Name = "grpTopProducts";
             grpTopProducts.ShadowDecoration.CustomizableEdges = customizableEdges36;
-            grpTopProducts.Size = new Size(425, 420);
+            grpTopProducts.Size = new Size(372, 315);
             grpTopProducts.TabIndex = 2;
             grpTopProducts.Text = "Top sản phẩm bán chạy";
             // 
@@ -533,11 +591,13 @@ namespace WinFormsAppTest
             dgvTopProducts.Dock = DockStyle.Fill;
             dgvTopProducts.GridColor = Color.FromArgb(231, 229, 255);
             dgvTopProducts.Location = new Point(0, 40);
+            dgvTopProducts.Margin = new Padding(3, 2, 3, 2);
             dgvTopProducts.Name = "dgvTopProducts";
             dgvTopProducts.ReadOnly = true;
             dgvTopProducts.RowHeadersVisible = false;
             dgvTopProducts.RowHeadersWidth = 51;
-            dgvTopProducts.Size = new Size(425, 380);
+            dgvTopProducts.RowTemplate.Height = 29;
+            dgvTopProducts.Size = new Size(372, 275);
             dgvTopProducts.TabIndex = 0;
             dgvTopProducts.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
             dgvTopProducts.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -560,6 +620,7 @@ namespace WinFormsAppTest
             dgvTopProducts.ThemeStyle.RowsStyle.Height = 29;
             dgvTopProducts.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             dgvTopProducts.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            dgvTopProducts.CellContentClick += dgvTopProducts_CellContentClick;
             // 
             // grpRevenueChart
             // 
@@ -571,10 +632,11 @@ namespace WinFormsAppTest
             grpRevenueChart.CustomizableEdges = customizableEdges37;
             grpRevenueChart.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpRevenueChart.ForeColor = Color.FromArgb(198, 40, 40);
-            grpRevenueChart.Location = new Point(772, 240);
+            grpRevenueChart.Location = new Point(676, 180);
+            grpRevenueChart.Margin = new Padding(3, 2, 3, 2);
             grpRevenueChart.Name = "grpRevenueChart";
             grpRevenueChart.ShadowDecoration.CustomizableEdges = customizableEdges38;
-            grpRevenueChart.Size = new Size(560, 468);
+            grpRevenueChart.Size = new Size(490, 351);
             grpRevenueChart.TabIndex = 1;
             grpRevenueChart.Text = "Biểu đồ doanh thu 30 ngày gần nhất";
             grpRevenueChart.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
@@ -582,10 +644,10 @@ namespace WinFormsAppTest
             // 
             // Dashboard
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1351, 718);
+            ClientSize = new Size(1182, 538);
             Controls.Add(pnlMenu);
             Controls.Add(grpRevenueChart);
             Controls.Add(grpTopProducts);
@@ -593,21 +655,11 @@ namespace WinFormsAppTest
             Controls.Add(cardMonthRevenue);
             Controls.Add(cardTodayRevenue);
             Controls.Add(pnlHeader);
+            Margin = new Padding(3, 2, 3, 2);
             Name = "Dashboard";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "WinMart+ - Dashboard";
             Load += Dashboard_Load;
-            btnMenuBanHang.Image = Icons.IconGenerator.GenerateShoppingIcon();
-            btnMenuQuanLy.Image = Icons.IconGenerator.GenerateManageIcon();
-            btnMenuSanPham.Image = Icons.IconGenerator.GenerateProductIcon();
-            btnMenuNhapHang.Image = Icons.IconGenerator.GenerateImportIcon();
-            btnMenuKhachHang.Image = Icons.IconGenerator.GenerateCustomerIcon();
-            btnMenuNhanVienTaiKhoan.Image = Icons.IconGenerator.GenerateStaffIcon();
-            btnMenuKhuyenMai.Image = Icons.IconGenerator.GenerateDiscountIcon();
-            btnMenuBaoCao.Image = Icons.IconGenerator.GenerateReportIcon();
-            btnMenuNhaCungCap.Image = Icons.IconGenerator.GenerateSupplierIcon();
-            btnMenuHoaDon.Image = Icons.IconGenerator.GenerateInvoiceIcon();
-            btnMenuCaiDat.Image = Icons.IconGenerator.GenerateSettingIcon();
             pnlHeader.ResumeLayout(false);
             pnlHeader.PerformLayout();
             pnlMenu.ResumeLayout(false);

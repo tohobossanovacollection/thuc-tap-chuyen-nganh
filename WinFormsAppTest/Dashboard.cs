@@ -11,6 +11,7 @@ namespace WinFormsAppTest
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
         private readonly string _username;
         private readonly string _role;
+        private readonly string _maNhanVien;
         private readonly Panel _contentHost;
         private Form? _activeChildForm;
         private bool _isQuanLyMenuExpanded;
@@ -19,11 +20,12 @@ namespace WinFormsAppTest
         private Point _baoCaoExpandedLocation;
         private Point _caiDatExpandedLocation;
 
-        public Dashboard(string username, string role)
+        public Dashboard(string username, string role, string maNhanVien)
         {
             InitializeComponent();
             _username = username;
             _role = role;
+            _maNhanVien = maNhanVien;
             CaptureMenuLayout();
             SetQuanLyMenuExpanded(false);
             LoadMenuIcons();
@@ -34,21 +36,39 @@ namespace WinFormsAppTest
                 Size = new Size(1051, 598),
                 Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right,
                 BackColor = Color.White,
-                Visible = false
+                Visible = false,
+                AutoScroll = true
             };
             Controls.Add(_contentHost);
             _contentHost.BringToFront();
+            Resize += (_, _) => UpdateContentHostLayout();
+            UpdateContentHostLayout();
+        }
+
+        private void UpdateContentHostLayout()
+        {
+            const int margin = 10;
+            int left = pnlMenu.Right + margin;
+            int top = pnlHeader.Bottom + margin;
+            int width = Math.Max(0, ClientSize.Width - left - margin);
+            int height = Math.Max(0, ClientSize.Height - top - margin);
+
+            _contentHost.SetBounds(left, top, width, height);
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            WindowState = FormWindowState.Maximized;
             lblWelcome.Text = $"Xin chào, {_username} ({_role})";
             LoadDashboardData();
         }
 
         private void btnMenuBanHang_Click(object sender, EventArgs e)
         {
-            ShowChildFormInMain(new BanHangForm("NV01"));
+            BanHangForm form = new BanHangForm(_maNhanVien);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.FormClosed += (_, _) => form.Dispose();
+            form.Show(this);
         }
 
         private void btnMenuSanPham_Click(object sender, EventArgs e)
@@ -110,6 +130,12 @@ namespace WinFormsAppTest
             LoadDashboardData();
         }
 
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            CloseActiveChildForm();
+            SetDashboardWidgetsVisible(true);
+        }
+
         private void ShowChildFormInMain(Form childForm)
         {
             CloseActiveChildForm();
@@ -120,7 +146,10 @@ namespace WinFormsAppTest
 
             childForm.TopLevel = false;
             childForm.FormBorderStyle = FormBorderStyle.None;
+            childForm.MinimumSize = Size.Empty;
+            childForm.AutoScroll = true;
             childForm.Dock = DockStyle.Fill;
+            childForm.Padding = new Padding(0);
 
             _contentHost.Controls.Clear();
             _contentHost.Controls.Add(childForm);
@@ -356,6 +385,11 @@ WHERE TABLE_NAME = @tableName;";
         }
 
         private void grpRevenueChart_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvTopProducts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -9,7 +9,7 @@ namespace WinFormsAppTest
     public partial class BanHangForm : Form
     {
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
-        private readonly string _maNhanVien;
+        private string _maNhanVien;
         private readonly DataTable _cartTable = new();
 
         private DataTable? _productsTable;
@@ -788,6 +788,11 @@ namespace WinFormsAppTest
                 return;
             }
 
+            if (!EnsureValidEmployeeId())
+            {
+                return;
+            }
+
             decimal tongTien = GetSubTotal();
             decimal giamGia = _discountAmount;
             decimal thanhTienCuoi = tongTien - giamGia;
@@ -894,6 +899,69 @@ namespace WinFormsAppTest
                 tx.Rollback();
                 MessageBox.Show($"Tạo hóa đơn thất bại: {ex.Message}");
             }
+        }
+
+        private bool EnsureValidEmployeeId()
+        {
+            const string query = "SELECT COUNT(1) FROM nhan_vien WHERE ma_nhan_vien = @ma";
+            using SqlConnection conn = new(_connectionString);
+            using SqlCommand cmd = new(query, conn);
+            cmd.Parameters.AddWithValue("@ma", _maNhanVien);
+            conn.Open();
+
+            int exists = Convert.ToInt32(cmd.ExecuteScalar() ?? 0);
+            if (exists > 0)
+            {
+                return true;
+            }
+
+            MessageBox.Show("Mã nhân viên không tồn tại. Vui lòng nhập lại.");
+
+            using Form prompt = new()
+            {
+                Text = "Nhập mã nhân viên",
+                StartPosition = FormStartPosition.CenterParent,
+                ClientSize = new Size(320, 140),
+                FormBorderStyle = FormBorderStyle.FixedDialog,
+                MaximizeBox = false,
+                MinimizeBox = false
+            };
+
+            Label lbl = new() { Text = "Mã nhân viên:", Left = 15, Top = 20, Width = 100 };
+            TextBox txt = new() { Left = 120, Top = 18, Width = 170, Text = _maNhanVien };
+            Button btnOk = new() { Text = "Xác nhận", Left = 120, Top = 70, Width = 80, DialogResult = DialogResult.OK };
+            Button btnCancel = new() { Text = "Hủy", Left = 210, Top = 70, Width = 80, DialogResult = DialogResult.Cancel };
+
+            prompt.Controls.AddRange(new Control[] { lbl, txt, btnOk, btnCancel });
+            prompt.AcceptButton = btnOk;
+            prompt.CancelButton = btnCancel;
+
+            if (prompt.ShowDialog(this) != DialogResult.OK)
+            {
+                return false;
+            }
+
+            string newMa = txt.Text.Trim();
+            if (string.IsNullOrWhiteSpace(newMa))
+            {
+                MessageBox.Show("Mã nhân viên không hợp lệ.");
+                return false;
+            }
+
+            using SqlConnection connRetry = new(_connectionString);
+            using SqlCommand cmdRetry = new(query, connRetry);
+            cmdRetry.Parameters.AddWithValue("@ma", newMa);
+            connRetry.Open();
+
+            int existsRetry = Convert.ToInt32(cmdRetry.ExecuteScalar() ?? 0);
+            if (existsRetry == 0)
+            {
+                MessageBox.Show("Mã nhân viên không tồn tại.");
+                return false;
+            }
+
+            _maNhanVien = newMa;
+            return true;
         }
 
         private void BuildLastInvoiceSnapshot(
