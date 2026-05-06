@@ -43,6 +43,12 @@ namespace WinFormsAppTest
             _contentHost.BringToFront();
             Resize += (_, _) => UpdateContentHostLayout();
             UpdateContentHostLayout();
+
+            // Initialize User Section
+            lblUserStatus.Text = $"{_username} ({_role})";
+            tmrClock.Interval = 1000;
+            tmrClock.Tick += (s, e) => lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+            tmrClock.Start();
         }
 
         private void UpdateContentHostLayout()
@@ -78,7 +84,7 @@ namespace WinFormsAppTest
 
         private void btnMenuNhapHang_Click(object sender, EventArgs e)
         {
-            ShowChildFormInMain(new QuanLyPhieuNhapForm());
+            ShowChildFormInMain(new QuanLyPhieuNhapForm(_maNhanVien));
         }
 
         private void btnMenuKhachHang_Click(object sender, EventArgs e)
@@ -103,7 +109,19 @@ namespace WinFormsAppTest
 
         private void btnMenuCaiDat_Click(object sender, EventArgs e)
         {
-            ShowChildFormInMain(new CaiDatProfileForm());
+            ShowChildFormInMain(new CaiDatProfileForm(_maNhanVien));
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            var result = MessageBox.Show("Bạn có chắc chắn muốn đăng xuất?", "Xác nhận", 
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            
+            if (result == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.OK; // Signal to Program.cs/DangNhap to return to login
+                this.Close();
+            }
         }
 
         private void btnMenuNhaCungCap_Click(object sender, EventArgs e)
@@ -175,6 +193,8 @@ namespace WinFormsAppTest
             cardMonthRevenue.Visible = visible;
             cardInvoiceCount.Visible = visible;
             grpTopProducts.Visible = visible;
+            grpTopCustomers.Visible = visible;
+            grpTopEmployees.Visible = visible;
             grpRevenueChart.Visible = visible;
         }
 
@@ -204,6 +224,8 @@ namespace WinFormsAppTest
                 lblInvoiceCountValue.Text = todayInvoiceCount.ToString("N0", CultureInfo.InvariantCulture);
 
                 LoadTopProducts(connection, detailProductCol, detailQtyCol);
+                LoadTopCustomers(connection);
+                LoadTopEmployees(connection);
                 LoadRevenueChart(connection, invoiceDateCol, invoiceAmountCol);
             }
             catch (Exception ex)
@@ -231,6 +253,34 @@ ORDER BY [Số lượng bán] DESC;";
             adapter.Fill(table);
 
             dgvTopProducts.DataSource = table;
+        }
+
+        private void LoadTopCustomers(SqlConnection connection)
+        {
+            const string query = @"
+                SELECT TOP 5 ma_khach_hang AS [Mã KH], COUNT(ma_hoa_don) AS [Số HĐ]
+                FROM hoa_don
+                GROUP BY ma_khach_hang
+                ORDER BY [Số HĐ] DESC";
+
+            using SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            dgvTopCustomers.DataSource = table;
+        }
+
+        private void LoadTopEmployees(SqlConnection connection)
+        {
+            const string query = @"
+                SELECT TOP 5 ma_nhan_vien AS [Mã NV], COUNT(ma_hoa_don) AS [Số HĐ]
+                FROM hoa_don
+                GROUP BY ma_nhan_vien
+                ORDER BY [Số HĐ] DESC";
+
+            using SqlDataAdapter adapter = new SqlDataAdapter(query, connection);
+            DataTable table = new DataTable();
+            adapter.Fill(table);
+            dgvTopEmployees.DataSource = table;
         }
 
         private void LoadRevenueChart(SqlConnection connection, string dateCol, string amountCol)

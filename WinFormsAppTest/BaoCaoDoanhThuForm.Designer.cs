@@ -17,6 +17,8 @@ namespace WinFormsAppTest
         private SplitContainer _split;
         private SplitContainer _splitTop;
         private Chart _chartCategoryPie;
+        private Label _lblRangeLine;
+        private Label _lblRangePie;
 
         protected override void Dispose(bool disposing)
         {
@@ -41,6 +43,8 @@ namespace WinFormsAppTest
             _split = new SplitContainer();
             _splitTop = new SplitContainer();
             _chartCategoryPie = new Chart();
+            _lblRangeLine = new Label();
+            _lblRangePie = new Label();
             ChartArea chartArea1 = new ChartArea();
             Legend legend1 = new Legend();
             Series series1 = new Series();
@@ -186,6 +190,7 @@ namespace WinFormsAppTest
             // _split.Panel2
             // 
             _split.Panel2.Controls.Add(_chart);
+            _split.Panel2.Controls.Add(_lblRangeLine);
             _split.Size = new Size(1200, 587);
             _split.SplitterDistance = 380;
             _split.TabIndex = 0;
@@ -203,6 +208,7 @@ namespace WinFormsAppTest
             // _splitTop.Panel2
             // 
             _splitTop.Panel2.Controls.Add(_chartCategoryPie);
+            _splitTop.Panel2.Controls.Add(_lblRangePie);
             _splitTop.Size = new Size(1200, 380);
             _splitTop.SplitterDistance = 600;
             _splitTop.TabIndex = 0;
@@ -242,6 +248,24 @@ namespace WinFormsAppTest
             _chartCategoryPie.Size = new Size(596, 380);
             _chartCategoryPie.TabIndex = 0;
             _chartCategoryPie.Text = "chart2";
+            // 
+            // _lblRangeLine
+            // 
+            _lblRangeLine.Dock = DockStyle.Bottom;
+            _lblRangeLine.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            _lblRangeLine.ForeColor = Color.DimGray;
+            _lblRangeLine.Height = 25;
+            _lblRangeLine.TextAlign = ContentAlignment.MiddleCenter;
+            _lblRangeLine.Text = "Từ ngày ... đến ngày ...";
+            // 
+            // _lblRangePie
+            // 
+            _lblRangePie.Dock = DockStyle.Bottom;
+            _lblRangePie.Font = new Font("Segoe UI", 9F, FontStyle.Italic);
+            _lblRangePie.ForeColor = Color.DimGray;
+            _lblRangePie.Height = 25;
+            _lblRangePie.TextAlign = ContentAlignment.MiddleCenter;
+            _lblRangePie.Text = "Từ ngày ... đến ngày ...";
             // 
             // BaoCaoDoanhThuForm
             // 

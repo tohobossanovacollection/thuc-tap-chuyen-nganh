@@ -37,14 +37,45 @@ namespace WinFormsAppTest
             // 
             // _dgv
             // 
-            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            _dgv.ColumnHeadersHeight = 29;
+            _dgv.AllowUserToAddRows = false;
+            _dgv.AllowUserToDeleteRows = false;
+            _dgv.BackgroundColor = Color.White;
+            _dgv.BorderStyle = BorderStyle.None;
+            _dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            
+            DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
+            headerStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            headerStyle.BackColor = Color.FromArgb(100, 88, 255);
+            headerStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            headerStyle.ForeColor = Color.White;
+            headerStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            headerStyle.SelectionForeColor = Color.White;
+            headerStyle.WrapMode = DataGridViewTriState.True;
+            _dgv.ColumnHeadersDefaultCellStyle = headerStyle;
+            
+            _dgv.ColumnHeadersHeight = 35;
+            _dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            
+            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+            cellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            cellStyle.BackColor = Color.White;
+            cellStyle.Font = new Font("Segoe UI", 9F);
+            cellStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            cellStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            cellStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            cellStyle.WrapMode = DataGridViewTriState.False;
+            _dgv.DefaultCellStyle = cellStyle;
+
             _dgv.Dock = DockStyle.Fill;
+            _dgv.EnableHeadersVisualStyles = false;
+            _dgv.GridColor = Color.FromArgb(231, 229, 255);
             _dgv.Location = new Point(0, 110);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
+            _dgv.RowTemplate.Height = 35;
+            _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             _dgv.Size = new Size(1000, 540);
             _dgv.TabIndex = 0;
             // 
@@ -66,7 +97,7 @@ namespace WinFormsAppTest
             // 
             // _top
             // 
-            _top.BackColor = Color.Yellow;
+            _top.BackColor = Color.FromArgb(198, 40, 40);
             _top.Controls.Add(_title);
             _top.Controls.Add(_txtMa);
             _top.Controls.Add(_txtTen);
@@ -84,7 +115,7 @@ namespace WinFormsAppTest
             // 
             _title.AutoSize = true;
             _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            _title.ForeColor = Color.FromArgb(198, 40, 40);
+            _title.ForeColor = Color.FromArgb(255, 241, 118);
             _title.Location = new Point(12, 10);
             _title.Name = "_title";
             _title.Size = new Size(249, 37);
@@ -93,8 +124,9 @@ namespace WinFormsAppTest
             // 
             // _btnThem
             // 
-            _btnThem.BackColor = Color.FromArgb(198, 40, 40);
-            _btnThem.ForeColor = Color.White;
+            _btnThem.BackColor = Color.FromArgb(255, 167, 38);
+            _btnThem.ForeColor = Color.Black;
+            _btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _btnThem.Image = Icons.IconGenerator.GenerateAddIcon();
             _btnThem.ImageAlign = ContentAlignment.MiddleRight;
             _btnThem.Location = new Point(430, 53);
@@ -107,8 +139,9 @@ namespace WinFormsAppTest
             // 
             // _btnSua
             // 
-            _btnSua.BackColor = Color.FromArgb(198, 40, 40);
-            _btnSua.ForeColor = Color.White;
+            _btnSua.BackColor = Color.FromArgb(255, 167, 38);
+            _btnSua.ForeColor = Color.Black;
+            _btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _btnSua.ImageAlign = ContentAlignment.MiddleRight;
             _btnSua.Location = new Point(520, 53);
             _btnSua.Name = "_btnSua";
@@ -121,8 +154,9 @@ namespace WinFormsAppTest
             // 
             // _btnXoa
             // 
-            _btnXoa.BackColor = Color.FromArgb(198, 40, 40);
+            _btnXoa.BackColor = Color.FromArgb(211, 47, 47);
             _btnXoa.ForeColor = Color.White;
+            _btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
             _btnXoa.ImageAlign = ContentAlignment.MiddleRight;
             _btnXoa.Location = new Point(610, 53);
@@ -136,8 +170,9 @@ namespace WinFormsAppTest
             // 
             // _btnGan
             // 
-            _btnGan.BackColor = Color.FromArgb(198, 40, 40);
-            _btnGan.ForeColor = Color.White;
+            _btnGan.BackColor = Color.FromArgb(255, 167, 38);
+            _btnGan.ForeColor = Color.Black;
+            _btnGan.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             _btnGan.Location = new Point(700, 53);
             _btnGan.Name = "_btnGan";
             _btnGan.Size = new Size(140, 32);

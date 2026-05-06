@@ -1,4 +1,5 @@
 using System.Data;
+using System.Linq;
 using Microsoft.Data.SqlClient;
 
 namespace WinFormsAppTest
@@ -30,6 +31,7 @@ namespace WinFormsAppTest
                 DataTable dt = new DataTable();
                 da.Fill(dt);
                 _dgvTonKho.DataSource = dt;
+                UpdateLowStockUI(dt);
 
                 if (_dgvTonKho.Columns.Contains("ma_san_pham")) _dgvTonKho.Columns["ma_san_pham"].HeaderText = "Mã SP";
                 if (_dgvTonKho.Columns.Contains("ten_san_pham")) _dgvTonKho.Columns["ten_san_pham"].HeaderText = "Tên sản phẩm";
@@ -57,6 +59,59 @@ namespace WinFormsAppTest
         private void btnXem_Click(object sender, EventArgs e)
         {
             LoadTonKho();
+        }
+
+        private void UpdateLowStockUI(DataTable dt)
+        {
+            // 1. Cảnh báo 5 sản phẩm sắp hết (giữ nguyên logic cũ cho Label)
+            var lowStockProducts = dt.AsEnumerable()
+                .OrderBy(r => r.Field<int>("so_luong_ton"))
+                .Take(5)
+                .ToList();
+
+            string warningText = "⚠️ CẢNH BÁO HÀNG SẮP HẾT:\n";
+            if (lowStockProducts.Count == 0)
+            {
+                _lblWarning.Text = "✅ Tình trạng tồn kho ổn định.";
+            }
+            else
+            {
+                foreach (var row in lowStockProducts)
+                {
+                    warningText += $"• {row.Field<string>("ten_san_pham")} (Tồn: {row.Field<int>("so_luong_ton")})\n";
+                }
+                _lblWarning.Text = warningText;
+            }
+
+            // 2. Biểu đồ 5 DANH MỤC có tổng tồn thấp nhất
+            try
+            {
+                const string catQuery = @"
+                    SELECT TOP 5 dm.ten_danh_muc, SUM(sp.so_luong_ton) as TongTon
+                    FROM san_pham sp
+                    JOIN danh_muc_san_pham dm ON dm.ma_danh_muc = sp.ma_danh_muc
+                    GROUP BY dm.ten_danh_muc
+                    ORDER BY TongTon ASC";
+
+                using SqlConnection conn = new SqlConnection(_connectionString);
+                using SqlCommand cmd = new SqlCommand(catQuery, conn);
+                conn.Open();
+                using SqlDataReader reader = cmd.ExecuteReader();
+
+                _chartLowStock.Series[0].Points.Clear();
+                _chartLowStock.Series[0].Name = "Tổng tồn theo danh mục";
+                
+                while (reader.Read())
+                {
+                    string catName = reader.GetString(0);
+                    int totalStock = reader.GetInt32(1);
+                    _chartLowStock.Series[0].Points.AddXY(catName, totalStock);
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine("Lỗi tải biểu đồ danh mục: " + ex.Message);
+            }
         }
     }
 }

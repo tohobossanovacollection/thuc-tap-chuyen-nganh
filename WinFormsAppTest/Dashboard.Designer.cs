@@ -37,6 +37,15 @@ namespace WinFormsAppTest
         private Guna2DataGridView dgvTopProducts;
         private Guna2GroupBox grpRevenueChart;
         private Chart chartRevenue;
+        private Guna2GroupBox grpTopCustomers;
+        private Guna2DataGridView dgvTopCustomers;
+        private Guna2GroupBox grpTopEmployees;
+        private Guna2DataGridView dgvTopEmployees;
+        private Guna2Panel pnlUserFooter;
+        private Label lblUserStatus;
+        private Label lblDateTime;
+        private Guna2Button btnLogout;
+        private System.Windows.Forms.Timer tmrClock;
 
         protected override void Dispose(bool disposing)
         {
@@ -118,8 +127,18 @@ namespace WinFormsAppTest
             grpTopProducts = new Guna2GroupBox();
             dgvTopProducts = new Guna2DataGridView();
             grpRevenueChart = new Guna2GroupBox();
+            grpTopCustomers = new Guna2GroupBox();
+            dgvTopCustomers = new Guna2DataGridView();
+            grpTopEmployees = new Guna2GroupBox();
+            dgvTopEmployees = new Guna2DataGridView();
+            pnlUserFooter = new Guna2Panel();
+            lblUserStatus = new Label();
+            lblDateTime = new Label();
+            btnLogout = new Guna2Button();
+            tmrClock = new System.Windows.Forms.Timer();
             pnlHeader.SuspendLayout();
             pnlMenu.SuspendLayout();
+            pnlUserFooter.SuspendLayout();
             cardTodayRevenue.SuspendLayout();
             cardMonthRevenue.SuspendLayout();
             cardInvoiceCount.SuspendLayout();
@@ -186,16 +205,21 @@ namespace WinFormsAppTest
             // 
             // btnHome
             // 
-            btnHome.BorderRadius = 8;
+            btnHome.Animated = true;
+            btnHome.BackColor = Color.Transparent;
+            btnHome.BorderRadius = 0;
+            btnHome.BorderThickness = 0;
             btnHome.CustomizableEdges = customizableEdges31;
-            btnHome.FillColor = Color.FromArgb(255, 167, 38);
-            btnHome.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnHome.ForeColor = Color.Black;
-            btnHome.Location = new Point(12, 18);
+            btnHome.FillColor = Color.Transparent;
+            btnHome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnHome.ForeColor = Color.White;
+            btnHome.HoverState.FillColor = Color.Transparent;
+            btnHome.Location = new Point(10, 15);
             btnHome.Margin = new Padding(3, 2, 3, 2);
             btnHome.Name = "btnHome";
             btnHome.ShadowDecoration.CustomizableEdges = customizableEdges32;
-            btnHome.Size = new Size(44, 32);
+            btnHome.ShadowDecoration.Enabled = false;
+            btnHome.Size = new Size(40, 40);
             btnHome.TabIndex = 3;
             btnHome.Text = "🏠";
             btnHome.Click += btnHome_Click;
@@ -224,8 +248,54 @@ namespace WinFormsAppTest
             pnlMenu.Margin = new Padding(3, 2, 3, 2);
             pnlMenu.Name = "pnlMenu";
             pnlMenu.ShadowDecoration.CustomizableEdges = customizableEdges28;
-            pnlMenu.Size = new Size(219, 448);
+            pnlMenu.Size = new Size(219, 470);
             pnlMenu.TabIndex = 0;
+            // 
+            // pnlUserFooter
+            // 
+            pnlUserFooter.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            pnlUserFooter.BackColor = Color.Transparent;
+            pnlUserFooter.BorderRadius = 12;
+            pnlUserFooter.FillColor = Color.FromArgb(239, 108, 0);
+            pnlUserFooter.Controls.Add(lblUserStatus);
+            pnlUserFooter.Controls.Add(lblDateTime);
+            pnlUserFooter.Controls.Add(btnLogout);
+            pnlUserFooter.Location = new Point(9, 565);
+            pnlUserFooter.Name = "pnlUserFooter";
+            pnlUserFooter.Size = new Size(219, 105);
+            pnlUserFooter.TabIndex = 12;
+            // 
+            // lblUserStatus
+            // 
+            lblUserStatus.AutoSize = true;
+            lblUserStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            lblUserStatus.ForeColor = Color.White;
+            lblUserStatus.Location = new Point(12, 10);
+            lblUserStatus.Name = "lblUserStatus";
+            lblUserStatus.Size = new Size(150, 15);
+            lblUserStatus.Text = "User: Admin";
+            // 
+            // lblDateTime
+            // 
+            lblDateTime.AutoSize = true;
+            lblDateTime.Font = new Font("Segoe UI", 8F);
+            lblDateTime.ForeColor = Color.White;
+            lblDateTime.Location = new Point(12, 30);
+            lblDateTime.Name = "lblDateTime";
+            lblDateTime.Size = new Size(150, 13);
+            lblDateTime.Text = "01/01/2026 00:00:00";
+            // 
+            // btnLogout
+            // 
+            btnLogout.BorderRadius = 5;
+            btnLogout.FillColor = Color.FromArgb(198, 40, 40);
+            btnLogout.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnLogout.ForeColor = Color.White;
+            btnLogout.Location = new Point(12, 55);
+            btnLogout.Name = "btnLogout";
+            btnLogout.Size = new Size(195, 35);
+            btnLogout.Text = "ĐĂNG XUẤT";
+            btnLogout.Click += btnLogout_Click;
             // 
             // lblMenuTitle
             // 
@@ -242,6 +312,9 @@ namespace WinFormsAppTest
             // btnMenuBanHang
             // 
             btnMenuBanHang.BorderRadius = 8;
+            btnMenuBanHang.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuBanHang.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuBanHang.CheckedState.ForeColor = Color.Yellow;
             btnMenuBanHang.CustomizableEdges = customizableEdges5;
             btnMenuBanHang.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuBanHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -259,6 +332,9 @@ namespace WinFormsAppTest
             // btnMenuQuanLy
             // 
             btnMenuQuanLy.BorderRadius = 8;
+            btnMenuQuanLy.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuQuanLy.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuQuanLy.CheckedState.ForeColor = Color.Yellow;
             btnMenuQuanLy.CustomizableEdges = customizableEdges7;
             btnMenuQuanLy.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuQuanLy.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -276,6 +352,9 @@ namespace WinFormsAppTest
             // btnMenuSanPham
             // 
             btnMenuSanPham.BorderRadius = 8;
+            btnMenuSanPham.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuSanPham.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuSanPham.CheckedState.ForeColor = Color.Yellow;
             btnMenuSanPham.CustomizableEdges = customizableEdges9;
             btnMenuSanPham.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuSanPham.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -293,6 +372,9 @@ namespace WinFormsAppTest
             // btnMenuNhapHang
             // 
             btnMenuNhapHang.BorderRadius = 8;
+            btnMenuNhapHang.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuNhapHang.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuNhapHang.CheckedState.ForeColor = Color.Yellow;
             btnMenuNhapHang.CustomizableEdges = customizableEdges11;
             btnMenuNhapHang.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuNhapHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -310,6 +392,9 @@ namespace WinFormsAppTest
             // btnMenuKhachHang
             // 
             btnMenuKhachHang.BorderRadius = 8;
+            btnMenuKhachHang.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuKhachHang.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuKhachHang.CheckedState.ForeColor = Color.Yellow;
             btnMenuKhachHang.CustomizableEdges = customizableEdges13;
             btnMenuKhachHang.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuKhachHang.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -327,6 +412,9 @@ namespace WinFormsAppTest
             // btnMenuNhanVienTaiKhoan
             // 
             btnMenuNhanVienTaiKhoan.BorderRadius = 8;
+            btnMenuNhanVienTaiKhoan.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuNhanVienTaiKhoan.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuNhanVienTaiKhoan.CheckedState.ForeColor = Color.Yellow;
             btnMenuNhanVienTaiKhoan.CustomizableEdges = customizableEdges15;
             btnMenuNhanVienTaiKhoan.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuNhanVienTaiKhoan.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -344,6 +432,9 @@ namespace WinFormsAppTest
             // btnMenuKhuyenMai
             // 
             btnMenuKhuyenMai.BorderRadius = 8;
+            btnMenuKhuyenMai.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuKhuyenMai.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuKhuyenMai.CheckedState.ForeColor = Color.Yellow;
             btnMenuKhuyenMai.CustomizableEdges = customizableEdges17;
             btnMenuKhuyenMai.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuKhuyenMai.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -361,6 +452,9 @@ namespace WinFormsAppTest
             // btnMenuBaoCao
             // 
             btnMenuBaoCao.BorderRadius = 8;
+            btnMenuBaoCao.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuBaoCao.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuBaoCao.CheckedState.ForeColor = Color.Yellow;
             btnMenuBaoCao.CustomizableEdges = customizableEdges19;
             btnMenuBaoCao.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuBaoCao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -378,6 +472,9 @@ namespace WinFormsAppTest
             // btnMenuNhaCungCap
             // 
             btnMenuNhaCungCap.BorderRadius = 8;
+            btnMenuNhaCungCap.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuNhaCungCap.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuNhaCungCap.CheckedState.ForeColor = Color.Yellow;
             btnMenuNhaCungCap.CustomizableEdges = customizableEdges21;
             btnMenuNhaCungCap.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuNhaCungCap.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -395,6 +492,9 @@ namespace WinFormsAppTest
             // btnMenuHoaDon
             // 
             btnMenuHoaDon.BorderRadius = 8;
+            btnMenuHoaDon.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuHoaDon.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuHoaDon.CheckedState.ForeColor = Color.Yellow;
             btnMenuHoaDon.CustomizableEdges = customizableEdges23;
             btnMenuHoaDon.FillColor = Color.FromArgb(198, 40, 40);
             btnMenuHoaDon.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -412,6 +512,9 @@ namespace WinFormsAppTest
             // btnMenuCaiDat
             // 
             btnMenuCaiDat.BorderRadius = 8;
+            btnMenuCaiDat.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            btnMenuCaiDat.CheckedState.FillColor = Color.FromArgb(191, 54, 12);
+            btnMenuCaiDat.CheckedState.ForeColor = Color.Yellow;
             btnMenuCaiDat.CustomizableEdges = customizableEdges25;
             btnMenuCaiDat.FillColor = Color.FromArgb(239, 108, 0);
             btnMenuCaiDat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
@@ -561,7 +664,7 @@ namespace WinFormsAppTest
             grpTopProducts.Margin = new Padding(3, 2, 3, 2);
             grpTopProducts.Name = "grpTopProducts";
             grpTopProducts.ShadowDecoration.CustomizableEdges = customizableEdges36;
-            grpTopProducts.Size = new Size(372, 315);
+            grpTopProducts.Size = new Size(372, 215);
             grpTopProducts.TabIndex = 2;
             grpTopProducts.Text = "Top sản phẩm bán chạy";
             // 
@@ -642,12 +745,104 @@ namespace WinFormsAppTest
             grpRevenueChart.TextRenderingHint = System.Drawing.Text.TextRenderingHint.SystemDefault;
             grpRevenueChart.Click += grpRevenueChart_Click;
             // 
+            // grpTopCustomers
+            // 
+            grpTopCustomers.BorderColor = Color.FromArgb(255, 167, 38);
+            grpTopCustomers.BorderRadius = 12;
+            grpTopCustomers.BorderThickness = 2;
+            grpTopCustomers.Controls.Add(dgvTopCustomers);
+            grpTopCustomers.CustomBorderColor = Color.FromArgb(255, 167, 38);
+            grpTopCustomers.CustomizableEdges = customizableEdges35;
+            grpTopCustomers.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpTopCustomers.ForeColor = Color.FromArgb(198, 40, 40);
+            grpTopCustomers.Location = new Point(245, 410);
+            grpTopCustomers.Name = "grpTopCustomers";
+            grpTopCustomers.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            grpTopCustomers.Size = new Size(372, 215);
+            grpTopCustomers.TabIndex = 7;
+            grpTopCustomers.Text = "Top khách hàng chi tiêu";
+            // 
+            // dgvTopCustomers
+            // 
+            dgvTopCustomers.AllowUserToAddRows = false;
+            dgvTopCustomers.AllowUserToDeleteRows = false;
+            dgvTopCustomers.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvTopCustomers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvTopCustomers.ColumnHeadersHeight = 29;
+            dgvTopCustomers.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvTopCustomers.Dock = DockStyle.Fill;
+            dgvTopCustomers.GridColor = Color.FromArgb(231, 229, 255);
+            dgvTopCustomers.Location = new Point(0, 40);
+            dgvTopCustomers.Name = "dgvTopCustomers";
+            dgvTopCustomers.ReadOnly = true;
+            dgvTopCustomers.RowHeadersVisible = false;
+            dgvTopCustomers.RowTemplate.Height = 29;
+            dgvTopCustomers.Size = new Size(372, 275);
+            dgvTopCustomers.TabIndex = 0;
+            dgvTopCustomers.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvTopCustomers.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvTopCustomers.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvTopCustomers.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvTopCustomers.ThemeStyle.HeaderStyle.Height = 29;
+            dgvTopCustomers.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvTopCustomers.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvTopCustomers.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvTopCustomers.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
+            // grpTopEmployees
+            // 
+            grpTopEmployees.BorderColor = Color.FromArgb(255, 167, 38);
+            grpTopEmployees.BorderRadius = 12;
+            grpTopEmployees.BorderThickness = 2;
+            grpTopEmployees.Controls.Add(dgvTopEmployees);
+            grpTopEmployees.CustomBorderColor = Color.FromArgb(255, 167, 38);
+            grpTopEmployees.CustomizableEdges = customizableEdges35;
+            grpTopEmployees.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grpTopEmployees.ForeColor = Color.FromArgb(198, 40, 40);
+            grpTopEmployees.Location = new Point(245, 630);
+            grpTopEmployees.Name = "grpTopEmployees";
+            grpTopEmployees.ShadowDecoration.CustomizableEdges = customizableEdges36;
+            grpTopEmployees.Size = new Size(372, 215);
+            grpTopEmployees.TabIndex = 8;
+            grpTopEmployees.Text = "Top nhân viên bán hàng";
+            // 
+            // dgvTopEmployees
+            // 
+            dgvTopEmployees.AllowUserToAddRows = false;
+            dgvTopEmployees.AllowUserToDeleteRows = false;
+            dgvTopEmployees.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dgvTopEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dgvTopEmployees.ColumnHeadersHeight = 29;
+            dgvTopEmployees.DefaultCellStyle = dataGridViewCellStyle3;
+            dgvTopEmployees.Dock = DockStyle.Fill;
+            dgvTopEmployees.GridColor = Color.FromArgb(231, 229, 255);
+            dgvTopEmployees.Location = new Point(0, 40);
+            dgvTopEmployees.Name = "dgvTopEmployees";
+            dgvTopEmployees.ReadOnly = true;
+            dgvTopEmployees.RowHeadersVisible = false;
+            dgvTopEmployees.RowTemplate.Height = 29;
+            dgvTopEmployees.Size = new Size(372, 275);
+            dgvTopEmployees.TabIndex = 0;
+            dgvTopEmployees.ThemeStyle.AlternatingRowsStyle.BackColor = Color.White;
+            dgvTopEmployees.ThemeStyle.GridColor = Color.FromArgb(231, 229, 255);
+            dgvTopEmployees.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            dgvTopEmployees.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            dgvTopEmployees.ThemeStyle.HeaderStyle.Height = 29;
+            dgvTopEmployees.ThemeStyle.RowsStyle.BackColor = Color.White;
+            dgvTopEmployees.ThemeStyle.RowsStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            dgvTopEmployees.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            dgvTopEmployees.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            // 
             // Dashboard
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            AutoScroll = true;
             BackColor = Color.White;
-            ClientSize = new Size(1182, 538);
+            ClientSize = new Size(1250, 680);
+            Controls.Add(grpTopEmployees);
+            Controls.Add(grpTopCustomers);
+            Controls.Add(pnlUserFooter);
             Controls.Add(pnlMenu);
             Controls.Add(grpRevenueChart);
             Controls.Add(grpTopProducts);

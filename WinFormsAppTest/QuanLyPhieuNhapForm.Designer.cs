@@ -13,7 +13,8 @@ namespace WinFormsAppTest
         private DateTimePicker dtpTo;
         private Label lblKeyword;
         private TextBox txtKeyword;
-        private Button _btnTao;
+        private Guna.UI2.WinForms.Guna2Button _btnTim;
+        private Guna.UI2.WinForms.Guna2Button _btnTao;
 
         private SplitContainer splitMain;
         private GroupBox grpPhieuNhap;
@@ -49,8 +50,8 @@ namespace WinFormsAppTest
             lblTitle = new Label();
             lblSubTitle = new Label();
             grpFilter = new GroupBox();
-            _btnTim = new Button();
-            _btnTao = new Button();
+            _btnTim = new Guna.UI2.WinForms.Guna2Button();
+            _btnTao = new Guna.UI2.WinForms.Guna2Button();
             txtKeyword = new TextBox();
             lblKeyword = new Label();
             dtpTo = new DateTimePicker();
@@ -126,38 +127,27 @@ namespace WinFormsAppTest
             grpFilter.TabIndex = 2;
             grpFilter.TabStop = false;
             grpFilter.Text = "Bộ lọc và thao tác";
-            // 
-            // _btnTim
-            // 
-            _btnTim.BackColor = Color.FromArgb(198, 40, 40);
-            _btnTim.FlatStyle = FlatStyle.Flat;
-            _btnTim.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnTim.ForeColor = Color.White;
-            _btnTim.Image = (Image)resources.GetObject("_btnTim.Image");
-            _btnTim.ImageAlign = ContentAlignment.MiddleRight;
+            _btnTim.BackColor = Color.Transparent;
+            _btnTim.BorderRadius = 10;
+            _btnTim.FillColor = Color.FromArgb(255, 167, 38);
+            _btnTim.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _btnTim.ForeColor = Color.Black;
             _btnTim.Location = new Point(600, 72);
-            _btnTim.Margin = new Padding(3, 4, 3, 4);
             _btnTim.Name = "_btnTim";
             _btnTim.Size = new Size(109, 40);
             _btnTim.TabIndex = 10;
             _btnTim.Text = "Tìm kiếm";
-            _btnTim.UseVisualStyleBackColor = false;
-            // 
-            // _btnTao
-            // 
-            _btnTao.BackColor = Color.Yellow;
-            _btnTao.FlatStyle = FlatStyle.Flat;
-            _btnTao.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            _btnTao.ForeColor = Color.Red;
-            _btnTao.Image = (Image)resources.GetObject("_btnTao.Image");
-            _btnTao.Anchor = AnchorStyles.Top | AnchorStyles.Left;
+            _btnTim.Click += btnTim_Click;
+            _btnTao.BackColor = Color.Transparent;
+            _btnTao.BorderRadius = 10;
+            _btnTao.FillColor = Color.FromArgb(198, 40, 40);
+            _btnTao.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _btnTao.ForeColor = Color.White;
             _btnTao.Location = new Point(720, 72);
-            _btnTao.Margin = new Padding(3, 4, 3, 4);
             _btnTao.Name = "_btnTao";
             _btnTao.Size = new Size(109, 40);
             _btnTao.TabIndex = 6;
             _btnTao.Text = "Tạo phiếu";
-            _btnTao.UseVisualStyleBackColor = false;
             _btnTao.Click += btnTao_Click;
             // 
             // txtKeyword
@@ -466,6 +456,5 @@ namespace WinFormsAppTest
             ResumeLayout(false);
         }
 
-        private Button _btnTim;
     }
 }

@@ -7,10 +7,12 @@ namespace WinFormsAppTest
     public partial class QuanLyPhieuNhapForm : Form
     {
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
+        private readonly string _maNhanVien;
 
-        public QuanLyPhieuNhapForm()
+        public QuanLyPhieuNhapForm(string maNhanVien)
         {
             InitializeComponent();
+            _maNhanVien = maNhanVien;
             _dgvPhieuNhap.CellClick += dgvPhieuNhap_CellClick;
             _btnTim.Click += btnTim_Click;
             grpFilter.Resize += (_, _) => AdjustFilterLayout();
@@ -225,12 +227,11 @@ namespace WinFormsAppTest
         private PhieuNhapInput? ShowCreatePhieuNhapDialog()
         {
             DataTable suppliers = LoadSuppliers();
-            DataTable employees = LoadEmployees();
             DataTable products = LoadProducts();
 
-            if (suppliers.Rows.Count == 0 || employees.Rows.Count == 0 || products.Rows.Count == 0)
+            if (suppliers.Rows.Count == 0 || products.Rows.Count == 0)
             {
-                MessageBox.Show("Thiếu dữ liệu nhà cung cấp/nhân viên/sản phẩm.");
+                MessageBox.Show("Thiếu dữ liệu nhà cung cấp hoặc sản phẩm.");
                 return null;
             }
 
@@ -240,59 +241,96 @@ namespace WinFormsAppTest
 
             using Form dialog = new()
             {
-                Text = "Tạo phiếu nhập",
+                Text = "Tạo phiếu nhập hàng",
                 StartPosition = FormStartPosition.CenterParent,
-                ClientSize = new Size(780, 520),
-                FormBorderStyle = FormBorderStyle.FixedDialog,
-                MaximizeBox = false,
-                MinimizeBox = false
+                ClientSize = new Size(850, 650),
+                FormBorderStyle = FormBorderStyle.None, // Custom border for premium look
+                BackColor = Color.White
             };
 
-            Label lblSupplier = new() { Text = "Nhà cung cấp:", Left = 20, Top = 20, Width = 110 };
-            ComboBox cmbSupplier = new()
+            // Custom Border & Header
+            Guna.UI2.WinForms.Guna2Panel pnlHeader = new()
             {
-                Left = 140,
-                Top = 16,
-                Width = 240,
-                DropDownStyle = ComboBoxStyle.DropDownList,
+                Dock = DockStyle.Top,
+                Height = 80,
+                FillColor = Color.FromArgb(198, 40, 40)
+            };
+            Guna.UI2.WinForms.Guna2HtmlLabel lblHeader = new()
+            {
+                Text = "TẠO PHIẾU NHẬP HÀNG",
+                Font = new Font("Segoe UI", 18F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(255, 241, 118),
+                Location = new Point(20, 20)
+            };
+            
+            Guna.UI2.WinForms.Guna2ControlBox btnClose = new()
+            {
+                Anchor = AnchorStyles.Top | AnchorStyles.Right,
+                FillColor = Color.Transparent,
+                IconColor = Color.White,
+                Location = new Point(800, 10),
+                Size = new Size(40, 30)
+            };
+
+            pnlHeader.Controls.Add(lblHeader);
+            pnlHeader.Controls.Add(btnClose);
+
+            // Container Panel with rounded edges
+            Guna.UI2.WinForms.Guna2Panel pnlBody = new()
+            {
+                Dock = DockStyle.Fill,
+                Padding = new Padding(20)
+            };
+
+            // Labels and Inputs
+            Guna.UI2.WinForms.Guna2HtmlLabel lblSupplier = new() { Text = "Nhà cung cấp", Location = new Point(20, 100), Font = new Font("Segoe UI", 10F, FontStyle.Bold) };
+            Guna.UI2.WinForms.Guna2ComboBox cmbSupplier = new()
+            {
+                Location = new Point(20, 125),
+                Width = 380,
+                Height = 36,
+                BorderRadius = 8,
                 DataSource = suppliers,
                 DisplayMember = "ten_nha_cung_cap",
-                ValueMember = "ma_nha_cung_cap"
+                ValueMember = "ma_nha_cung_cap",
+                Font = new Font("Segoe UI", 10F)
             };
 
-            Label lblEmployee = new() { Text = "Nhân viên:", Left = 410, Top = 20, Width = 80 };
-            ComboBox cmbEmployee = new()
+            Guna.UI2.WinForms.Guna2HtmlLabel lblDate = new() { Text = "Ngày nhập", Location = new Point(420, 100), Font = new Font("Segoe UI", 10F, FontStyle.Bold) };
+            Guna.UI2.WinForms.Guna2DateTimePicker dtpDate = new()
             {
-                Left = 500,
-                Top = 16,
-                Width = 240,
-                DropDownStyle = ComboBoxStyle.DropDownList,
-                DataSource = employees,
-                DisplayMember = "ho_ten",
-                ValueMember = "ma_nhan_vien"
-            };
-
-            Label lblDate = new() { Text = "Ngày nhập:", Left = 20, Top = 56, Width = 110 };
-            DateTimePicker dtpDate = new()
-            {
-                Left = 140,
-                Top = 52,
-                Width = 200,
+                Location = new Point(420, 125),
+                Width = 380,
+                Height = 36,
+                BorderRadius = 8,
                 Format = DateTimePickerFormat.Custom,
-                CustomFormat = "dd/MM/yyyy"
+                CustomFormat = "dd/MM/yyyy",
+                FillColor = Color.White,
+                Font = new Font("Segoe UI", 10F)
             };
 
-            DataGridView grid = new()
+            // Styled Grid
+            Guna.UI2.WinForms.Guna2DataGridView grid = new()
             {
-                Left = 20,
-                Top = 90,
-                Width = 740,
+                Location = new Point(20, 180),
+                Width = 780,
                 Height = 330,
+                Theme = Guna.UI2.WinForms.Enums.DataGridViewPresetThemes.Default,
+                BorderStyle = BorderStyle.None,
+                CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal,
+                ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None,
+                GridColor = Color.FromArgb(231, 229, 255),
                 AllowUserToAddRows = true,
                 AllowUserToDeleteRows = true,
-                RowHeadersVisible = false,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+                RowHeadersVisible = false
             };
+
+            grid.ThemeStyle.HeaderStyle.BackColor = Color.FromArgb(100, 88, 255);
+            grid.ThemeStyle.HeaderStyle.ForeColor = Color.White;
+            grid.ThemeStyle.HeaderStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            grid.ThemeStyle.RowsStyle.Height = 35;
+            grid.ThemeStyle.RowsStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            grid.ThemeStyle.RowsStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
 
             DataGridViewComboBoxColumn colProduct = new()
             {
@@ -310,18 +348,50 @@ namespace WinFormsAppTest
                 Name = "thanh_tien",
                 HeaderText = "Thành tiền",
                 ReadOnly = true,
-                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" }
+                DefaultCellStyle = new DataGridViewCellStyle { Format = "N0", Alignment = DataGridViewContentAlignment.MiddleRight }
             };
 
-            colPrice.DefaultCellStyle = new DataGridViewCellStyle { Format = "N0" };
+            colQty.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colPrice.DefaultCellStyle.Format = "N0";
             grid.Columns.AddRange(colProduct, colQty, colPrice, colAmount);
 
-            Label lblTotalText = new() { Text = "Tổng tiền:", Left = 20, Top = 436, Width = 90 };
-            Label lblTotalValue = new() { Text = "0 đ", Left = 120, Top = 436, Width = 200 };
+            // Summary
+            Guna.UI2.WinForms.Guna2HtmlLabel lblTotalText = new() { Text = "TỔNG TIỀN:", Location = new Point(20, 525), Font = new Font("Segoe UI", 12F, FontStyle.Bold) };
+            Guna.UI2.WinForms.Guna2HtmlLabel lblTotalValue = new()
+            {
+                Text = "0 đ",
+                Location = new Point(130, 525),
+                Font = new Font("Segoe UI", 14F, FontStyle.Bold),
+                ForeColor = Color.FromArgb(198, 40, 40)
+            };
 
-            Button btnOk = new() { Text = "Tạo phiếu", Left = 560, Top = 450, Width = 90, DialogResult = DialogResult.OK };
-            Button btnCancel = new() { Text = "Hủy", Left = 670, Top = 450, Width = 90, DialogResult = DialogResult.Cancel };
+            // Buttons
+            Guna.UI2.WinForms.Guna2Button btnOk = new()
+            {
+                Text = "Lưu phiếu",
+                Location = new Point(540, 580),
+                Width = 120,
+                Height = 45,
+                BorderRadius = 10,
+                FillColor = Color.FromArgb(198, 40, 40),
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                DialogResult = DialogResult.OK
+            };
+            Guna.UI2.WinForms.Guna2Button btnCancel = new()
+            {
+                Text = "Hủy bỏ",
+                Location = new Point(680, 580),
+                Width = 120,
+                Height = 45,
+                BorderRadius = 10,
+                FillColor = Color.FromArgb(108, 117, 125),
+                ForeColor = Color.White,
+                Font = new Font("Segoe UI", 10F, FontStyle.Bold),
+                DialogResult = DialogResult.Cancel
+            };
 
+            // Event logic
             void UpdateRowAmount(int rowIndex)
             {
                 if (rowIndex < 0 || rowIndex >= grid.Rows.Count) return;
@@ -330,7 +400,6 @@ namespace WinFormsAppTest
 
                 int qty = GetInt(row.Cells["so_luong"].Value);
                 decimal price = GetDecimal(row.Cells["gia_nhap"].Value);
-                if (qty <= 0 || price <= 0) return;
                 row.Cells["thanh_tien"].Value = qty * price;
             }
 
@@ -348,55 +417,39 @@ namespace WinFormsAppTest
             grid.CellValueChanged += (_, e) =>
             {
                 if (e.RowIndex < 0) return;
-                DataGridViewRow row = grid.Rows[e.RowIndex];
                 if (grid.Columns[e.ColumnIndex].Name == "ma_san_pham")
                 {
-                    string? maSp = Convert.ToString(row.Cells["ma_san_pham"].Value);
+                    string? maSp = Convert.ToString(grid.Rows[e.RowIndex].Cells["ma_san_pham"].Value);
                     if (!string.IsNullOrWhiteSpace(maSp) && productPrices.TryGetValue(maSp, out decimal giaNhap))
                     {
-                        if (GetDecimal(row.Cells["gia_nhap"].Value) <= 0)
-                        {
-                            row.Cells["gia_nhap"].Value = giaNhap;
-                        }
+                        if (GetDecimal(grid.Rows[e.RowIndex].Cells["gia_nhap"].Value) <= 0)
+                            grid.Rows[e.RowIndex].Cells["gia_nhap"].Value = giaNhap;
                     }
                 }
-
                 UpdateRowAmount(e.RowIndex);
                 UpdateTotal();
-            };
-
-            grid.EditingControlShowing += (_, e) =>
-            {
-                if (grid.CurrentCell?.OwningColumn.Name is "so_luong" or "gia_nhap")
-                {
-                    if (e.Control is TextBox tb)
-                    {
-                        tb.KeyPress -= NumericKeyPress;
-                        tb.KeyPress += NumericKeyPress;
-                    }
-                }
             };
 
             grid.RowsRemoved += (_, _) => UpdateTotal();
-            grid.CellEndEdit += (_, e) =>
-            {
-                UpdateRowAmount(e.RowIndex);
-                UpdateTotal();
-            };
+            grid.CellEndEdit += (_, e) => { UpdateRowAmount(e.RowIndex); UpdateTotal(); };
 
             dialog.Controls.AddRange(new Control[]
             {
-                lblSupplier, cmbSupplier, lblEmployee, cmbEmployee, lblDate, dtpDate, grid, lblTotalText, lblTotalValue,
-                btnOk, btnCancel
+                pnlHeader, lblSupplier, cmbSupplier, lblDate, dtpDate, grid, lblTotalText, lblTotalValue, btnOk, btnCancel
             });
+
+            // Ensure buttons trigger DialogResult
+            btnOk.Click += (s, e) => { dialog.DialogResult = DialogResult.OK; dialog.Close(); };
+            btnCancel.Click += (s, e) => { dialog.DialogResult = DialogResult.Cancel; dialog.Close(); };
 
             dialog.AcceptButton = btnOk;
             dialog.CancelButton = btnCancel;
 
-            if (dialog.ShowDialog(this) != DialogResult.OK)
-            {
-                return null;
-            }
+            // Shadow and dragging
+            Guna.UI2.WinForms.Guna2DragControl drag = new() { TargetControl = pnlHeader };
+            Guna.UI2.WinForms.Guna2ShadowForm shadow = new() { TargetForm = dialog };
+
+            if (dialog.ShowDialog(this) != DialogResult.OK) return null;
 
             List<PhieuNhapLine> lines = new();
             foreach (DataGridViewRow row in grid.Rows)
@@ -424,7 +477,7 @@ namespace WinFormsAppTest
             decimal totalAmount = lines.Sum(l => l.ThanhTien);
             return new PhieuNhapInput(
                 MaNhaCungCap: Convert.ToString(cmbSupplier.SelectedValue) ?? string.Empty,
-                MaNhanVien: Convert.ToString(cmbEmployee.SelectedValue) ?? string.Empty,
+                MaNhanVien: _maNhanVien,
                 NgayNhap: dtpDate.Value.Date,
                 TongTien: totalAmount,
                 Lines: lines);

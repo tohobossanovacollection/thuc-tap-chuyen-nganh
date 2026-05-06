@@ -56,6 +56,10 @@ ORDER BY Ngay;";
                 _dgv.Columns["DoanhThu"].DefaultCellStyle.Format = "N0";
 
                 LoadCategoryRevenuePie();
+                
+                string rangeText = $"Báo cáo từ ngày {_dtpFrom.Value:dd/MM/yyyy} đến ngày {_dtpTo.Value:dd/MM/yyyy}";
+                _lblRangeLine.Text = rangeText;
+                _lblRangePie.Text = rangeText;
             }
             catch (Exception ex)
             {

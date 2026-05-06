@@ -3,36 +3,32 @@ namespace WinFormsAppTest
     partial class CaiDatProfileForm
     {
         private System.ComponentModel.IContainer components = null;
-        private Panel _pnlHeader;
+        private Guna.UI2.WinForms.Guna2Panel _mainPanel;
         private Label _lblGreeting;
-        private Label _lblSubGreeting;
-        private FlowLayoutPanel _flpInfoCards;
-        private Panel _cardUserName;
         private Label _lblUserNameTitle;
         private Label _lblUserNameValue;
-        private Panel _cardMaNhanVien;
         private Label _lblMaNhanVienTitle;
         private Label _lblMaNhanVienValue;
-        private Panel _cardHoTen;
         private Label _lblHoTenTitle;
-        private Label _lblHoTenValue;
-        private Panel _cardNgaySinh;
+        private Guna.UI2.WinForms.Guna2TextBox _txtHoTen;
         private Label _lblNgaySinhTitle;
-        private Label _lblNgaySinhValue;
-        private Panel _cardDiaChi;
+        private Guna.UI2.WinForms.Guna2DateTimePicker _dtpNgaySinh;
         private Label _lblDiaChiTitle;
-        private Label _lblDiaChiValue;
-        private Panel _cardSoDienThoai;
+        private Guna.UI2.WinForms.Guna2TextBox _txtDiaChi;
         private Label _lblSoDienThoaiTitle;
-        private Label _lblSoDienThoaiValue;
-        private Panel _cardEmail;
+        private Guna.UI2.WinForms.Guna2TextBox _txtSoDienThoai;
         private Label _lblEmailTitle;
-        private Label _lblEmailValue;
-        private Panel _cardChucVuPhongBan;
-        private Label _lblChucVuPhongBanTitle;
-        private Label _lblChucVuPhongBanValue;
-        private Button _btnDoiMatKhau;
-        private Button _btnCapNhat;
+        private Guna.UI2.WinForms.Guna2TextBox _txtEmail;
+        private Label _lblChucVuTitle;
+        private Label _lblChucVuValue;
+        private Label _lblOldPassTitle;
+        private Guna.UI2.WinForms.Guna2TextBox _txtOldPass;
+        private Label _lblNewPassTitle;
+        private Guna.UI2.WinForms.Guna2TextBox _txtNewPass;
+        private Label _lblConfirmPassTitle;
+        private Guna.UI2.WinForms.Guna2TextBox _txtConfirmPass;
+        private Guna.UI2.WinForms.Guna2Button _btnCapNhat;
+        private Guna.UI2.WinForms.Guna2Button _btnDoiMatKhau;
 
         protected override void Dispose(bool disposing)
         {
@@ -42,406 +38,282 @@ namespace WinFormsAppTest
 
         private void InitializeComponent()
         {
-            _pnlHeader = new Panel();
+            _mainPanel = new Guna.UI2.WinForms.Guna2Panel();
             _lblGreeting = new Label();
-            _lblSubGreeting = new Label();
-            _flpInfoCards = new FlowLayoutPanel();
-            _cardUserName = new Panel();
             _lblUserNameTitle = new Label();
             _lblUserNameValue = new Label();
-            _cardMaNhanVien = new Panel();
             _lblMaNhanVienTitle = new Label();
             _lblMaNhanVienValue = new Label();
-            _cardHoTen = new Panel();
             _lblHoTenTitle = new Label();
-            _lblHoTenValue = new Label();
-            _cardNgaySinh = new Panel();
+            _txtHoTen = new Guna.UI2.WinForms.Guna2TextBox();
             _lblNgaySinhTitle = new Label();
-            _lblNgaySinhValue = new Label();
-            _cardDiaChi = new Panel();
+            _dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
             _lblDiaChiTitle = new Label();
-            _lblDiaChiValue = new Label();
-            _cardSoDienThoai = new Panel();
+            _txtDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
             _lblSoDienThoaiTitle = new Label();
-            _lblSoDienThoaiValue = new Label();
-            _cardEmail = new Panel();
+            _txtSoDienThoai = new Guna.UI2.WinForms.Guna2TextBox();
             _lblEmailTitle = new Label();
-            _lblEmailValue = new Label();
-            _cardChucVuPhongBan = new Panel();
-            _lblChucVuPhongBanTitle = new Label();
-            _lblChucVuPhongBanValue = new Label();
-            _btnDoiMatKhau = new Button();
-            _btnCapNhat = new Button();
-            _pnlHeader.SuspendLayout();
-            _flpInfoCards.SuspendLayout();
-            _cardUserName.SuspendLayout();
-            _cardMaNhanVien.SuspendLayout();
-            _cardHoTen.SuspendLayout();
-            _cardNgaySinh.SuspendLayout();
-            _cardDiaChi.SuspendLayout();
-            _cardSoDienThoai.SuspendLayout();
-            _cardEmail.SuspendLayout();
-            _cardChucVuPhongBan.SuspendLayout();
+            _txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            _lblChucVuTitle = new Label();
+            _lblChucVuValue = new Label();
+            _lblOldPassTitle = new Label();
+            _txtOldPass = new Guna.UI2.WinForms.Guna2TextBox();
+            _lblNewPassTitle = new Label();
+            _txtNewPass = new Guna.UI2.WinForms.Guna2TextBox();
+            _lblConfirmPassTitle = new Label();
+            _txtConfirmPass = new Guna.UI2.WinForms.Guna2TextBox();
+            _btnCapNhat = new Guna.UI2.WinForms.Guna2Button();
+            _btnDoiMatKhau = new Guna.UI2.WinForms.Guna2Button();
             SuspendLayout();
             // 
-            // _pnlHeader
+            // _mainPanel
             // 
-            _pnlHeader.BackColor = Color.FromArgb(198, 40, 40);
-            _pnlHeader.Controls.Add(_lblGreeting);
-            _pnlHeader.Controls.Add(_lblSubGreeting);
-            _pnlHeader.Dock = DockStyle.Top;
-            _pnlHeader.Location = new Point(0, 0);
-            _pnlHeader.Name = "_pnlHeader";
-            _pnlHeader.Size = new Size(1100, 120);
-            _pnlHeader.TabIndex = 0;
+            _mainPanel.BorderColor = Color.FromArgb(198, 40, 40);
+            _mainPanel.BorderRadius = 15;
+            _mainPanel.BorderThickness = 2;
+            _mainPanel.Controls.Add(_lblGreeting);
+            _mainPanel.Controls.Add(_lblUserNameTitle);
+            _mainPanel.Controls.Add(_lblUserNameValue);
+            _mainPanel.Controls.Add(_lblMaNhanVienTitle);
+            _mainPanel.Controls.Add(_lblMaNhanVienValue);
+            _mainPanel.Controls.Add(_lblHoTenTitle);
+            _mainPanel.Controls.Add(_txtHoTen);
+            _mainPanel.Controls.Add(_lblNgaySinhTitle);
+            _mainPanel.Controls.Add(_dtpNgaySinh);
+            _mainPanel.Controls.Add(_lblDiaChiTitle);
+            _mainPanel.Controls.Add(_txtDiaChi);
+            _mainPanel.Controls.Add(_lblSoDienThoaiTitle);
+            _mainPanel.Controls.Add(_txtSoDienThoai);
+            _mainPanel.Controls.Add(_lblEmailTitle);
+            _mainPanel.Controls.Add(_txtEmail);
+            _mainPanel.Controls.Add(_lblChucVuTitle);
+            _mainPanel.Controls.Add(_lblChucVuValue);
+            _mainPanel.Controls.Add(_lblOldPassTitle);
+            _mainPanel.Controls.Add(_txtOldPass);
+            _mainPanel.Controls.Add(_lblNewPassTitle);
+            _mainPanel.Controls.Add(_txtNewPass);
+            _mainPanel.Controls.Add(_lblConfirmPassTitle);
+            _mainPanel.Controls.Add(_txtConfirmPass);
+            _mainPanel.Controls.Add(_btnCapNhat);
+            _mainPanel.Controls.Add(_btnDoiMatKhau);
+            _mainPanel.Location = new Point(50, 20);
+            _mainPanel.Name = "_mainPanel";
+            _mainPanel.Size = new Size(1000, 680);
+            _mainPanel.TabIndex = 0;
             // 
             // _lblGreeting
             // 
             _lblGreeting.AutoSize = true;
             _lblGreeting.Font = new Font("Segoe UI", 24F, FontStyle.Bold);
-            _lblGreeting.ForeColor = Color.FromArgb(255, 241, 118);
-            _lblGreeting.Location = new Point(28, 20);
+            _lblGreeting.ForeColor = Color.FromArgb(198, 40, 40);
+            _lblGreeting.Location = new Point(30, 20);
             _lblGreeting.Name = "_lblGreeting";
             _lblGreeting.Size = new Size(280, 54);
-            _lblGreeting.TabIndex = 0;
-            _lblGreeting.Text = "Xin chào, ABC";
-            // 
-            // _lblSubGreeting
-            // 
-            _lblSubGreeting.AutoSize = true;
-            _lblSubGreeting.Font = new Font("Segoe UI", 10F);
-            _lblSubGreeting.ForeColor = Color.White;
-            _lblSubGreeting.Location = new Point(32, 80);
-            _lblSubGreeting.Name = "_lblSubGreeting";
-            _lblSubGreeting.Size = new Size(270, 23);
-            _lblSubGreeting.TabIndex = 1;
-            _lblSubGreeting.Text = "Thông tin cá nhân và cài đặt tài khoản";
-            // 
-            // _flpInfoCards
-            // 
-            _flpInfoCards.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            _flpInfoCards.Controls.Add(_cardUserName);
-            _flpInfoCards.Controls.Add(_cardMaNhanVien);
-            _flpInfoCards.Controls.Add(_cardHoTen);
-            _flpInfoCards.Controls.Add(_cardNgaySinh);
-            _flpInfoCards.Controls.Add(_cardDiaChi);
-            _flpInfoCards.Controls.Add(_cardSoDienThoai);
-            _flpInfoCards.Controls.Add(_cardEmail);
-            _flpInfoCards.Controls.Add(_cardChucVuPhongBan);
-            _flpInfoCards.Location = new Point(20, 140);
-            _flpInfoCards.Name = "_flpInfoCards";
-            _flpInfoCards.Size = new Size(1060, 330);
-            _flpInfoCards.TabIndex = 1;
-            // 
-            // _cardUserName
-            // 
-            _cardUserName.BackColor = Color.FromArgb(255, 253, 231);
-            _cardUserName.BorderStyle = BorderStyle.FixedSingle;
-            _cardUserName.Controls.Add(_lblUserNameTitle);
-            _cardUserName.Controls.Add(_lblUserNameValue);
-            _cardUserName.Margin = new Padding(10);
-            _cardUserName.Name = "_cardUserName";
-            _cardUserName.Size = new Size(240, 90);
-            _cardUserName.TabIndex = 0;
+            _lblGreeting.Text = "Xin chào, ...";
             // 
             // _lblUserNameTitle
             // 
+            _lblUserNameTitle.Location = new Point(40, 100);
+            _lblUserNameTitle.Text = "Tên đăng nhập:";
+            _lblUserNameTitle.Font = new Font("Segoe UI", 10F);
             _lblUserNameTitle.AutoSize = true;
-            _lblUserNameTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblUserNameTitle.Location = new Point(14, 12);
-            _lblUserNameTitle.Name = "_lblUserNameTitle";
-            _lblUserNameTitle.Size = new Size(110, 20);
-            _lblUserNameTitle.TabIndex = 0;
-            _lblUserNameTitle.Text = "Tên đăng nhập";
             // 
             // _lblUserNameValue
             // 
-            _lblUserNameValue.AutoSize = true;
-            _lblUserNameValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblUserNameValue.Location = new Point(14, 45);
-            _lblUserNameValue.Name = "_lblUserNameValue";
-            _lblUserNameValue.Size = new Size(92, 25);
-            _lblUserNameValue.TabIndex = 1;
-            _lblUserNameValue.Text = "user_demo";
-            // 
-            // _cardMaNhanVien
-            // 
-            _cardMaNhanVien.BackColor = Color.FromArgb(255, 253, 231);
-            _cardMaNhanVien.BorderStyle = BorderStyle.FixedSingle;
-            _cardMaNhanVien.Controls.Add(_lblMaNhanVienTitle);
-            _cardMaNhanVien.Controls.Add(_lblMaNhanVienValue);
-            _cardMaNhanVien.Margin = new Padding(10);
-            _cardMaNhanVien.Name = "_cardMaNhanVien";
-            _cardMaNhanVien.Size = new Size(240, 90);
-            _cardMaNhanVien.TabIndex = 1;
+            _lblUserNameValue.Location = new Point(180, 100);
+            _lblUserNameValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _lblUserNameValue.Size = new Size(200, 25);
             // 
             // _lblMaNhanVienTitle
             // 
+            _lblMaNhanVienTitle.Location = new Point(400, 100);
+            _lblMaNhanVienTitle.Text = "Mã nhân viên:";
+            _lblMaNhanVienTitle.Font = new Font("Segoe UI", 10F);
             _lblMaNhanVienTitle.AutoSize = true;
-            _lblMaNhanVienTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblMaNhanVienTitle.Location = new Point(14, 12);
-            _lblMaNhanVienTitle.Name = "_lblMaNhanVienTitle";
-            _lblMaNhanVienTitle.Size = new Size(97, 20);
-            _lblMaNhanVienTitle.TabIndex = 0;
-            _lblMaNhanVienTitle.Text = "Mã nhân viên";
             // 
             // _lblMaNhanVienValue
             // 
-            _lblMaNhanVienValue.AutoSize = true;
-            _lblMaNhanVienValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblMaNhanVienValue.Location = new Point(14, 45);
-            _lblMaNhanVienValue.Name = "_lblMaNhanVienValue";
-            _lblMaNhanVienValue.Size = new Size(55, 25);
-            _lblMaNhanVienValue.TabIndex = 1;
-            _lblMaNhanVienValue.Text = "NV01";
-            // 
-            // _cardHoTen
-            // 
-            _cardHoTen.BackColor = Color.FromArgb(255, 253, 231);
-            _cardHoTen.BorderStyle = BorderStyle.FixedSingle;
-            _cardHoTen.Controls.Add(_lblHoTenTitle);
-            _cardHoTen.Controls.Add(_lblHoTenValue);
-            _cardHoTen.Margin = new Padding(10);
-            _cardHoTen.Name = "_cardHoTen";
-            _cardHoTen.Size = new Size(240, 90);
-            _cardHoTen.TabIndex = 2;
+            _lblMaNhanVienValue.Location = new Point(540, 100);
+            _lblMaNhanVienValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _lblMaNhanVienValue.Size = new Size(200, 25);
             // 
             // _lblHoTenTitle
             // 
+            _lblHoTenTitle.Location = new Point(40, 150);
+            _lblHoTenTitle.Text = "Họ và tên:";
+            _lblHoTenTitle.Font = new Font("Segoe UI", 10F);
             _lblHoTenTitle.AutoSize = true;
-            _lblHoTenTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblHoTenTitle.Location = new Point(14, 12);
-            _lblHoTenTitle.Name = "_lblHoTenTitle";
-            _lblHoTenTitle.Size = new Size(54, 20);
-            _lblHoTenTitle.TabIndex = 0;
-            _lblHoTenTitle.Text = "Họ tên";
             // 
-            // _lblHoTenValue
+            // _txtHoTen
             // 
-            _lblHoTenValue.AutoSize = true;
-            _lblHoTenValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblHoTenValue.Location = new Point(14, 45);
-            _lblHoTenValue.Name = "_lblHoTenValue";
-            _lblHoTenValue.Size = new Size(130, 25);
-            _lblHoTenValue.TabIndex = 1;
-            _lblHoTenValue.Text = "Nguyễn Văn A";
-            // 
-            // _cardNgaySinh
-            // 
-            _cardNgaySinh.BackColor = Color.FromArgb(255, 253, 231);
-            _cardNgaySinh.BorderStyle = BorderStyle.FixedSingle;
-            _cardNgaySinh.Controls.Add(_lblNgaySinhTitle);
-            _cardNgaySinh.Controls.Add(_lblNgaySinhValue);
-            _cardNgaySinh.Margin = new Padding(10);
-            _cardNgaySinh.Name = "_cardNgaySinh";
-            _cardNgaySinh.Size = new Size(240, 90);
-            _cardNgaySinh.TabIndex = 3;
+            _txtHoTen.BorderRadius = 8;
+            _txtHoTen.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _txtHoTen.Location = new Point(180, 140);
+            _txtHoTen.Size = new Size(300, 40);
+            _txtHoTen.TabIndex = 1;
             // 
             // _lblNgaySinhTitle
             // 
+            _lblNgaySinhTitle.Location = new Point(40, 210);
+            _lblNgaySinhTitle.Text = "Ngày sinh:";
+            _lblNgaySinhTitle.Font = new Font("Segoe UI", 10F);
             _lblNgaySinhTitle.AutoSize = true;
-            _lblNgaySinhTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblNgaySinhTitle.Location = new Point(14, 12);
-            _lblNgaySinhTitle.Name = "_lblNgaySinhTitle";
-            _lblNgaySinhTitle.Size = new Size(74, 20);
-            _lblNgaySinhTitle.TabIndex = 0;
-            _lblNgaySinhTitle.Text = "Ngày sinh";
             // 
-            // _lblNgaySinhValue
+            // _dtpNgaySinh
             // 
-            _lblNgaySinhValue.AutoSize = true;
-            _lblNgaySinhValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblNgaySinhValue.Location = new Point(14, 45);
-            _lblNgaySinhValue.Name = "_lblNgaySinhValue";
-            _lblNgaySinhValue.Size = new Size(111, 25);
-            _lblNgaySinhValue.TabIndex = 1;
-            _lblNgaySinhValue.Text = "01/01/2000";
-            // 
-            // _cardDiaChi
-            // 
-            _cardDiaChi.BackColor = Color.FromArgb(255, 253, 231);
-            _cardDiaChi.BorderStyle = BorderStyle.FixedSingle;
-            _cardDiaChi.Controls.Add(_lblDiaChiTitle);
-            _cardDiaChi.Controls.Add(_lblDiaChiValue);
-            _cardDiaChi.Margin = new Padding(10);
-            _cardDiaChi.Name = "_cardDiaChi";
-            _cardDiaChi.Size = new Size(240, 90);
-            _cardDiaChi.TabIndex = 4;
+            _dtpNgaySinh.BorderRadius = 8;
+            _dtpNgaySinh.FillColor = Color.White;
+            _dtpNgaySinh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _dtpNgaySinh.Format = DateTimePickerFormat.Short;
+            _dtpNgaySinh.Location = new Point(180, 200);
+            _dtpNgaySinh.Size = new Size(300, 40);
+            _dtpNgaySinh.TabIndex = 2;
             // 
             // _lblDiaChiTitle
             // 
+            _lblDiaChiTitle.Location = new Point(40, 270);
+            _lblDiaChiTitle.Text = "Địa chỉ:";
+            _lblDiaChiTitle.Font = new Font("Segoe UI", 10F);
             _lblDiaChiTitle.AutoSize = true;
-            _lblDiaChiTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblDiaChiTitle.Location = new Point(14, 12);
-            _lblDiaChiTitle.Name = "_lblDiaChiTitle";
-            _lblDiaChiTitle.Size = new Size(55, 20);
-            _lblDiaChiTitle.TabIndex = 0;
-            _lblDiaChiTitle.Text = "Địa chỉ";
             // 
-            // _lblDiaChiValue
+            // _txtDiaChi
             // 
-            _lblDiaChiValue.AutoSize = true;
-            _lblDiaChiValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblDiaChiValue.Location = new Point(14, 45);
-            _lblDiaChiValue.Name = "_lblDiaChiValue";
-            _lblDiaChiValue.Size = new Size(104, 25);
-            _lblDiaChiValue.TabIndex = 1;
-            _lblDiaChiValue.Text = "TP.HCM, VN";
-            // 
-            // _cardSoDienThoai
-            // 
-            _cardSoDienThoai.BackColor = Color.FromArgb(255, 253, 231);
-            _cardSoDienThoai.BorderStyle = BorderStyle.FixedSingle;
-            _cardSoDienThoai.Controls.Add(_lblSoDienThoaiTitle);
-            _cardSoDienThoai.Controls.Add(_lblSoDienThoaiValue);
-            _cardSoDienThoai.Margin = new Padding(10);
-            _cardSoDienThoai.Name = "_cardSoDienThoai";
-            _cardSoDienThoai.Size = new Size(240, 90);
-            _cardSoDienThoai.TabIndex = 5;
+            _txtDiaChi.BorderRadius = 8;
+            _txtDiaChi.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _txtDiaChi.Location = new Point(180, 260);
+            _txtDiaChi.Size = new Size(780, 40);
+            _txtDiaChi.TabIndex = 3;
             // 
             // _lblSoDienThoaiTitle
             // 
+            _lblSoDienThoaiTitle.Location = new Point(40, 330);
+            _lblSoDienThoaiTitle.Text = "Điện thoại:";
+            _lblSoDienThoaiTitle.Font = new Font("Segoe UI", 10F);
             _lblSoDienThoaiTitle.AutoSize = true;
-            _lblSoDienThoaiTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblSoDienThoaiTitle.Location = new Point(14, 12);
-            _lblSoDienThoaiTitle.Name = "_lblSoDienThoaiTitle";
-            _lblSoDienThoaiTitle.Size = new Size(97, 20);
-            _lblSoDienThoaiTitle.TabIndex = 0;
-            _lblSoDienThoaiTitle.Text = "Số điện thoại";
             // 
-            // _lblSoDienThoaiValue
+            // _txtSoDienThoai
             // 
-            _lblSoDienThoaiValue.AutoSize = true;
-            _lblSoDienThoaiValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblSoDienThoaiValue.Location = new Point(14, 45);
-            _lblSoDienThoaiValue.Name = "_lblSoDienThoaiValue";
-            _lblSoDienThoaiValue.Size = new Size(110, 25);
-            _lblSoDienThoaiValue.TabIndex = 1;
-            _lblSoDienThoaiValue.Text = "0909xxxxxx";
-            // 
-            // _cardEmail
-            // 
-            _cardEmail.BackColor = Color.FromArgb(255, 253, 231);
-            _cardEmail.BorderStyle = BorderStyle.FixedSingle;
-            _cardEmail.Controls.Add(_lblEmailTitle);
-            _cardEmail.Controls.Add(_lblEmailValue);
-            _cardEmail.Margin = new Padding(10);
-            _cardEmail.Name = "_cardEmail";
-            _cardEmail.Size = new Size(240, 90);
-            _cardEmail.TabIndex = 6;
+            _txtSoDienThoai.BorderRadius = 8;
+            _txtSoDienThoai.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _txtSoDienThoai.Location = new Point(180, 320);
+            _txtSoDienThoai.Size = new Size(300, 40);
+            _txtSoDienThoai.TabIndex = 4;
             // 
             // _lblEmailTitle
             // 
+            _lblEmailTitle.Location = new Point(520, 330);
+            _lblEmailTitle.Text = "Email:";
+            _lblEmailTitle.Font = new Font("Segoe UI", 10F);
             _lblEmailTitle.AutoSize = true;
-            _lblEmailTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblEmailTitle.Location = new Point(14, 12);
-            _lblEmailTitle.Name = "_lblEmailTitle";
-            _lblEmailTitle.Size = new Size(46, 20);
-            _lblEmailTitle.TabIndex = 0;
-            _lblEmailTitle.Text = "Email";
             // 
-            // _lblEmailValue
+            // _txtEmail
             // 
-            _lblEmailValue.AutoSize = true;
-            _lblEmailValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblEmailValue.Location = new Point(14, 45);
-            _lblEmailValue.Name = "_lblEmailValue";
-            _lblEmailValue.Size = new Size(163, 25);
-            _lblEmailValue.TabIndex = 1;
-            _lblEmailValue.Text = "abc@winmart.local";
+            _txtEmail.BorderRadius = 8;
+            _txtEmail.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _txtEmail.Location = new Point(660, 320);
+            _txtEmail.Size = new Size(300, 40);
+            _txtEmail.TabIndex = 5;
             // 
-            // _cardChucVuPhongBan
+            // _lblChucVuTitle
             // 
-            _cardChucVuPhongBan.BackColor = Color.FromArgb(255, 253, 231);
-            _cardChucVuPhongBan.BorderStyle = BorderStyle.FixedSingle;
-            _cardChucVuPhongBan.Controls.Add(_lblChucVuPhongBanTitle);
-            _cardChucVuPhongBan.Controls.Add(_lblChucVuPhongBanValue);
-            _cardChucVuPhongBan.Margin = new Padding(10);
-            _cardChucVuPhongBan.Name = "_cardChucVuPhongBan";
-            _cardChucVuPhongBan.Size = new Size(240, 90);
-            _cardChucVuPhongBan.TabIndex = 7;
+            _lblChucVuTitle.Location = new Point(40, 390);
+            _lblChucVuTitle.Text = "Chức vụ:";
+            _lblChucVuTitle.Font = new Font("Segoe UI", 10F);
+            _lblChucVuTitle.AutoSize = true;
             // 
-            // _lblChucVuPhongBanTitle
+            // _lblChucVuValue
             // 
-            _lblChucVuPhongBanTitle.AutoSize = true;
-            _lblChucVuPhongBanTitle.ForeColor = Color.FromArgb(198, 40, 40);
-            _lblChucVuPhongBanTitle.Location = new Point(14, 12);
-            _lblChucVuPhongBanTitle.Name = "_lblChucVuPhongBanTitle";
-            _lblChucVuPhongBanTitle.Size = new Size(138, 20);
-            _lblChucVuPhongBanTitle.TabIndex = 0;
-            _lblChucVuPhongBanTitle.Text = "Chức vụ / Phòng ban";
+            _lblChucVuValue.Location = new Point(180, 390);
+            _lblChucVuValue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _lblChucVuValue.Size = new Size(300, 25);
             // 
-            // _lblChucVuPhongBanValue
+            // _lblOldPassTitle
             // 
-            _lblChucVuPhongBanValue.AutoSize = true;
-            _lblChucVuPhongBanValue.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            _lblChucVuPhongBanValue.Location = new Point(14, 45);
-            _lblChucVuPhongBanValue.Name = "_lblChucVuPhongBanValue";
-            _lblChucVuPhongBanValue.Size = new Size(154, 25);
-            _lblChucVuPhongBanValue.TabIndex = 1;
-            _lblChucVuPhongBanValue.Text = "Nhân viên / Sales";
+            _lblOldPassTitle.AutoSize = true;
+            _lblOldPassTitle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _lblOldPassTitle.ForeColor = Color.FromArgb(198, 40, 40);
+            _lblOldPassTitle.Location = new Point(40, 440);
+            _lblOldPassTitle.Text = "BẢO MẬT - ĐỔI MẬT KHẨU";
             // 
-            // _btnDoiMatKhau
+            // _txtOldPass
             // 
-            _btnDoiMatKhau.BackColor = Color.FromArgb(198, 40, 40);
-            _btnDoiMatKhau.FlatStyle = FlatStyle.Flat;
-            _btnDoiMatKhau.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            _btnDoiMatKhau.ForeColor = Color.White;
-            _btnDoiMatKhau.Location = new Point(680, 505);
-            _btnDoiMatKhau.Name = "_btnDoiMatKhau";
-            _btnDoiMatKhau.Size = new Size(180, 46);
-            _btnDoiMatKhau.TabIndex = 2;
-            _btnDoiMatKhau.Text = "Đổi mật khẩu";
-            _btnDoiMatKhau.UseVisualStyleBackColor = false;
-            _btnDoiMatKhau.Click += btnDoiMatKhau_Click;
+            _txtOldPass.BorderRadius = 8;
+            _txtOldPass.Font = new Font("Segoe UI", 10F);
+            _txtOldPass.Location = new Point(180, 475);
+            _txtOldPass.PasswordChar = '●';
+            _txtOldPass.PlaceholderText = "Mật khẩu hiện tại";
+            _txtOldPass.Size = new Size(300, 40);
+            _txtOldPass.TabIndex = 8;
+            // 
+            // _lblNewPassTitle
+            // 
+            _lblNewPassTitle.AutoSize = true;
+            _lblNewPassTitle.Location = new Point(40, 535);
+            _lblNewPassTitle.Text = "Mật khẩu mới:";
+            _lblNewPassTitle.Font = new Font("Segoe UI", 10F);
+            // 
+            // _txtNewPass
+            // 
+            _txtNewPass.BorderRadius = 8;
+            _txtNewPass.Font = new Font("Segoe UI", 10F);
+            _txtNewPass.Location = new Point(180, 525);
+            _txtNewPass.PasswordChar = '●';
+            _txtNewPass.PlaceholderText = "Mật khẩu mới";
+            _txtNewPass.Size = new Size(300, 40);
+            _txtNewPass.TabIndex = 9;
+            // 
+            // _lblConfirmPassTitle
+            // 
+            _lblConfirmPassTitle.AutoSize = true;
+            _lblConfirmPassTitle.Location = new Point(520, 535);
+            _lblConfirmPassTitle.Text = "Xác nhận:";
+            _lblConfirmPassTitle.Font = new Font("Segoe UI", 10F);
+            // 
+            // _txtConfirmPass
+            // 
+            _txtConfirmPass.BorderRadius = 8;
+            _txtConfirmPass.Font = new Font("Segoe UI", 10F);
+            _txtConfirmPass.Location = new Point(660, 525);
+            _txtConfirmPass.PasswordChar = '●';
+            _txtConfirmPass.PlaceholderText = "Xác nhận mật khẩu";
+            _txtConfirmPass.Size = new Size(300, 40);
+            _txtConfirmPass.TabIndex = 10;
             // 
             // _btnCapNhat
             // 
-            _btnCapNhat.BackColor = Color.FromArgb(198, 40, 40);
-            _btnCapNhat.FlatStyle = FlatStyle.Flat;
-            _btnCapNhat.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _btnCapNhat.BorderRadius = 10;
+            _btnCapNhat.FillColor = Color.FromArgb(198, 40, 40);
+            _btnCapNhat.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             _btnCapNhat.ForeColor = Color.White;
-            _btnCapNhat.Location = new Point(880, 505);
-            _btnCapNhat.Name = "_btnCapNhat";
-            _btnCapNhat.Size = new Size(200, 46);
-            _btnCapNhat.TabIndex = 3;
-            _btnCapNhat.Text = "Cập nhật thông tin";
-            _btnCapNhat.UseVisualStyleBackColor = false;
+            _btnCapNhat.Location = new Point(740, 600);
+            _btnCapNhat.Size = new Size(220, 50);
+            _btnCapNhat.TabIndex = 11;
+            _btnCapNhat.Text = "CẬP NHẬT HỒ SƠ";
             _btnCapNhat.Click += btnCapNhat_Click;
+            // 
+            // _btnDoiMatKhau
+            // 
+            _btnDoiMatKhau.BorderRadius = 10;
+            _btnDoiMatKhau.BorderThickness = 1;
+            _btnDoiMatKhau.BorderColor = Color.FromArgb(198, 40, 40);
+            _btnDoiMatKhau.FillColor = Color.White;
+            _btnDoiMatKhau.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            _btnDoiMatKhau.ForeColor = Color.FromArgb(198, 40, 40);
+            _btnDoiMatKhau.Location = new Point(500, 600);
+            _btnDoiMatKhau.Size = new Size(220, 50);
+            _btnDoiMatKhau.TabIndex = 12;
+            _btnDoiMatKhau.Text = "ĐỔI MẬT KHẨU";
+            _btnDoiMatKhau.Click += btnDoiMatKhau_Click;
             // 
             // CaiDatProfileForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(1100, 580);
-            Controls.Add(_btnCapNhat);
-            Controls.Add(_btnDoiMatKhau);
-            Controls.Add(_flpInfoCards);
-            Controls.Add(_pnlHeader);
+            ClientSize = new Size(1100, 720);
+            Controls.Add(_mainPanel);
             Name = "CaiDatProfileForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "15. Cài đặt / Profile";
+            Text = "Hồ sơ cá nhân";
             Load += CaiDatProfileForm_Load;
-            _pnlHeader.ResumeLayout(false);
-            _pnlHeader.PerformLayout();
-            _flpInfoCards.ResumeLayout(false);
-            _cardUserName.ResumeLayout(false);
-            _cardUserName.PerformLayout();
-            _cardMaNhanVien.ResumeLayout(false);
-            _cardMaNhanVien.PerformLayout();
-            _cardHoTen.ResumeLayout(false);
-            _cardHoTen.PerformLayout();
-            _cardNgaySinh.ResumeLayout(false);
-            _cardNgaySinh.PerformLayout();
-            _cardDiaChi.ResumeLayout(false);
-            _cardDiaChi.PerformLayout();
-            _cardSoDienThoai.ResumeLayout(false);
-            _cardSoDienThoai.PerformLayout();
-            _cardEmail.ResumeLayout(false);
-            _cardEmail.PerformLayout();
-            _cardChucVuPhongBan.ResumeLayout(false);
-            _cardChucVuPhongBan.PerformLayout();
             ResumeLayout(false);
         }
     }
