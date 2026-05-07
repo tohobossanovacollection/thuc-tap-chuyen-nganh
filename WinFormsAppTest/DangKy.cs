@@ -19,7 +19,8 @@ namespace WinFormsAppTest
         private void DangKy_Load(object sender, EventArgs e)
         {
             _connectionString = DatabaseConfig.ConnectionString;
-            cmbRole.SelectedIndex = 0;
+            if (cmbChucVu.Items.Count > 0) cmbChucVu.SelectedIndex = 0;
+            if (cmbPhongBan.Items.Count > 0) cmbPhongBan.SelectedIndex = 0;
             txtUsername.Focus();
         }
 
@@ -48,28 +49,57 @@ namespace WinFormsAppTest
                     return;
                 }
 
-                string username = txtUsername.Text.Trim();
-                string password = txtPassword.Text;
-                string roleCode = MapRoleCode(cmbRole.SelectedItem?.ToString());
-                string accountId = GenerateAccountId();
-
-                if (!InsertAccount(connection, accountId, username, password, roleCode))
+                using SqlTransaction transaction = connection.BeginTransaction();
+                try
                 {
-                    MessageBox.Show("Không thể tạo tài khoản. Vui lòng kiểm tra cấu trúc bảng tai_khoan.", "Lỗi",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    string username = txtUsername.Text.Trim();
+                    string password = txtPassword.Text;
+                    string chucVu = cmbChucVu.SelectedItem?.ToString() ?? "";
+                    string roleCode = MapRoleCode(chucVu);
+                    string accountId = GenerateAccountId();
+
+                    if (!InsertAccount(connection, transaction, accountId, username, password, roleCode))
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Không thể tạo tài khoản. Vui lòng kiểm tra lại cấu trúc bảng tai_khoan.", "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string empId = GenerateEmployeeId();
+                    string hoTen = txtHoTen.Text.Trim();
+                    string diaChi = txtDiaChi.Text.Trim();
+                    string soDienThoai = string.IsNullOrWhiteSpace(txtSoDienThoai.Text) ? null : txtSoDienThoai.Text.Trim();
+                    string email = string.IsNullOrWhiteSpace(txtEmail.Text) ? null : txtEmail.Text.Trim();
+                    string phongBan = cmbPhongBan.SelectedItem?.ToString() ?? "";
+                    DateTime ngaySinh = dtpNgaySinh.Value;
+
+                    if (!InsertEmployee(connection, transaction, empId, accountId, hoTen, ngaySinh, diaChi, soDienThoai, email, chucVu, phongBan))
+                    {
+                        transaction.Rollback();
+                        MessageBox.Show("Không thể tạo thông tin nhân viên.", "Lỗi",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    transaction.Commit();
+
+                    RegisteredUsername = username;
+                    MessageBox.Show("Đăng ký tài khoản và thông tin nhân viên thành công.", "Thành công",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    DialogResult = DialogResult.OK;
+                    Close();
                 }
-
-                RegisteredUsername = username;
-                MessageBox.Show("Đăng ký tài khoản thành công.", "Thành công",
-                    MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                DialogResult = DialogResult.OK;
-                Close();
+                catch
+                {
+                    transaction.Rollback();
+                    throw;
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Đăng ký thất bại: {ex.Message}\n\nKiểm tra SQL Server và database TTCN.",
+                MessageBox.Show($"Đăng ký thất bại: {ex.Message}\n\nKiểm tra dữ liệu nhập (email, SĐT có thể đã tồn tại) hoặc bảng database TTCN.",
                     "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -108,11 +138,27 @@ namespace WinFormsAppTest
                 return false;
             }
 
-            if (cmbRole.SelectedIndex < 0 || cmbRole.SelectedItem is null)
+            if (string.IsNullOrWhiteSpace(txtHoTen.Text))
             {
-                MessageBox.Show("Vui lòng chọn vai trò.", "Thông báo",
+                MessageBox.Show("Vui lòng nhập họ tên.", "Thông báo",
                     MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                cmbRole.Focus();
+                txtHoTen.Focus();
+                return false;
+            }
+
+            if (cmbChucVu.SelectedIndex < 0 || cmbChucVu.SelectedItem is null)
+            {
+                MessageBox.Show("Vui lòng chọn chức vụ.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbChucVu.Focus();
+                return false;
+            }
+
+            if (cmbPhongBan.SelectedIndex < 0 || cmbPhongBan.SelectedItem is null)
+            {
+                MessageBox.Show("Vui lòng chọn phòng ban.", "Thông báo",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cmbPhongBan.Focus();
                 return false;
             }
 
@@ -128,14 +174,33 @@ namespace WinFormsAppTest
             return count > 0;
         }
 
-        private static bool InsertAccount(SqlConnection connection, string accountId, string username, string password, string roleCode)
+        private static bool InsertAccount(SqlConnection connection, SqlTransaction transaction, string accountId, string username, string password, string roleCode)
         {
             const string query = "INSERT INTO tai_khoan (ma_tai_khoan, ten_dang_nhap, mat_khau, quyen_han) VALUES (@accountId, @username, @password, @roleCode)";
-            using SqlCommand command = new SqlCommand(query, connection);
+            using SqlCommand command = new SqlCommand(query, connection, transaction);
             command.Parameters.AddWithValue("@accountId", accountId);
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
             command.Parameters.AddWithValue("@roleCode", roleCode);
+            return command.ExecuteNonQuery() > 0;
+        }
+
+        private static bool InsertEmployee(SqlConnection connection, SqlTransaction transaction, string empId, string accountId, string hoTen, DateTime ngaySinh, string diaChi, string soDienThoai, string email, string chucVu, string phongBan)
+        {
+            const string query = @"INSERT INTO nhan_vien 
+                (ma_nhan_vien, ma_tai_khoan, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, email, chuc_vu, phong_ban, trang_thai) 
+                VALUES 
+                (@empId, @accountId, @hoTen, @ngaySinh, @diaChi, @soDienThoai, @email, @chucVu, @phongBan, 'ACTIVE')";
+            using SqlCommand command = new SqlCommand(query, connection, transaction);
+            command.Parameters.AddWithValue("@empId", empId);
+            command.Parameters.AddWithValue("@accountId", accountId);
+            command.Parameters.AddWithValue("@hoTen", hoTen);
+            command.Parameters.AddWithValue("@ngaySinh", ngaySinh.Date);
+            command.Parameters.AddWithValue("@diaChi", (object)diaChi ?? DBNull.Value);
+            command.Parameters.AddWithValue("@soDienThoai", (object)soDienThoai ?? DBNull.Value);
+            command.Parameters.AddWithValue("@email", (object)email ?? DBNull.Value);
+            command.Parameters.AddWithValue("@chucVu", chucVu);
+            command.Parameters.AddWithValue("@phongBan", phongBan);
             return command.ExecuteNonQuery() > 0;
         }
 
@@ -144,15 +209,22 @@ namespace WinFormsAppTest
             return $"TK{DateTime.Now:yyyyMMddHHmmssfff}";
         }
 
-        private static string MapRoleCode(string? displayRole)
+        private static string GenerateEmployeeId()
         {
-            return displayRole switch
-            {
-                "Admin" => "ADMIN",
-                "Quản lý" => "QUAN_LY",
-                "Nhân viên" => "NHAN_VIEN",
-                _ => string.Empty
-            };
+            return $"NV{DateTime.Now:MMddHHmmssfff}";
+        }
+
+        private static string MapRoleCode(string? chucVu)
+        {
+            if (string.IsNullOrWhiteSpace(chucVu)) return string.Empty;
+            
+            if (chucVu == "Giám đốc" || chucVu == "Phó giám đốc")
+                return "ADMIN";
+            
+            if (chucVu == "Quản lý cửa hàng" || chucVu == "Quản lý kho")
+                return "QUAN_LY";
+                
+            return "NHAN_VIEN";
         }
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
