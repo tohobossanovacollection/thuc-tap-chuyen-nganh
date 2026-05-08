@@ -12,6 +12,7 @@ namespace WinFormsAppTest
         private SplitContainer _split;
         private System.Windows.Forms.DataVisualization.Charting.Chart _chartLowStock;
         private Label _lblWarning;
+        private Button _btnExportExcel;
         private TableLayoutPanel _tlpDashboard;
 
         protected override void Dispose(bool disposing)
@@ -29,6 +30,7 @@ namespace WinFormsAppTest
             _lblTrangThai = new Label();
             _cmbTrangThai = new ComboBox();
             _btnXem = new Button();
+            _btnExportExcel = new Button();
             _top = new Panel();
             _title = new Label();
             _split = new SplitContainer();
@@ -112,6 +114,18 @@ namespace WinFormsAppTest
             _btnXem.UseVisualStyleBackColor = false;
             _btnXem.Click += btnXem_Click;
             // 
+            // _btnExportExcel
+            // 
+            _btnExportExcel.BackColor = Color.FromArgb(76, 175, 80);
+            _btnExportExcel.ForeColor = Color.White;
+            _btnExportExcel.Location = new Point(340, 53);
+            _btnExportExcel.Name = "_btnExportExcel";
+            _btnExportExcel.Size = new Size(120, 30);
+            _btnExportExcel.TabIndex = 4;
+            _btnExportExcel.Text = "Xuất Excel";
+            _btnExportExcel.UseVisualStyleBackColor = false;
+            _btnExportExcel.Click += btnExportExcel_Click;
+            // 
             // _top
             // 
             _top.BackColor = Color.FromArgb(255, 241, 118);
@@ -119,6 +133,7 @@ namespace WinFormsAppTest
             _top.Controls.Add(_lblTrangThai);
             _top.Controls.Add(_cmbTrangThai);
             _top.Controls.Add(_btnXem);
+            _top.Controls.Add(_btnExportExcel);
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";

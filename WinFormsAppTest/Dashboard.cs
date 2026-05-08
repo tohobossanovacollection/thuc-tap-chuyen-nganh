@@ -11,6 +11,7 @@ namespace WinFormsAppTest
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
         private readonly string _username;
         private readonly string _role;
+        private readonly string _phongBan;
         private readonly string _maNhanVien;
         private readonly Panel _contentHost;
         private Form? _activeChildForm;
@@ -20,12 +21,13 @@ namespace WinFormsAppTest
         private Point _baoCaoExpandedLocation;
         private Point _caiDatExpandedLocation;
 
-        public Dashboard(string username, string role, string maNhanVien)
+        public Dashboard(string username, string role, string maNhanVien, string phongBan)
         {
             InitializeComponent();
             _username = username;
             _role = role;
             _maNhanVien = maNhanVien;
+            _phongBan = phongBan;
             CaptureMenuLayout();
             SetQuanLyMenuExpanded(false);
             LoadMenuIcons();
@@ -49,6 +51,8 @@ namespace WinFormsAppTest
             tmrClock.Interval = 1000;
             tmrClock.Tick += (s, e) => lblDateTime.Text = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
             tmrClock.Start();
+
+            ApplyAccessPermissions();
         }
 
         private void UpdateContentHostLayout()
@@ -71,6 +75,11 @@ namespace WinFormsAppTest
 
         private void btnMenuBanHang_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban hang"))
+            {
+                return;
+            }
+
             BanHangForm form = new BanHangForm(_maNhanVien);
             form.StartPosition = FormStartPosition.CenterScreen;
             form.FormClosed += (_, _) => form.Dispose();
@@ -79,32 +88,62 @@ namespace WinFormsAppTest
 
         private void btnMenuSanPham_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban quan ly"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLySanPhamForm());
         }
 
         private void btnMenuNhapHang_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban hang", "Kho"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLyPhieuNhapForm(_maNhanVien));
         }
 
         private void btnMenuKhachHang_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban hang"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLyKhachHangForm());
         }
 
         private void btnMenuNhanVienTaiKhoan_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban quan ly"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLyNhanVienForm());
         }
 
         private void btnMenuKhuyenMai_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban hang"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLyGiamGiaForm());
         }
 
         private void btnMenuBaoCao_Click(object sender, EventArgs e)
         {
-            ShowChildFormInMain(new BaoCaoMainForm());
+            if (!EnsureAllowedDepartments("Ban hang", "Ke toan", "Kho"))
+            {
+                return;
+            }
+
+            ShowChildFormInMain(new BaoCaoMainForm(_phongBan));
         }
 
         private void btnMenuCaiDat_Click(object sender, EventArgs e)
@@ -126,11 +165,21 @@ namespace WinFormsAppTest
 
         private void btnMenuNhaCungCap_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban quan ly"))
+            {
+                return;
+            }
+
             ShowChildFormInMain(new QuanLyNhaCungCapForm());
         }
 
         private void btnMenuHoaDon_Click(object sender, EventArgs e)
         {
+            if (!EnsureAllowedDepartments("Ban hang", "Ke toan"))
+            {
+                return;
+            }
+
             //ShowChildFormInMain(new QuanLyHoaDon());
             using QuanLyHoaDon form = new QuanLyHoaDon();
             form.ShowDialog(this);
@@ -172,6 +221,79 @@ namespace WinFormsAppTest
             _contentHost.Controls.Clear();
             _contentHost.Controls.Add(childForm);
             childForm.Show();
+        }
+
+        private void ApplyAccessPermissions()
+        {
+            bool isQuanLy = IsQuanLyDepartment();
+
+            bool canAccessBanHang = isQuanLy || IsDepartment("Ban hang");
+            bool canAccessDoanhThu = isQuanLy || IsDepartment("Ban hang", "Ke toan");
+            bool canAccessTonKho = isQuanLy || IsDepartment("Ban hang", "Kho");
+            bool canAccessNhapHang = isQuanLy || IsDepartment("Ban hang", "Kho");
+            bool canAccessQuanLy = true;
+            bool canAccessSanPham = isQuanLy;
+            bool canAccessKhachHang = isQuanLy || IsDepartment("Ban hang");
+            bool canAccessKhuyenMai = isQuanLy || IsDepartment("Ban hang");
+            bool canAccessHoaDon = isQuanLy || IsDepartment("Ban hang", "Ke toan");
+            bool canAccessNhanVien = isQuanLy;
+            bool canAccessNhaCungCap = isQuanLy;
+
+            btnMenuBanHang.Enabled = canAccessBanHang;
+            btnMenuBaoCao.Enabled = canAccessDoanhThu || canAccessTonKho;
+            btnMenuNhapHang.Enabled = canAccessNhapHang;
+            btnMenuQuanLy.Enabled = canAccessQuanLy;
+            btnMenuSanPham.Enabled = canAccessSanPham;
+            btnMenuKhachHang.Enabled = canAccessKhachHang;
+            btnMenuNhanVienTaiKhoan.Enabled = canAccessNhanVien;
+            btnMenuKhuyenMai.Enabled = canAccessKhuyenMai;
+            btnMenuNhaCungCap.Enabled = canAccessNhaCungCap;
+            btnMenuHoaDon.Enabled = canAccessHoaDon;
+
+            btnMenuBanHang.Visible = canAccessBanHang;
+            btnMenuBaoCao.Visible = canAccessDoanhThu || canAccessTonKho;
+            btnMenuNhapHang.Visible = canAccessNhapHang;
+            btnMenuQuanLy.Visible = canAccessQuanLy;
+            btnMenuSanPham.Visible = _isQuanLyMenuExpanded;
+            btnMenuKhachHang.Visible = _isQuanLyMenuExpanded;
+            btnMenuNhanVienTaiKhoan.Visible = _isQuanLyMenuExpanded;
+            btnMenuKhuyenMai.Visible = _isQuanLyMenuExpanded;
+            btnMenuNhaCungCap.Visible = _isQuanLyMenuExpanded;
+            btnMenuHoaDon.Visible = _isQuanLyMenuExpanded;
+        }
+
+        private bool EnsureAllowedDepartments(params string[] allowedDepartments)
+        {
+            if (allowedDepartments.Length == 1
+                && string.Equals(allowedDepartments[0], "Ban quan ly", StringComparison.OrdinalIgnoreCase))
+            {
+                return IsQuanLyDepartment() || ShowAccessDenied();
+            }
+
+            if (IsQuanLyDepartment() || IsDepartment(allowedDepartments))
+            {
+                return true;
+            }
+
+            return ShowAccessDenied();
+        }
+
+        private static bool ShowAccessDenied()
+        {
+            MessageBox.Show("Bạn không có quyền truy cập chức năng này.", "Thông báo",
+                MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            return false;
+        }
+
+        private bool IsQuanLyDepartment()
+        {
+            return string.Equals(_phongBan, "Ban quan ly", StringComparison.OrdinalIgnoreCase);
+        }
+
+        private bool IsDepartment(params string[] allowedDepartments)
+        {
+            return allowedDepartments.Any(department =>
+                string.Equals(_phongBan, department, StringComparison.OrdinalIgnoreCase));
         }
 
         private void CloseActiveChildForm()

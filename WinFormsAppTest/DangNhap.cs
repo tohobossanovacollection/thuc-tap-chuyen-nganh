@@ -46,13 +46,14 @@ namespace WinFormsAppTest
             string password = txtPassword.Text;
             string roleCode;
             string maNhanVien;
+            string phongBan;
 
             try
             {
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 connection.Open();
 
-                if (!TryGetUserRole(connection, username, password, out roleCode, out maNhanVien))
+                if (!TryGetUserRole(connection, username, password, out roleCode, out maNhanVien, out phongBan))
                 {
                     MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu.", "Đăng nhập thất bại",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -71,10 +72,21 @@ namespace WinFormsAppTest
             string roleDisplay = MapRoleDisplay(roleCode);
 
             Hide();
-            using (Dashboard dashboard = new Dashboard(username, roleDisplay, maNhanVien))
+            DialogResult result;
+            using (Dashboard dashboard = new Dashboard(username, roleDisplay, maNhanVien, phongBan))
             {
-                dashboard.ShowDialog(this);
+                result = dashboard.ShowDialog(this);
             }
+
+            if (result == DialogResult.OK)
+            {
+                txtUsername.Clear();
+                txtPassword.Clear();
+                Show();
+                txtUsername.Focus();
+                return;
+            }
+
             Close();
         }
 
@@ -102,10 +114,10 @@ namespace WinFormsAppTest
             // Remove this if not needed
         }
 
-        private static bool TryGetUserRole(SqlConnection connection, string username, string password, out string roleCode, out string maNhanVien)
+        private static bool TryGetUserRole(SqlConnection connection, string username, string password, out string roleCode, out string maNhanVien, out string phongBan)
         {
             const string query = """
-                SELECT tk.quyen_han, nv.ma_nhan_vien
+                SELECT tk.quyen_han, nv.ma_nhan_vien, nv.phong_ban
                 FROM tai_khoan tk
                 LEFT JOIN nhan_vien nv ON nv.ma_tai_khoan = tk.ma_tai_khoan
                 WHERE tk.ten_dang_nhap = @username AND tk.mat_khau = @password;
@@ -119,12 +131,16 @@ namespace WinFormsAppTest
             {
                 roleCode = string.Empty;
                 maNhanVien = string.Empty;
+                phongBan = string.Empty;
                 return false;
             }
 
             roleCode = reader["quyen_han"]?.ToString() ?? string.Empty;
             maNhanVien = reader["ma_nhan_vien"]?.ToString() ?? string.Empty;
-            return !string.IsNullOrWhiteSpace(roleCode) && !string.IsNullOrWhiteSpace(maNhanVien);
+            phongBan = reader["phong_ban"]?.ToString() ?? string.Empty;
+            return !string.IsNullOrWhiteSpace(roleCode)
+                   && !string.IsNullOrWhiteSpace(maNhanVien)
+                   && !string.IsNullOrWhiteSpace(phongBan);
         }
 
         private static string MapRoleDisplay(string roleCode)

@@ -19,6 +19,8 @@ namespace WinFormsAppTest
         private Chart _chartCategoryPie;
         private Label _lblRangeLine;
         private Label _lblRangePie;
+        private Label _lblTotalRevenue;
+        private Button _btnExportExcel;
 
         protected override void Dispose(bool disposing)
         {
@@ -45,6 +47,8 @@ namespace WinFormsAppTest
             _chartCategoryPie = new Chart();
             _lblRangeLine = new Label();
             _lblRangePie = new Label();
+            _lblTotalRevenue = new Label();
+            _btnExportExcel = new Button();
             ChartArea chartArea1 = new ChartArea();
             Legend legend1 = new Legend();
             Series series1 = new Series();
@@ -107,11 +111,13 @@ namespace WinFormsAppTest
             // 
             _top.BackColor = Color.FromArgb(255, 241, 118);
             _top.Controls.Add(_title);
+            _top.Controls.Add(_lblTotalRevenue);
             _top.Controls.Add(_lblFrom);
             _top.Controls.Add(_dtpFrom);
             _top.Controls.Add(_lblTo);
             _top.Controls.Add(_dtpTo);
             _top.Controls.Add(_btnXemBieuDo);
+            _top.Controls.Add(_btnExportExcel);
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
@@ -175,6 +181,29 @@ namespace WinFormsAppTest
             _btnXemBieuDo.Text = "Xem biểu đồ";
             _btnXemBieuDo.UseVisualStyleBackColor = false;
             _btnXemBieuDo.Click += btnXemBieuDo_Click;
+            // 
+            // _lblTotalRevenue
+            // 
+            _lblTotalRevenue.AutoSize = true;
+            _lblTotalRevenue.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            _lblTotalRevenue.ForeColor = Color.FromArgb(198, 40, 40);
+            _lblTotalRevenue.Location = new Point(720, 70);
+            _lblTotalRevenue.Name = "_lblTotalRevenue";
+            _lblTotalRevenue.Size = new Size(148, 23);
+            _lblTotalRevenue.TabIndex = 6;
+            _lblTotalRevenue.Text = "Tổng thành tiền: 0";
+            // 
+            // _btnExportExcel
+            // 
+            _btnExportExcel.BackColor = Color.FromArgb(76, 175, 80);
+            _btnExportExcel.ForeColor = Color.White;
+            _btnExportExcel.Location = new Point(575, 67);
+            _btnExportExcel.Name = "_btnExportExcel";
+            _btnExportExcel.Size = new Size(120, 30);
+            _btnExportExcel.TabIndex = 7;
+            _btnExportExcel.Text = "Xuất Excel";
+            _btnExportExcel.UseVisualStyleBackColor = false;
+            _btnExportExcel.Click += btnExportExcel_Click;
             // 
             // _split
             // 
