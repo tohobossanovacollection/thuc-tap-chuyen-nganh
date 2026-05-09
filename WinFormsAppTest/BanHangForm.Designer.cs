@@ -80,8 +80,8 @@ namespace WinFormsAppTest
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges20 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges21 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges22 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges43 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges44 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
+            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges25 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges26 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
@@ -98,8 +98,6 @@ namespace WinFormsAppTest
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges38 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges39 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges40 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges41 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
-            Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges42 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlHeader = new Guna2Panel();
             lblTitle = new Guna2HtmlLabel();
             lblSub = new Guna2HtmlLabel();
@@ -501,12 +499,12 @@ namespace WinFormsAppTest
             grpCheckout.Controls.Add(lblFinalTotalValue);
             grpCheckout.Controls.Add(btnCreateInvoice);
             grpCheckout.CustomBorderColor = Color.FromArgb(255, 241, 118);
-            grpCheckout.CustomizableEdges = customizableEdges43;
+            grpCheckout.CustomizableEdges = customizableEdges41;
             grpCheckout.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             grpCheckout.ForeColor = Color.FromArgb(198, 40, 40);
             grpCheckout.Location = new Point(640, 468);
             grpCheckout.Name = "grpCheckout";
-            grpCheckout.ShadowDecoration.CustomizableEdges = customizableEdges44;
+            grpCheckout.ShadowDecoration.CustomizableEdges = customizableEdges42;
             grpCheckout.Size = new Size(751, 284);
             grpCheckout.TabIndex = 0;
             grpCheckout.Text = "Thanh toán";
@@ -601,10 +599,10 @@ namespace WinFormsAppTest
             // 
             lblChange.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             lblChange.BackColor = Color.Transparent;
-            lblChange.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            lblChange.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             lblChange.Location = new Point(429, 154);
             lblChange.Name = "lblChange";
-            lblChange.Size = new Size(99, 30);
+            lblChange.Size = new Size(84, 25);
             lblChange.TabIndex = 5;
             lblChange.Text = "Tiền thừa:";
             // 
@@ -623,6 +621,7 @@ namespace WinFormsAppTest
             // cmbCustomer
             // 
             cmbCustomer.BackColor = Color.Transparent;
+            cmbCustomer.BorderRadius = 10;
             cmbCustomer.CustomizableEdges = customizableEdges35;
             cmbCustomer.DrawMode = DrawMode.OwnerDrawFixed;
             cmbCustomer.DropDownStyle = ComboBoxStyle.DropDownList;
@@ -648,24 +647,25 @@ namespace WinFormsAppTest
             cmbDiscount.Font = new Font("Segoe UI", 10F);
             cmbDiscount.ForeColor = Color.FromArgb(68, 88, 112);
             cmbDiscount.ItemHeight = 30;
-            cmbDiscount.Location = new Point(310, 45);
+            cmbDiscount.Location = new Point(20, 106);
             cmbDiscount.Name = "cmbDiscount";
             cmbDiscount.ShadowDecoration.CustomizableEdges = customizableEdges20;
-            cmbDiscount.Size = new Size(170, 36);
+            cmbDiscount.Size = new Size(225, 36);
             cmbDiscount.TabIndex = 1;
+            cmbDiscount.TextAlign = HorizontalAlignment.Center;
             cmbDiscount.SelectedIndexChanged += cmbDiscount_SelectedIndexChanged;
             // 
             // btnApplyDiscount
             // 
             btnApplyDiscount.BorderRadius = 8;
-            btnApplyDiscount.CustomizableEdges = customizableEdges39;
+            btnApplyDiscount.CustomizableEdges = customizableEdges37;
             btnApplyDiscount.FillColor = Color.FromArgb(255, 167, 38);
             btnApplyDiscount.Font = new Font("Segoe UI", 9F);
             btnApplyDiscount.ForeColor = Color.Black;
-            btnApplyDiscount.Location = new Point(314, 106);
+            btnApplyDiscount.Location = new Point(263, 106);
             btnApplyDiscount.Name = "btnApplyDiscount";
-            btnApplyDiscount.ShadowDecoration.CustomizableEdges = customizableEdges40;
-            btnApplyDiscount.Size = new Size(77, 36);
+            btnApplyDiscount.ShadowDecoration.CustomizableEdges = customizableEdges38;
+            btnApplyDiscount.Size = new Size(78, 36);
             btnApplyDiscount.TabIndex = 2;
             btnApplyDiscount.Text = "Áp mã";
             btnApplyDiscount.Click += btnApplyDiscount_Click;
@@ -709,9 +709,10 @@ namespace WinFormsAppTest
             // lblFinalTotal
             // 
             lblFinalTotal.BackColor = Color.Transparent;
-            lblFinalTotal.Location = new Point(33, 237);
+            lblFinalTotal.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblFinalTotal.Location = new Point(33, 231);
             lblFinalTotal.Name = "lblFinalTotal";
-            lblFinalTotal.Size = new Size(75, 22);
+            lblFinalTotal.Size = new Size(124, 33);
             lblFinalTotal.TabIndex = 7;
             lblFinalTotal.Text = "Thành tiền:";
             // 
@@ -720,7 +721,7 @@ namespace WinFormsAppTest
             lblFinalTotalValue.BackColor = Color.Transparent;
             lblFinalTotalValue.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             lblFinalTotalValue.ForeColor = Color.FromArgb(191, 54, 12);
-            lblFinalTotalValue.Location = new Point(144, 231);
+            lblFinalTotalValue.Location = new Point(161, 231);
             lblFinalTotalValue.Name = "lblFinalTotalValue";
             lblFinalTotalValue.Size = new Size(37, 33);
             lblFinalTotalValue.TabIndex = 8;
@@ -730,13 +731,13 @@ namespace WinFormsAppTest
             // 
             btnCreateInvoice.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
             btnCreateInvoice.BorderRadius = 10;
-            btnCreateInvoice.CustomizableEdges = customizableEdges41;
+            btnCreateInvoice.CustomizableEdges = customizableEdges39;
             btnCreateInvoice.FillColor = Color.FromArgb(198, 40, 40);
             btnCreateInvoice.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnCreateInvoice.ForeColor = Color.White;
             btnCreateInvoice.Location = new Point(536, 209);
             btnCreateInvoice.Name = "btnCreateInvoice";
-            btnCreateInvoice.ShadowDecoration.CustomizableEdges = customizableEdges42;
+            btnCreateInvoice.ShadowDecoration.CustomizableEdges = customizableEdges40;
             btnCreateInvoice.Size = new Size(190, 55);
             btnCreateInvoice.TabIndex = 9;
             btnCreateInvoice.Text = "TẠO HÓA ĐƠN";
