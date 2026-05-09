@@ -8,6 +8,7 @@ namespace WinFormsAppTest
         private GroupBox grpMain;
         private Button btnDoanhThu;
         private Button btnTonKho;
+        private Button btnNhapHang;
         private Label lblFlow;
 
         protected override void Dispose(bool disposing)
@@ -24,6 +25,7 @@ namespace WinFormsAppTest
             grpMain = new GroupBox();
             btnDoanhThu = new Button();
             btnTonKho = new Button();
+            btnNhapHang = new Button();
             lblFlow = new Label();
 
             pnlTop.SuspendLayout();
@@ -55,22 +57,30 @@ namespace WinFormsAppTest
             btnDoanhThu.BackColor = Color.FromArgb(198, 40, 40);
             btnDoanhThu.ForeColor = Color.White;
             btnDoanhThu.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnDoanhThu.SetBounds(42, 78, 280, 90);
+            btnDoanhThu.SetBounds(35, 78, 200, 90);
             btnDoanhThu.Click += btnDoanhThu_Click;
 
             btnTonKho.Text = "Tồn kho";
             btnTonKho.BackColor = Color.FromArgb(198, 40, 40);
             btnTonKho.ForeColor = Color.White;
             btnTonKho.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnTonKho.SetBounds(386, 78, 280, 90);
+            btnTonKho.SetBounds(260, 78, 200, 90);
             btnTonKho.Click += btnTonKho_Click;
 
-            lblFlow.Text = "[Báo cáo] → [Doanh thu: chọn thời gian, xem biểu đồ] | [Tồn kho: xem sản phẩm còn/hết]";
-            lblFlow.SetBounds(42, 200, 640, 40);
+            btnNhapHang.Text = "Nhập hàng";
+            btnNhapHang.BackColor = Color.FromArgb(198, 40, 40);
+            btnNhapHang.ForeColor = Color.White;
+            btnNhapHang.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            btnNhapHang.SetBounds(485, 78, 200, 90);
+            btnNhapHang.Click += btnNhapHang_Click;
+
+            lblFlow.Text = "[Báo cáo] → [Doanh thu: xem biểu đồ] | [Tồn kho: xem sản phẩm] | [Nhập hàng: xem nhập]";
+            lblFlow.SetBounds(35, 200, 680, 40);
             lblFlow.ForeColor = Color.FromArgb(97, 97, 97);
 
             grpMain.Controls.Add(btnDoanhThu);
             grpMain.Controls.Add(btnTonKho);
+            grpMain.Controls.Add(btnNhapHang);
             grpMain.Controls.Add(lblFlow);
 
             Controls.Add(grpMain);

@@ -34,6 +34,18 @@ namespace WinFormsAppTest
             form.ShowDialog(this);
         }
 
+        private void btnNhapHang_Click(object sender, EventArgs e)
+        {
+            if (!IsAllowed("Ban hang", "Kho", "Ke toan"))
+            {
+                ShowPermissionDenied();
+                return;
+            }
+
+            using BaoCaoNhapHangForm form = new BaoCaoNhapHangForm();
+            form.ShowDialog(this);
+        }
+
         private bool IsAllowed(params string[] allowedDepartments)
         {
             if (string.Equals(_phongBan, "Ban quan ly", StringComparison.OrdinalIgnoreCase))

@@ -447,7 +447,7 @@ namespace WinFormsAppTest
             cmbChucVu.Font = new Font("Segoe UI", 12F);
             cmbChucVu.ForeColor = Color.FromArgb(68, 88, 112);
             cmbChucVu.ItemHeight = 30;
-            cmbChucVu.Items.AddRange(new object[] { "Giám đốc", "Phó giám đốc", "Quản lý cửa hàng", "Quản lý kho", "Nhân viên" });
+            cmbChucVu.Items.AddRange(new object[] { "Giam doc", "Pho giam doc ", "Quan ly cua hang", "Quan ly kho", "Nhan vien" });
             cmbChucVu.Location = new Point(475, 531);
             cmbChucVu.Name = "cmbChucVu";
             cmbChucVu.ShadowDecoration.CustomizableEdges = customizableEdges26;
@@ -477,7 +477,7 @@ namespace WinFormsAppTest
             cmbPhongBan.Font = new Font("Segoe UI", 12F);
             cmbPhongBan.ForeColor = Color.FromArgb(68, 88, 112);
             cmbPhongBan.ItemHeight = 30;
-            cmbPhongBan.Items.AddRange(new object[] { "Ban quản lý", "Kế toán", "Bán hàng", "Kho" });
+            cmbPhongBan.Items.AddRange(new object[] { "Ban quan ly", "Ke toan", "Ban hang", "Kho" });
             cmbPhongBan.Location = new Point(53, 531);
             cmbPhongBan.Name = "cmbPhongBan";
             cmbPhongBan.ShadowDecoration.CustomizableEdges = customizableEdges28;

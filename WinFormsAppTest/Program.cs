@@ -1,3 +1,5 @@
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
+
 namespace WinFormsAppTest
 {
     internal static class Program
@@ -13,6 +15,7 @@ namespace WinFormsAppTest
             ApplicationConfiguration.Initialize();
             // Start the application with the login form
             Application.Run(new DangNhap());
+            //Application.Run(new Dashboard("levents", "admin", "NV001", "Ban quan ly"));
         }
     }
 }
