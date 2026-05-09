@@ -20,10 +20,8 @@ CREATE TABLE dbo.tai_khoan (
 	ma_tai_khoan      VARCHAR(20) NOT NULL,
 	ten_dang_nhap     VARCHAR(100) NOT NULL,
 	mat_khau          VARCHAR(255) NOT NULL,
-	quyen_han         VARCHAR(30) NOT NULL,
 	CONSTRAINT PK_tai_khoan PRIMARY KEY (ma_tai_khoan),
-	CONSTRAINT UQ_tai_khoan_ten_dang_nhap UNIQUE (ten_dang_nhap),
-	CONSTRAINT CHK_tk_quyen_han CHECK (quyen_han IN ('ADMIN', 'QUAN_LY', 'NHAN_VIEN'))
+	CONSTRAINT UQ_tai_khoan_ten_dang_nhap UNIQUE (ten_dang_nhap)
 );
 GO
 
@@ -46,7 +44,13 @@ CREATE TABLE dbo.nhan_vien (
 		REFERENCES dbo.tai_khoan(ma_tai_khoan)
 		ON UPDATE CASCADE
 		ON DELETE NO ACTION,
-	CONSTRAINT CHK_nv_trang_thai CHECK (trang_thai IN ('ACTIVE', 'INACTIVE'))
+	CONSTRAINT CHK_nv_trang_thai CHECK (trang_thai IN ('ACTIVE', 'INACTIVE')),
+	CONSTRAINT CHK_nv_chuc_vu CHECK (chuc_vu IN (N'Giam doc', N'Quan ly cua hang', N'Nhan vien')),
+	CONSTRAINT CHK_nv_phong_ban CHECK (phong_ban IN (N'Ban quan ly', N'Ban hang', N'Kho', N'Ke toan')),
+	CONSTRAINT CHK_nv_logic_chuc_vu_phong_ban CHECK (
+		(chuc_vu IN (N'Giam doc', N'Quan ly cua hang') AND phong_ban = N'Ban quan ly') OR
+		(chuc_vu = N'Nhan vien' AND phong_ban IN (N'Ban hang', N'Kho', N'Ke toan'))
+	)
 );
 GO
 
@@ -126,20 +130,6 @@ CREATE TABLE dbo.chi_tiet_phieu_nhap (
 	CONSTRAINT CHK_ctpn_gia_nhap CHECK (gia_nhap >= 0),
 	CONSTRAINT CHK_ctpn_thanh_tien CHECK (thanh_tien >= 0)
 );
-GO
-
-CREATE VIEW dbo.v_chi_tiet_phieu_nhap
-AS
-SELECT ct.ma_phieu_nhap,
-	   ct.ma_san_pham,
-	   sp.ten_san_pham,
-	   dm.ten_danh_muc,
-	   ct.so_luong,
-	   ct.gia_nhap,
-	   ct.thanh_tien
-FROM dbo.chi_tiet_phieu_nhap ct
-JOIN dbo.san_pham sp ON sp.ma_san_pham = ct.ma_san_pham
-JOIN dbo.danh_muc_san_pham dm ON dm.ma_danh_muc = sp.ma_danh_muc;
 GO
 
 CREATE TABLE dbo.giam_gia (
@@ -227,4 +217,18 @@ CREATE INDEX IX_hd_ma_nhan_vien ON dbo.hoa_don(ma_nhan_vien);
 CREATE INDEX IX_hd_ma_khach_hang ON dbo.hoa_don(ma_khach_hang);
 CREATE INDEX IX_hd_ma_giam_gia ON dbo.hoa_don(ma_giam_gia);
 CREATE INDEX IX_cthd_ma_san_pham ON dbo.chi_tiet_hoa_don(ma_san_pham);
+GO
+
+CREATE VIEW dbo.v_chi_tiet_phieu_nhap
+AS
+SELECT ct.ma_phieu_nhap,
+	   ct.ma_san_pham,
+	   sp.ten_san_pham,
+	   dm.ten_danh_muc,
+	   ct.so_luong,
+	   ct.gia_nhap,
+	   ct.thanh_tien
+FROM dbo.chi_tiet_phieu_nhap ct
+JOIN dbo.san_pham sp ON sp.ma_san_pham = ct.ma_san_pham
+JOIN dbo.danh_muc_san_pham dm ON dm.ma_danh_muc = sp.ma_danh_muc;
 GO

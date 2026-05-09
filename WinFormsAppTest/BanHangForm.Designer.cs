@@ -19,7 +19,7 @@ namespace WinFormsAppTest
         private Guna2Button btnClearCart;
         private Guna2GroupBox grpCheckout;
         private Guna2ComboBox cmbCustomer;
-        private Guna2TextBox txtDiscountCode;
+        private Guna2ComboBox cmbDiscount;
         private Guna2Button btnApplyDiscount;
         private Guna2HtmlLabel lblSubTotal;
         private Guna2HtmlLabel lblDiscount;
@@ -127,7 +127,7 @@ namespace WinFormsAppTest
             lblChange = new Guna2HtmlLabel();
             _lblChangeValue = new Guna2HtmlLabel();
             cmbCustomer = new Guna2ComboBox();
-            txtDiscountCode = new Guna2TextBox();
+            cmbDiscount = new Guna2ComboBox();
             btnApplyDiscount = new Guna2Button();
             lblSubTotal = new Guna2HtmlLabel();
             lblSubTotalValue = new Guna2HtmlLabel();
@@ -491,7 +491,7 @@ namespace WinFormsAppTest
             grpCheckout.Controls.Add(lblChange);
             grpCheckout.Controls.Add(_lblChangeValue);
             grpCheckout.Controls.Add(cmbCustomer);
-            grpCheckout.Controls.Add(txtDiscountCode);
+            grpCheckout.Controls.Add(cmbDiscount);
             grpCheckout.Controls.Add(btnApplyDiscount);
             grpCheckout.Controls.Add(lblSubTotal);
             grpCheckout.Controls.Add(lblSubTotalValue);
@@ -636,19 +636,24 @@ namespace WinFormsAppTest
             cmbCustomer.Size = new Size(280, 36);
             cmbCustomer.TabIndex = 0;
             // 
-            // txtDiscountCode
+            // cmbDiscount
             // 
-            txtDiscountCode.CustomizableEdges = customizableEdges37;
-            txtDiscountCode.DefaultText = "";
-            txtDiscountCode.Font = new Font("Segoe UI", 9F);
-            txtDiscountCode.Location = new Point(20, 106);
-            txtDiscountCode.Margin = new Padding(3, 4, 3, 4);
-            txtDiscountCode.Name = "txtDiscountCode";
-            txtDiscountCode.PlaceholderText = "Mã giảm giá...";
-            txtDiscountCode.SelectedText = "";
-            txtDiscountCode.ShadowDecoration.CustomizableEdges = customizableEdges38;
-            txtDiscountCode.Size = new Size(285, 36);
-            txtDiscountCode.TabIndex = 1;
+            cmbDiscount.BackColor = Color.Transparent;
+            cmbDiscount.BorderRadius = 10;
+            cmbDiscount.CustomizableEdges = customizableEdges19;
+            cmbDiscount.DrawMode = DrawMode.OwnerDrawFixed;
+            cmbDiscount.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbDiscount.FocusedColor = Color.FromArgb(255, 167, 38);
+            cmbDiscount.FocusedState.BorderColor = Color.FromArgb(255, 167, 38);
+            cmbDiscount.Font = new Font("Segoe UI", 10F);
+            cmbDiscount.ForeColor = Color.FromArgb(68, 88, 112);
+            cmbDiscount.ItemHeight = 30;
+            cmbDiscount.Location = new Point(310, 45);
+            cmbDiscount.Name = "cmbDiscount";
+            cmbDiscount.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            cmbDiscount.Size = new Size(170, 36);
+            cmbDiscount.TabIndex = 1;
+            cmbDiscount.SelectedIndexChanged += cmbDiscount_SelectedIndexChanged;
             // 
             // btnApplyDiscount
             // 

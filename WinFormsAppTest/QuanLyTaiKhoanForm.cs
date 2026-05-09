@@ -15,8 +15,7 @@ namespace WinFormsAppTest
             DataTable dt = new DataTable();
             dt.Columns.Add("ma_tai_khoan");
             dt.Columns.Add("ten_dang_nhap");
-            dt.Columns.Add("quyen_han");
-            dt.Rows.Add("TK01", "admin", "ADMIN");
+            dt.Rows.Add("TK01", "admin");
             _dgv.DataSource = dt;
         }
 

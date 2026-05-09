@@ -11,6 +11,7 @@ namespace WinFormsAppTest
         private readonly string _connectionString = DatabaseConfig.ConnectionString;
         private string _maNhanVien;
         private readonly DataTable _cartTable = new();
+        private bool _isInitialLoading = true;
 
         private DataTable? _productsTable;
         private string? _appliedDiscountCode;
@@ -31,6 +32,7 @@ namespace WinFormsAppTest
             InitializeCartTable();
             LoadProducts();
             LoadCustomers();
+            LoadDiscounts();
 
             ConfigureGrids();
             SetupShortcuts();
@@ -40,6 +42,7 @@ namespace WinFormsAppTest
             MinimumSize = new Size(1200, 760);
 
             UpdateTotals();
+            _isInitialLoading = false;
         }
 
         #region Setup
@@ -82,12 +85,15 @@ namespace WinFormsAppTest
             KeyPreview = true;
             KeyDown += BanHangForm_KeyDown;
 
-            txtDiscountCode.KeyDown += (_, e) =>
+            txtSearch.KeyDown += (_, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
                 {
-                    btnApplyDiscount.PerformClick();
-                    e.SuppressKeyPress = true;
+                    if (dgvProducts.Rows.Count > 0)
+                    {
+                        AddCurrentProductToCart((int)numQuantity.Value);
+                        e.SuppressKeyPress = true;
+                    }
                 }
             };
         }
@@ -161,6 +167,36 @@ namespace WinFormsAppTest
             {
                 cmbCustomer.SelectedIndex = 0;
             }
+        }
+
+        private void LoadDiscounts()
+        {
+            const string query = """
+                SELECT ma_giam_gia, 
+                       CASE 
+                           WHEN phan_tram_giam > 0 THEN ma_giam_gia + ' (' + CAST(CAST(phan_tram_giam AS float) AS varchar) + ' %)'
+                           ELSE ma_giam_gia + ' (' + FORMAT(so_tien_giam, 'N0') + ' đ)'
+                       END AS hien_thi
+                FROM giam_gia
+                WHERE trang_thai = 'ACTIVE'
+                  AND SYSDATETIME() BETWEEN ngay_bat_dau AND ngay_ket_thuc
+                ORDER BY ma_giam_gia;
+                """;
+
+            using SqlConnection conn = new(_connectionString);
+            using SqlDataAdapter da = new(query, conn);
+            DataTable dt = new();
+            da.Fill(dt);
+
+            DataRow none = dt.NewRow();
+            none["ma_giam_gia"] = "";
+            none["hien_thi"] = "-- Không áp dụng --";
+            dt.Rows.InsertAt(none, 0);
+
+            cmbDiscount.DisplayMember = "hien_thi";
+            cmbDiscount.ValueMember = "ma_giam_gia";
+            cmbDiscount.DataSource = dt;
+            cmbDiscount.SelectedIndex = 0;
         }
 
         #endregion
@@ -299,7 +335,15 @@ namespace WinFormsAppTest
 
         private void btnApplyDiscount_Click(object sender, EventArgs e)
         {
-            ApplyDiscount(txtDiscountCode.Text.Trim());
+            ApplyDiscount(cmbDiscount.SelectedValue?.ToString() ?? string.Empty);
+        }
+
+        private void cmbDiscount_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (!_isInitialLoading && cmbDiscount.SelectedIndex >= 0)
+            {
+                ApplyDiscount(cmbDiscount.SelectedValue?.ToString() ?? string.Empty);
+            }
         }
 
         private void ApplyDiscount(string code)
@@ -360,7 +404,7 @@ namespace WinFormsAppTest
             _discountAmount = 0;
             _discountPercent = 0;
             _discountFixed = 0;
-            txtDiscountCode.Clear();
+            if (cmbDiscount.Items.Count > 0) cmbDiscount.SelectedIndex = 0;
         }
 
         #endregion
@@ -542,7 +586,10 @@ namespace WinFormsAppTest
             _appliedDiscountCode = bill.DiscountCode;
             _discountPercent = bill.DiscountPercent;
             _discountFixed = bill.DiscountFixed;
-            txtDiscountCode.Text = bill.DiscountCode ?? string.Empty;
+            if (!string.IsNullOrWhiteSpace(bill.DiscountCode))
+                cmbDiscount.SelectedValue = bill.DiscountCode;
+            else
+                cmbDiscount.SelectedIndex = 0;
 
             _txtCashReceived.Text = bill.CashText;
 
@@ -888,7 +935,7 @@ namespace WinFormsAppTest
         {
             if (e.KeyCode == Keys.F2)
             {
-                txtDiscountCode.Focus();
+                cmbDiscount.Focus();
                 e.SuppressKeyPress = true;
             }
             else if (e.KeyCode == Keys.F4)
