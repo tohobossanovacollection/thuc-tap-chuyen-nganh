@@ -18,24 +18,6 @@ namespace WinFormsAppTest
         private decimal _discountPercent;
         private decimal _discountFixed;
 
-        // Advanced dynamic controls
-        private Guna2TextBox? _txtBarcode;
-        private Guna2Button? _btnScanBarcode;
-
-        private Guna2Button? _btnHoldBill;
-        private Guna2Button? _btnResumeBill;
-        private TabControl? _tabHeldBills;
-
-        private Guna2TextBox? _txtCustomerPhone;
-        private Guna2Button? _btnFindCustomer;
-        private Guna2Button? _btnQuickCustomer;
-
-        private Guna2TextBox? _txtCashReceived;
-        private Guna2HtmlLabel? _lblChangeValue;
-
-        private Guna2Button? _btnPrintK80;
-        private Guna2Button? _btnPrintA5;
-
         private PrintInvoiceSnapshot? _lastInvoiceSnapshot;
 
         public BanHangForm(string maNhanVien)
@@ -43,19 +25,19 @@ namespace WinFormsAppTest
             InitializeComponent();
             _maNhanVien = maNhanVien;
         }
-                                                                                                                                                                                                                
+
         private void BanHangForm_Load(object sender, EventArgs e)
         {
             InitializeCartTable();
             LoadProducts();
             LoadCustomers();
 
-            BuildAdvancedUi();
             ConfigureGrids();
             SetupShortcuts();
+            EventHandledControls();
 
-            ConfigureResponsiveBehavior();
-            ApplyResponsiveLayout();
+            FormBorderStyle = FormBorderStyle.Sizable;
+            MinimumSize = new Size(1200, 760);
 
             UpdateTotals();
         }
@@ -110,14 +92,8 @@ namespace WinFormsAppTest
             };
         }
 
-        private void BuildAdvancedUi()
+        private void EventHandledControls()
         {
-            // Barcode controls
-            _txtBarcode = new Guna2TextBox
-            {
-                PlaceholderText = "Quét / nhập mã sản phẩm...",
-                BorderRadius = 8
-            };
             _txtBarcode.KeyDown += (_, e) =>
             {
                 if (e.KeyCode == Keys.Enter)
@@ -127,202 +103,12 @@ namespace WinFormsAppTest
                 }
             };
 
-            _btnScanBarcode = new Guna2Button
-            {
-                Text = "Quét",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(255, 167, 38),
-                ForeColor = Color.Black
-            };
             _btnScanBarcode.Click += (_, _) => ScanBarcodeAndAdd();
-
-            grpProducts.Controls.Add(_txtBarcode);
-            grpProducts.Controls.Add(_btnScanBarcode);
-
-            // Hold/Resume controls
-            _btnHoldBill = new Guna2Button
-            {
-                Text = "Giữ bill (F8)",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(255, 167, 38),
-                ForeColor = Color.Black
-            };
             _btnHoldBill.Click += (_, _) => HoldCurrentBill();
-
-            _btnResumeBill = new Guna2Button
-            {
-                Text = "Gọi lại bill",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(198, 40, 40),
-                ForeColor = Color.White
-            };
             _btnResumeBill.Click += (_, _) => ResumeSelectedBill();
-
-            _tabHeldBills = new TabControl();
-
-            grpCart.Controls.Add(_btnHoldBill);
-            grpCart.Controls.Add(_btnResumeBill);
-            grpCart.Controls.Add(_tabHeldBills);
-
-            // Customer quick controls
-            _txtCustomerPhone = new Guna2TextBox
-            {
-                PlaceholderText = "SĐT khách...",
-                BorderRadius = 8
-            };
-
-            _btnFindCustomer = new Guna2Button
-            {
-                Text = "Tìm SĐT",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(255, 167, 38),
-                ForeColor = Color.Black
-            };
             _btnFindCustomer.Click += (_, _) => FindCustomerByPhone();
-
-            _btnQuickCustomer = new Guna2Button
-            {
-                Text = "Thêm KH nhanh",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(211, 47, 47),
-                ForeColor = Color.White
-            };
             _btnQuickCustomer.Click += (_, _) => QuickCreateCustomer();
-
-            grpCheckout.Controls.Add(_txtCustomerPhone);
-            grpCheckout.Controls.Add(_btnFindCustomer);
-            grpCheckout.Controls.Add(_btnQuickCustomer);
-
-            // Cash and change
-            Guna2HtmlLabel lblCash = new() { BackColor = Color.Transparent, Text = "Tiền khách đưa:" };
-            _txtCashReceived = new Guna2TextBox { PlaceholderText = "0", BorderRadius = 8 };
             _txtCashReceived.TextChanged += (_, _) => UpdateTotals();
-
-            Guna2HtmlLabel lblChange = new() { BackColor = Color.Transparent, Text = "Tiền thừa:" };
-            _lblChangeValue = new Guna2HtmlLabel
-            {
-                BackColor = Color.Transparent,
-                Text = "0 đ",
-                Font = new Font("Segoe UI", 12F, FontStyle.Bold),
-                ForeColor = Color.FromArgb(27, 94, 32)
-            };
-
-            grpCheckout.Controls.Add(lblCash);
-            grpCheckout.Controls.Add(_txtCashReceived);
-            grpCheckout.Controls.Add(lblChange);
-            grpCheckout.Controls.Add(_lblChangeValue);
-
-            lblCash.Name = "lblCash";
-            lblChange.Name = "lblChange";
-
-            // Print buttons
-            _btnPrintK80 = new Guna2Button
-            {
-                Text = "In K80",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(97, 97, 97),
-                ForeColor = Color.White
-            };
-            _btnPrintK80.Click += (_, _) => PrintInvoice("K80");
-
-            _btnPrintA5 = new Guna2Button
-            {
-                Text = "In A5",
-                BorderRadius = 8,
-                FillColor = Color.FromArgb(97, 97, 97),
-                ForeColor = Color.White
-            };
-            _btnPrintA5.Click += (_, _) => PrintInvoice("A5");
-
-            grpCheckout.Controls.Add(_btnPrintK80);
-            grpCheckout.Controls.Add(_btnPrintA5);
-        }
-
-        private void ConfigureResponsiveBehavior()
-        {
-            FormBorderStyle = FormBorderStyle.Sizable;
-            MinimumSize = new Size(1200, 760);
-            Resize += (_, _) => ApplyResponsiveLayout();
-        }
-
-        private void ApplyResponsiveLayout()
-        {
-            const int margin = 12;
-            int top = pnlHeader.Bottom + margin;
-            int contentHeight = ClientSize.Height - top - margin;
-            int leftWidth = (int)(ClientSize.Width * 0.50) - (margin * 2);
-            if (leftWidth < 520) leftWidth = 520;
-
-            grpProducts.SetBounds(margin, top, leftWidth, contentHeight);
-
-            int rightX = grpProducts.Right + margin;
-            int rightWidth = ClientSize.Width - rightX - margin;
-            int cartHeight = (int)(contentHeight * 0.58);
-
-            grpCart.SetBounds(rightX, top, rightWidth, cartHeight);
-            grpCheckout.SetBounds(rightX, grpCart.Bottom + margin, rightWidth, contentHeight - cartHeight - margin);
-
-            // Products layout
-            txtSearch.SetBounds(15, 45, grpProducts.Width - 190, 36);
-            numQuantity.SetBounds(txtSearch.Right + 8, 45, 70, 36);
-            btnAddToCart.SetBounds(numQuantity.Right + 8, 45, 75, 36);
-
-            _txtBarcode?.SetBounds(15, 86, grpProducts.Width - 190, 36);
-            _btnScanBarcode?.SetBounds((_txtBarcode?.Right ?? 0) + 8, 86, 151, 36);
-
-            dgvProducts.SetBounds(15, 128, grpProducts.Width - 30, grpProducts.Height - 143);
-
-            // Cart layout
-            int cartGridHeight = grpCart.Height - 165;
-            if (cartGridHeight < 180) cartGridHeight = 180;
-            dgvCart.SetBounds(15, 45, grpCart.Width - 30, cartGridHeight);
-
-            int actionY = dgvCart.Bottom + 8;
-            btnRemoveItem.SetBounds(15, actionY, 120, 34);
-            btnClearCart.SetBounds(btnRemoveItem.Right + 8, actionY, 130, 34);
-            _btnHoldBill?.SetBounds(btnClearCart.Right + 8, actionY, 130, 34);
-            _btnResumeBill?.SetBounds((_btnHoldBill?.Right ?? 0) + 8, actionY, 130, 34);
-
-            _tabHeldBills?.SetBounds(15, actionY + 40, grpCart.Width - 30, grpCart.Height - (actionY + 50));
-            if (_tabHeldBills is not null && _tabHeldBills.Height < 50)
-            {
-                _tabHeldBills.Visible = false;
-            }
-            else if (_tabHeldBills is not null)
-            {
-                _tabHeldBills.Visible = true;
-            }
-
-            // Checkout layout
-            int y1 = 45;
-            cmbCustomer.SetBounds(20, y1, 220, 36);
-            _txtCustomerPhone?.SetBounds(cmbCustomer.Right + 8, y1, 120, 36);
-            _btnFindCustomer?.SetBounds((_txtCustomerPhone?.Right ?? 0) + 8, y1, 90, 36);
-            _btnQuickCustomer?.SetBounds((_btnFindCustomer?.Right ?? 0) + 8, y1, 130, 36);
-
-            int y2 = 88;
-            txtDiscountCode.SetBounds(20, y2, 180, 36);
-            btnApplyDiscount.SetBounds(txtDiscountCode.Right + 8, y2, 90, 36);
-
-            Control? lblCash = grpCheckout.Controls["lblCash"];
-            Control? lblChange = grpCheckout.Controls["lblChange"];
-            lblCash?.SetBounds(320, y2 + 4, 95, 24);
-            _txtCashReceived?.SetBounds(420, y2, 160, 30);
-            lblChange?.SetBounds(320, y2 + 34, 80, 24);
-            _lblChangeValue?.SetBounds(420, y2 + 30, 160, 28);
-
-            lblSubTotal.SetBounds(20, 132, 90, 24);
-            lblSubTotalValue.SetBounds(130, 132, 170, 24);
-
-            lblDiscount.SetBounds(20, 158, 90, 24);
-            lblDiscountValue.SetBounds(130, 158, 170, 24);
-
-            lblFinalTotal.SetBounds(20, 186, 95, 24);
-            lblFinalTotalValue.SetBounds(130, 180, 180, 32);
-
-            btnCreateInvoice.SetBounds(grpCheckout.Width - 205, 148, 190, 55);
-            _btnPrintK80?.SetBounds(btnCreateInvoice.Left - 186, 148, 86, 55);
-            _btnPrintA5?.SetBounds(btnCreateInvoice.Left - 94, 148, 86, 55);
         }
 
         #endregion
@@ -452,7 +238,6 @@ namespace WinFormsAppTest
 
         private void ScanBarcodeAndAdd()
         {
-            if (_txtBarcode is null) return;
             string code = _txtBarcode.Text.Trim();
             if (string.IsNullOrWhiteSpace(code)) return;
 
@@ -584,7 +369,7 @@ namespace WinFormsAppTest
 
         private void FindCustomerByPhone()
         {
-            string phone = _txtCustomerPhone?.Text.Trim() ?? string.Empty;
+            string phone = _txtCustomerPhone.Text.Trim();
             if (string.IsNullOrWhiteSpace(phone))
             {
                 MessageBox.Show("Nhập số điện thoại khách.");
@@ -615,7 +400,7 @@ namespace WinFormsAppTest
 
         private void QuickCreateCustomer()
         {
-            (string name, string phone)? data = ShowQuickCustomerDialog(_txtCustomerPhone?.Text);
+            (string name, string phone)? data = ShowQuickCustomerDialog(_txtCustomerPhone.Text);
             if (data is null) return;
 
             string maKh = $"KH{DateTime.Now:yyyyMMddHHmmssfff}";
@@ -636,7 +421,7 @@ namespace WinFormsAppTest
                 cmd.ExecuteNonQuery();
 
                 LoadCustomers(maKh);
-                if (_txtCustomerPhone is not null) _txtCustomerPhone.Text = data.Value.phone;
+                _txtCustomerPhone.Text = data.Value.phone;
 
                 MessageBox.Show("Thêm khách hàng nhanh thành công.");
             }
@@ -698,8 +483,6 @@ namespace WinFormsAppTest
                 return;
             }
 
-            if (_tabHeldBills is null) return;
-
             PendingBill bill = CaptureCurrentBill();
 
             TabPage page = new($"Bill {_tabHeldBills.TabPages.Count + 1}") { Tag = bill };
@@ -712,7 +495,7 @@ namespace WinFormsAppTest
 
         private void ResumeSelectedBill()
         {
-            if (_tabHeldBills is null || _tabHeldBills.SelectedTab is null)
+            if (_tabHeldBills.SelectedTab is null)
             {
                 MessageBox.Show("Không có bill tạm được chọn.");
                 return;
@@ -739,7 +522,7 @@ namespace WinFormsAppTest
                 DiscountCode: _appliedDiscountCode,
                 DiscountPercent: _discountPercent,
                 DiscountFixed: _discountFixed,
-                CashText: _txtCashReceived?.Text ?? string.Empty
+                CashText: _txtCashReceived.Text ?? string.Empty
             );
         }
 
@@ -761,8 +544,7 @@ namespace WinFormsAppTest
             _discountFixed = bill.DiscountFixed;
             txtDiscountCode.Text = bill.DiscountCode ?? string.Empty;
 
-            if (_txtCashReceived is not null)
-                _txtCashReceived.Text = bill.CashText;
+            _txtCashReceived.Text = bill.CashText;
 
             UpdateTotals();
         }
@@ -772,7 +554,7 @@ namespace WinFormsAppTest
             _cartTable.Clear();
             cmbCustomer.SelectedIndex = 0;
             ClearDiscount();
-            if (_txtCashReceived is not null) _txtCashReceived.Clear();
+            _txtCashReceived.Clear();
             UpdateTotals();
         }
 
@@ -797,7 +579,7 @@ namespace WinFormsAppTest
             decimal giamGia = _discountAmount;
             decimal thanhTienCuoi = tongTien - giamGia;
 
-            decimal cash = ParseMoney(_txtCashReceived?.Text);
+            decimal cash = ParseMoney(_txtCashReceived.Text);
             if (cash < thanhTienCuoi)
             {
                 MessageBox.Show("Tiền khách đưa chưa đủ.");
@@ -1081,10 +863,9 @@ namespace WinFormsAppTest
             lblDiscountValue.Text = $"{_discountAmount:N0} đ";
             lblFinalTotalValue.Text = $"{finalTotal:N0} đ";
 
-            decimal cash = ParseMoney(_txtCashReceived?.Text);
+            decimal cash = ParseMoney(_txtCashReceived.Text);
             decimal change = Math.Max(0, cash - finalTotal);
-            if (_lblChangeValue is not null)
-                _lblChangeValue.Text = $"{change:N0} đ";
+            _lblChangeValue.Text = $"{change:N0} đ";
         }
 
         private static decimal ParseMoney(string? input)
@@ -1133,6 +914,11 @@ namespace WinFormsAppTest
         }
 
         #endregion
+
+        private void grpCheckout_Click(object sender, EventArgs e)
+        {
+
+        }
 
         private sealed record PendingBill(
             DataTable Cart,

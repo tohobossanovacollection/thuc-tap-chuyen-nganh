@@ -18,6 +18,8 @@ namespace WinFormsAppTest
             dt.Rows.Add("DM01", "Nước uống");
             dt.Rows.Add("DM02", "Đồ ăn nhanh");
             _dgv.DataSource = dt;
+            _dgv.Dock = DockStyle.Fill;
+            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnThem_Click(object sender, EventArgs e)

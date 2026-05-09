@@ -182,12 +182,10 @@ namespace WinFormsAppTest
 
             const string query = """
                 SELECT ma_san_pham,
-                       ten_san_pham,
-                       ten_danh_muc,
                        so_luong,
                        gia_nhap,
                        thanh_tien
-                FROM v_chi_tiet_phieu_nhap
+                FROM chi_tiet_phieu_nhap
                 WHERE ma_phieu_nhap = @maPhieu
                 ORDER BY ma_san_pham;
                 """;

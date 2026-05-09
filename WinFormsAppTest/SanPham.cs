@@ -14,7 +14,7 @@ namespace WinFormsAppTest
         {
             InitializeComponent();
             Text = "Cập nhật sản phẩm";
-
+            lblTitle.Text = "Cập nhật thông tin sản phẩm";
             txtMaSanPham.Text = existing.MaSanPham;
             txtTenSanPham.Text = existing.TenSanPham;
             txtDanhMuc.Text = existing.DanhMuc;

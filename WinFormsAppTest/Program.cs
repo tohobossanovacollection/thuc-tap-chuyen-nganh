@@ -14,8 +14,8 @@ namespace WinFormsAppTest
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
             // Start the application with the login form
-            Application.Run(new DangNhap());
-            //Application.Run(new Dashboard("levents", "admin", "NV001", "Ban quan ly"));
+            //Application.Run(new DangNhap());
+            Application.Run(new Dashboard("levents", "admin", "NV001", "Ban quan ly"));
         }
     }
 }
