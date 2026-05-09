@@ -55,10 +55,9 @@ namespace WinFormsAppTest
                     string username = txtUsername.Text.Trim();
                     string password = txtPassword.Text;
                     string chucVu = cmbChucVu.SelectedItem?.ToString() ?? "";
-                    string roleCode = MapRoleCode(chucVu);
                     string accountId = GenerateAccountId();
 
-                    if (!InsertAccount(connection, transaction, accountId, username, password, roleCode))
+                    if (!InsertAccount(connection, transaction, accountId, username, password))
                     {
                         transaction.Rollback();
                         MessageBox.Show("Không thể tạo tài khoản. Vui lòng kiểm tra lại cấu trúc bảng tai_khoan.", "Lỗi",
@@ -174,14 +173,13 @@ namespace WinFormsAppTest
             return count > 0;
         }
 
-        private static bool InsertAccount(SqlConnection connection, SqlTransaction transaction, string accountId, string username, string password, string roleCode)
+        private static bool InsertAccount(SqlConnection connection, SqlTransaction transaction, string accountId, string username, string password)
         {
-            const string query = "INSERT INTO tai_khoan (ma_tai_khoan, ten_dang_nhap, mat_khau, quyen_han) VALUES (@accountId, @username, @password, @roleCode)";
+            const string query = "INSERT INTO tai_khoan (ma_tai_khoan, ten_dang_nhap, mat_khau) VALUES (@accountId, @username, @password)";
             using SqlCommand command = new SqlCommand(query, connection, transaction);
             command.Parameters.AddWithValue("@accountId", accountId);
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
-            command.Parameters.AddWithValue("@roleCode", roleCode);
             return command.ExecuteNonQuery() > 0;
         }
 
@@ -214,18 +212,7 @@ namespace WinFormsAppTest
             return $"NV{DateTime.Now:MMddHHmmssfff}";
         }
 
-        private static string MapRoleCode(string? chucVu)
-        {
-            if (string.IsNullOrWhiteSpace(chucVu)) return string.Empty;
-            
-            if (chucVu == "Giám đốc" || chucVu == "Phó giám đốc")
-                return "ADMIN";
-            
-            if (chucVu == "Quản lý cửa hàng" || chucVu == "Quản lý kho")
-                return "QUAN_LY";
-                
-            return "NHAN_VIEN";
-        }
+
 
         private void guna2HtmlLabel1_Click(object sender, EventArgs e)
         {

@@ -49,33 +49,33 @@ namespace WinFormsAppTest
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges27 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges28 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Guna.UI2.WinForms.Guna2Panel();
-            picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
-            guna2HtmlLabel1 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             pnlRight = new Guna.UI2.WinForms.Guna2Panel();
-            btnBack = new Guna.UI2.WinForms.Guna2Button();
-            btnCreateAccount = new Guna.UI2.WinForms.Guna2Button();
-            dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            lblNgaySinh = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            lblConfirmPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
-            lblPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
+            lblUsername = new Label();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
-            lblUsername = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblHoTen = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblTitle = new Label();
+            lblHoTen = new Label();
             txtHoTen = new Guna.UI2.WinForms.Guna2TextBox();
-            lblDiaChi = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblDiaChi = new Label();
             txtDiaChi = new Guna.UI2.WinForms.Guna2TextBox();
-            lblSoDienThoai = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblSoDienThoai = new Label();
             txtSoDienThoai = new Guna.UI2.WinForms.Guna2TextBox();
-            lblEmail = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblEmail = new Label();
             txtEmail = new Guna.UI2.WinForms.Guna2TextBox();
-            lblChucVu = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblChucVu = new Label();
             cmbChucVu = new Guna.UI2.WinForms.Guna2ComboBox();
-            lblPhongBan = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblPhongBan = new Label();
             cmbPhongBan = new Guna.UI2.WinForms.Guna2ComboBox();
+            guna2HtmlLabel1 = new Label();
+            lblSubTitle = new Label();
+            lblNgaySinh = new Label();
+            dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            lblConfirmPassword = new Label();
+            txtConfirmPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            lblPassword = new Label();
+            txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
+            btnCreateAccount = new Guna.UI2.WinForms.Guna2Button();
+            btnBack = new Guna.UI2.WinForms.Guna2Button();
             pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlRight.SuspendLayout();
@@ -111,27 +111,25 @@ namespace WinFormsAppTest
             // 
             // guna2HtmlLabel1
             // 
+            guna2HtmlLabel1.AutoSize = true;
             guna2HtmlLabel1.BackColor = Color.Transparent;
             guna2HtmlLabel1.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             guna2HtmlLabel1.ForeColor = Color.Yellow;
             guna2HtmlLabel1.Location = new Point(64, 207);
             guna2HtmlLabel1.Name = "guna2HtmlLabel1";
-            guna2HtmlLabel1.Size = new Size(234, 59);
             guna2HtmlLabel1.TabIndex = 4;
             guna2HtmlLabel1.Text = "WinMart+";
-            guna2HtmlLabel1.Click += guna2HtmlLabel1_Click;
             // 
             // lblSubTitle
             // 
+            lblSubTitle.AutoSize = true;
             lblSubTitle.BackColor = Color.Transparent;
             lblSubTitle.Font = new Font("Cambria", 13.8F);
             lblSubTitle.ForeColor = Color.White;
             lblSubTitle.Location = new Point(82, 272);
             lblSubTitle.Name = "lblSubTitle";
-            lblSubTitle.Size = new Size(180, 29);
             lblSubTitle.TabIndex = 1;
             lblSubTitle.Text = "Tạo tài khoản mới";
-            lblSubTitle.Click += lblSubTitle_Click;
             // 
             // pnlRight
             // 
@@ -218,12 +216,12 @@ namespace WinFormsAppTest
             // 
             // lblNgaySinh
             // 
+            lblNgaySinh.AutoSize = true;
             lblNgaySinh.BackColor = Color.Transparent;
             lblNgaySinh.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblNgaySinh.ForeColor = Color.FromArgb(97, 97, 97);
             lblNgaySinh.Location = new Point(53, 411);
             lblNgaySinh.Name = "lblNgaySinh";
-            lblNgaySinh.Size = new Size(93, 25);
             lblNgaySinh.TabIndex = 7;
             lblNgaySinh.Text = "Ngày Sinh";
             // 
@@ -246,12 +244,12 @@ namespace WinFormsAppTest
             // 
             // lblConfirmPassword
             // 
+            lblConfirmPassword.AutoSize = true;
             lblConfirmPassword.BackColor = Color.Transparent;
             lblConfirmPassword.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblConfirmPassword.ForeColor = Color.FromArgb(97, 97, 97);
             lblConfirmPassword.Location = new Point(53, 322);
             lblConfirmPassword.Name = "lblConfirmPassword";
-            lblConfirmPassword.Size = new Size(180, 25);
             lblConfirmPassword.TabIndex = 5;
             lblConfirmPassword.Text = "Xác Nhận Mật Khẩu";
             // 
@@ -274,12 +272,12 @@ namespace WinFormsAppTest
             // 
             // lblPassword
             // 
+            lblPassword.AutoSize = true;
             lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblPassword.ForeColor = Color.FromArgb(97, 97, 97);
             lblPassword.Location = new Point(53, 233);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(91, 25);
             lblPassword.TabIndex = 3;
             lblPassword.Text = "Mật Khẩu";
             // 
@@ -300,34 +298,34 @@ namespace WinFormsAppTest
             // 
             // lblUsername
             // 
+            lblUsername.AutoSize = true;
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblUsername.ForeColor = Color.FromArgb(97, 97, 97);
             lblUsername.Location = new Point(53, 142);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(143, 25);
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Tên Đăng Nhập";
             // 
             // lblTitle
             // 
+            lblTitle.AutoSize = true;
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cambria", 32F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(191, 54, 12);
             lblTitle.Location = new Point(57, 48);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(205, 64);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Đăng Ký";
             // 
             // lblHoTen
             // 
+            lblHoTen.AutoSize = true;
             lblHoTen.BackColor = Color.Transparent;
             lblHoTen.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblHoTen.ForeColor = Color.FromArgb(97, 97, 97);
             lblHoTen.Location = new Point(475, 142);
             lblHoTen.Name = "lblHoTen";
-            lblHoTen.Size = new Size(94, 25);
             lblHoTen.TabIndex = 11;
             lblHoTen.Text = "Họ và Tên";
             // 
@@ -348,12 +346,12 @@ namespace WinFormsAppTest
             // 
             // lblDiaChi
             // 
+            lblDiaChi.AutoSize = true;
             lblDiaChi.BackColor = Color.Transparent;
             lblDiaChi.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblDiaChi.ForeColor = Color.FromArgb(97, 97, 97);
             lblDiaChi.Location = new Point(475, 233);
             lblDiaChi.Name = "lblDiaChi";
-            lblDiaChi.Size = new Size(67, 25);
             lblDiaChi.TabIndex = 13;
             lblDiaChi.Text = "Địa Chỉ";
             // 
@@ -374,12 +372,12 @@ namespace WinFormsAppTest
             // 
             // lblSoDienThoai
             // 
+            lblSoDienThoai.AutoSize = true;
             lblSoDienThoai.BackColor = Color.Transparent;
             lblSoDienThoai.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblSoDienThoai.ForeColor = Color.FromArgb(97, 97, 97);
             lblSoDienThoai.Location = new Point(475, 322);
             lblSoDienThoai.Name = "lblSoDienThoai";
-            lblSoDienThoai.Size = new Size(128, 25);
             lblSoDienThoai.TabIndex = 15;
             lblSoDienThoai.Text = "Số Điện Thoại";
             // 
@@ -400,12 +398,12 @@ namespace WinFormsAppTest
             // 
             // lblEmail
             // 
+            lblEmail.AutoSize = true;
             lblEmail.BackColor = Color.Transparent;
             lblEmail.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(97, 97, 97);
             lblEmail.Location = new Point(475, 411);
             lblEmail.Name = "lblEmail";
-            lblEmail.Size = new Size(56, 25);
             lblEmail.TabIndex = 17;
             lblEmail.Text = "Email";
             // 
@@ -426,12 +424,12 @@ namespace WinFormsAppTest
             // 
             // lblChucVu
             // 
+            lblChucVu.AutoSize = true;
             lblChucVu.BackColor = Color.Transparent;
             lblChucVu.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblChucVu.ForeColor = Color.FromArgb(97, 97, 97);
             lblChucVu.Location = new Point(475, 500);
             lblChucVu.Name = "lblChucVu";
-            lblChucVu.Size = new Size(78, 25);
             lblChucVu.TabIndex = 19;
             lblChucVu.Text = "Chức Vụ";
             // 
@@ -447,7 +445,7 @@ namespace WinFormsAppTest
             cmbChucVu.Font = new Font("Segoe UI", 12F);
             cmbChucVu.ForeColor = Color.FromArgb(68, 88, 112);
             cmbChucVu.ItemHeight = 30;
-            cmbChucVu.Items.AddRange(new object[] { "Giam doc", "Pho giam doc ", "Quan ly cua hang", "Quan ly kho", "Nhan vien" });
+            cmbChucVu.Items.AddRange(new object[] { "Giam doc", "Quan ly cua hang", "Nhan vien" });
             cmbChucVu.Location = new Point(475, 531);
             cmbChucVu.Name = "cmbChucVu";
             cmbChucVu.ShadowDecoration.CustomizableEdges = customizableEdges26;
@@ -456,12 +454,12 @@ namespace WinFormsAppTest
             // 
             // lblPhongBan
             // 
+            lblPhongBan.AutoSize = true;
             lblPhongBan.BackColor = Color.Transparent;
             lblPhongBan.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblPhongBan.ForeColor = Color.FromArgb(97, 97, 97);
             lblPhongBan.Location = new Point(53, 500);
             lblPhongBan.Name = "lblPhongBan";
-            lblPhongBan.Size = new Size(100, 25);
             lblPhongBan.TabIndex = 21;
             lblPhongBan.Text = "Phòng Ban";
             // 
@@ -510,33 +508,32 @@ namespace WinFormsAppTest
 
         private Guna.UI2.WinForms.Guna2Panel pnlLeft;
         private Guna.UI2.WinForms.Guna2Panel pnlRight;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblSubTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblTitle;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblUsername;
+        private Label lblSubTitle;
+        private Label lblTitle;
+        private Label lblUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPassword;
+        private Label lblPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblConfirmPassword;
+        private Label lblConfirmPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtConfirmPassword;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblNgaySinh;
+        private Label lblNgaySinh;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgaySinh;
-        // Thêm mới các control thông tin nhân viên
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblHoTen;
+        private Label lblHoTen;
         private Guna.UI2.WinForms.Guna2TextBox txtHoTen;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblDiaChi;
+        private Label lblDiaChi;
         private Guna.UI2.WinForms.Guna2TextBox txtDiaChi;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblSoDienThoai;
+        private Label lblSoDienThoai;
         private Guna.UI2.WinForms.Guna2TextBox txtSoDienThoai;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblEmail;
+        private Label lblEmail;
         private Guna.UI2.WinForms.Guna2TextBox txtEmail;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblChucVu;
+        private Label lblChucVu;
         private Guna.UI2.WinForms.Guna2ComboBox cmbChucVu;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPhongBan;
+        private Label lblPhongBan;
         private Guna.UI2.WinForms.Guna2ComboBox cmbPhongBan;
         
         private Guna.UI2.WinForms.Guna2Button btnCreateAccount;
         private Guna.UI2.WinForms.Guna2Button btnBack;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel1;
+        private Label guna2HtmlLabel1;
         private Guna.UI2.WinForms.Guna2PictureBox picLogo;
     }
 }

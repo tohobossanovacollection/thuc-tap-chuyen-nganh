@@ -1,4 +1,4 @@
-﻿namespace WinFormsAppTest
+namespace WinFormsAppTest
 {
     partial class DangNhap
     {
@@ -44,19 +44,19 @@
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges11 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             Guna.UI2.WinForms.Suite.CustomizableEdges customizableEdges12 = new Guna.UI2.WinForms.Suite.CustomizableEdges();
             pnlLeft = new Guna.UI2.WinForms.Guna2Panel();
-            lblBrand = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblSubTitle = new Guna.UI2.WinForms.Guna2HtmlLabel();
             picLogo = new Guna.UI2.WinForms.Guna2PictureBox();
             pnlRight = new Guna.UI2.WinForms.Guna2Panel();
-            lblLogin = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            lblUsername = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblBrand = new Label();
+            lblSubTitle = new Label();
+            lblLogin = new Label();
+            lblUsername = new Label();
             txtUsername = new Guna.UI2.WinForms.Guna2TextBox();
-            lblPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lblPassword = new Label();
             txtPassword = new Guna.UI2.WinForms.Guna2TextBox();
             chkRemember = new Guna.UI2.WinForms.Guna2CheckBox();
             btnLogin = new Guna.UI2.WinForms.Guna2Button();
             btnRegister = new Guna.UI2.WinForms.Guna2Button();
-            lnkForgotPassword = new Guna.UI2.WinForms.Guna2HtmlLabel();
+            lnkForgotPassword = new Label();
             pnlLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
             pnlRight.SuspendLayout();
@@ -78,26 +78,25 @@
             // 
             // lblBrand
             // 
+            lblBrand.AutoSize = true;
             lblBrand.BackColor = Color.Transparent;
             lblBrand.Font = new Font("Times New Roman", 30F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblBrand.ForeColor = Color.Yellow;
             lblBrand.Location = new Point(61, 217);
             lblBrand.Name = "lblBrand";
-            lblBrand.Size = new Size(234, 59);
             lblBrand.TabIndex = 3;
             lblBrand.Text = "WinMart+";
             // 
             // lblSubTitle
             // 
+            lblSubTitle.AutoSize = true;
             lblSubTitle.BackColor = Color.Transparent;
             lblSubTitle.Font = new Font("Cambria", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
             lblSubTitle.ForeColor = Color.White;
             lblSubTitle.Location = new Point(35, 282);
             lblSubTitle.Name = "lblSubTitle";
-            lblSubTitle.Size = new Size(283, 29);
             lblSubTitle.TabIndex = 1;
             lblSubTitle.Text = "Hệ Thống Quản Lý Bán Hàng";
-            lblSubTitle.Click += lblSubTitle_Click;
             // 
             // picLogo
             // 
@@ -135,23 +134,23 @@
             // 
             // lblLogin
             // 
+            lblLogin.AutoSize = true;
             lblLogin.BackColor = Color.Transparent;
             lblLogin.Font = new Font("Cambria", 28.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblLogin.ForeColor = Color.FromArgb(211, 47, 47);
             lblLogin.Location = new Point(50, 80);
             lblLogin.Name = "lblLogin";
-            lblLogin.Size = new Size(236, 57);
             lblLogin.TabIndex = 0;
             lblLogin.Text = "Đăng Nhập";
             // 
             // lblUsername
             // 
+            lblUsername.AutoSize = true;
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblUsername.ForeColor = Color.FromArgb(64, 64, 64);
             lblUsername.Location = new Point(50, 160);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(143, 25);
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Tên Đăng Nhập";
             // 
@@ -172,12 +171,12 @@
             // 
             // lblPassword
             // 
+            lblPassword.AutoSize = true;
             lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Cambria", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblPassword.ForeColor = Color.FromArgb(64, 64, 64);
             lblPassword.Location = new Point(50, 251);
             lblPassword.Name = "lblPassword";
-            lblPassword.Size = new Size(91, 25);
             lblPassword.TabIndex = 3;
             lblPassword.Text = "Mật Khẩu";
             // 
@@ -250,15 +249,14 @@
             // 
             // lnkForgotPassword
             // 
+            lnkForgotPassword.AutoSize = true;
             lnkForgotPassword.BackColor = Color.Transparent;
             lnkForgotPassword.Font = new Font("Cambria", 10F, FontStyle.Bold);
             lnkForgotPassword.ForeColor = Color.FromArgb(211, 47, 47);
             lnkForgotPassword.Location = new Point(50, 469);
             lnkForgotPassword.Name = "lnkForgotPassword";
-            lnkForgotPassword.Size = new Size(129, 22);
             lnkForgotPassword.TabIndex = 8;
             lnkForgotPassword.Text = "Quên mật khẩu?";
-            lnkForgotPassword.Click += lnkForgotPassword_Click;
             // 
             // DangNhap
             // 
@@ -286,17 +284,17 @@
 
         private Guna.UI2.WinForms.Guna2Panel pnlLeft;
         private Guna.UI2.WinForms.Guna2Panel pnlRight;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblSubTitle;
+        private Label lblSubTitle;
         private Guna.UI2.WinForms.Guna2PictureBox picLogo;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblLogin;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblUsername;
+        private Label lblLogin;
+        private Label lblUsername;
         private Guna.UI2.WinForms.Guna2TextBox txtUsername;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblPassword;
+        private Label lblPassword;
         private Guna.UI2.WinForms.Guna2TextBox txtPassword;
         private Guna.UI2.WinForms.Guna2CheckBox chkRemember;
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private Guna.UI2.WinForms.Guna2Button btnRegister;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lnkForgotPassword;
-        private Guna.UI2.WinForms.Guna2HtmlLabel lblBrand;
+        private Label lnkForgotPassword;
+        private Label lblBrand;
     }
 }

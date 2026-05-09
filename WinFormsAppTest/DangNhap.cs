@@ -1,4 +1,4 @@
-﻿using Microsoft.Data.SqlClient;
+using Microsoft.Data.SqlClient;
 
 namespace WinFormsAppTest
 {
@@ -117,9 +117,9 @@ namespace WinFormsAppTest
         private static bool TryGetUserRole(SqlConnection connection, string username, string password, out string roleCode, out string maNhanVien, out string phongBan)
         {
             const string query = """
-                SELECT tk.quyen_han, nv.ma_nhan_vien, nv.phong_ban
+                SELECT nv.chuc_vu, nv.ma_nhan_vien, nv.phong_ban
                 FROM tai_khoan tk
-                LEFT JOIN nhan_vien nv ON nv.ma_tai_khoan = tk.ma_tai_khoan
+                INNER JOIN nhan_vien nv ON nv.ma_tai_khoan = tk.ma_tai_khoan
                 WHERE tk.ten_dang_nhap = @username AND tk.mat_khau = @password;
                 """;
             using SqlCommand command = new SqlCommand(query, connection);
@@ -135,7 +135,7 @@ namespace WinFormsAppTest
                 return false;
             }
 
-            roleCode = reader["quyen_han"]?.ToString() ?? string.Empty;
+            roleCode = reader["chuc_vu"]?.ToString() ?? string.Empty;
             maNhanVien = reader["ma_nhan_vien"]?.ToString() ?? string.Empty;
             phongBan = reader["phong_ban"]?.ToString() ?? string.Empty;
             return !string.IsNullOrWhiteSpace(roleCode)
@@ -145,11 +145,11 @@ namespace WinFormsAppTest
 
         private static string MapRoleDisplay(string roleCode)
         {
-            return roleCode.ToUpperInvariant() switch
+            return roleCode switch
             {
-                "ADMIN" => "Admin",
-                "QUAN_LY" => "Quản lý",
-                "NHAN_VIEN" => "Nhân viên",
+                "Giam doc" => "Giám đốc",
+                "Quan ly cua hang" => "Quản lý cửa hàng",
+                "Nhan vien" => "Nhân viên",
                 _ => roleCode
             };
         }
