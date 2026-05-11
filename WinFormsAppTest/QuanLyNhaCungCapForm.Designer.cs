@@ -16,9 +16,6 @@ namespace WinFormsAppTest
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhaCungCapForm));
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             _dgv = new DataGridView();
             _top = new Panel();
             btnXoa = new Button();
@@ -33,43 +30,49 @@ namespace WinFormsAppTest
             // 
             _dgv.AllowUserToAddRows = false;
             _dgv.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = Color.White;
-            _dgv.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = Color.FromArgb(100, 88, 255);
-            dataGridViewCellStyle2.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle2.ForeColor = Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.True;
-            _dgv.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            _dgv.ColumnHeadersHeight = 29;
+            _dgv.BackgroundColor = Color.White;
+            _dgv.BorderStyle = BorderStyle.None;
+            _dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+
+            DataGridViewCellStyle headerStyle = new DataGridViewCellStyle();
+            headerStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            headerStyle.BackColor = Color.FromArgb(100, 88, 255);
+            headerStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            headerStyle.ForeColor = Color.White;
+            headerStyle.SelectionBackColor = Color.FromArgb(100, 88, 255);
+            headerStyle.SelectionForeColor = Color.White;
+            headerStyle.WrapMode = DataGridViewTriState.True;
+            _dgv.ColumnHeadersDefaultCellStyle = headerStyle;
+
+            _dgv.ColumnHeadersHeight = 35;
             _dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = Color.White;
-            dataGridViewCellStyle3.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
-            dataGridViewCellStyle3.ForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(231, 229, 255);
-            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(71, 69, 94);
-            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
-            _dgv.DefaultCellStyle = dataGridViewCellStyle3;
+
+            DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
+            cellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            cellStyle.BackColor = Color.White;
+            cellStyle.Font = new Font("Segoe UI", 9F);
+            cellStyle.ForeColor = Color.FromArgb(71, 69, 94);
+            cellStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
+            cellStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
+            cellStyle.WrapMode = DataGridViewTriState.False;
+            _dgv.DefaultCellStyle = cellStyle;
+
             _dgv.Dock = DockStyle.Fill;
             _dgv.EnableHeadersVisualStyles = false;
             _dgv.GridColor = Color.FromArgb(231, 229, 255);
-            _dgv.Location = new Point(0, 103);
+            _dgv.Location = new Point(0, 110);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
-            _dgv.RowTemplate.Height = 29;
+            _dgv.RowTemplate.Height = 35;
             _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            _dgv.Size = new Size(1000, 547);
+            _dgv.Size = new Size(1000, 540);
             _dgv.TabIndex = 0;
             // 
             // _top
             // 
-            _top.BackColor = Color.FromArgb(255, 241, 118);
+            _top.BackColor = Color.FromArgb(198, 40, 40);
             _top.Controls.Add(btnXoa);
             _top.Controls.Add(btnSua);
             _top.Controls.Add(btnThem);
@@ -77,46 +80,50 @@ namespace WinFormsAppTest
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
-            _top.Size = new Size(1000, 103);
+            _top.Size = new Size(1000, 110);
             _top.TabIndex = 1;
-            _top.Paint += _top_Paint;
             // 
             // btnXoa
             // 
-            btnXoa.BackColor = Color.FromArgb(198, 40, 40);
+            btnXoa.BackColor = Color.FromArgb(211, 47, 47);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Location = new Point(195, 62);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(83, 30);
-            btnXoa.TabIndex = 4;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
             btnXoa.ImageAlign = ContentAlignment.MiddleRight;
+            btnXoa.Location = new Point(300, 60);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Size = new Size(85, 32);
+            btnXoa.TabIndex = 5;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
-            btnSua.BackColor = Color.FromArgb(198, 40, 40);
-            btnSua.ForeColor = Color.White;
-            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
+            btnSua.BackColor = Color.FromArgb(255, 167, 38);
+            btnSua.ForeColor = Color.Black;
+            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
             btnSua.ImageAlign = ContentAlignment.MiddleRight;
-            btnSua.Location = new Point(106, 62);
+            btnSua.Location = new Point(210, 60);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(83, 30);
-            btnSua.TabIndex = 3;
+            btnSua.Size = new Size(85, 32);
+            btnSua.TabIndex = 4;
             btnSua.Text = "Sửa";
             btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
             // 
             // btnThem
             // 
-            btnThem.BackColor = Color.FromArgb(198, 40, 40);
-            btnThem.ForeColor = Color.White;
-            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.BackColor = Color.FromArgb(255, 167, 38);
+            btnThem.ForeColor = Color.Black;
+            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnThem.Image = Icons.IconGenerator.GenerateAddIcon();
             btnThem.ImageAlign = ContentAlignment.MiddleRight;
-            btnThem.Location = new Point(17, 62);
+            btnThem.Location = new Point(120, 60);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(83, 30);
-            btnThem.TabIndex = 2;
+            btnThem.Size = new Size(85, 32);
+            btnThem.TabIndex = 3;
             btnThem.Text = "Thêm";
             btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
@@ -125,10 +132,10 @@ namespace WinFormsAppTest
             // 
             _title.AutoSize = true;
             _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            _title.ForeColor = Color.FromArgb(198, 40, 40);
+            _title.ForeColor = Color.FromArgb(255, 241, 118);
             _title.Location = new Point(12, 10);
             _title.Name = "_title";
-            _title.Size = new Size(294, 37);
+            _title.Size = new Size(280, 37);
             _title.TabIndex = 0;
             _title.Text = "Quản lý Nhà cung cấp";
             // 
@@ -140,6 +147,7 @@ namespace WinFormsAppTest
             Name = "QuanLyNhaCungCapForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "8. Quản lý Nhà cung cấp";
+            Load += QuanLyNhaCungCapForm_Load;
             ((System.ComponentModel.ISupportInitialize)_dgv).EndInit();
             _top.ResumeLayout(false);
             _top.PerformLayout();

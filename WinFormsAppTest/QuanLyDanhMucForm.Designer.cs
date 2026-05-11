@@ -11,7 +11,6 @@ namespace WinFormsAppTest
         private Button _btnThem;
         private Button _btnSua;
         private Button _btnXoa;
-        private Button _btnGan;
 
         protected override void Dispose(bool disposing)
         {
@@ -30,7 +29,6 @@ namespace WinFormsAppTest
             _btnThem = new Button();
             _btnSua = new Button();
             _btnXoa = new Button();
-            _btnGan = new Button();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
@@ -78,6 +76,7 @@ namespace WinFormsAppTest
             _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             _dgv.Size = new Size(1000, 540);
             _dgv.TabIndex = 0;
+            _dgv.CellClick += _dgv_CellClick;
             // 
             // _txtMa
             // 
@@ -104,7 +103,6 @@ namespace WinFormsAppTest
             _top.Controls.Add(_btnThem);
             _top.Controls.Add(_btnSua);
             _top.Controls.Add(_btnXoa);
-            _top.Controls.Add(_btnGan);
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
@@ -166,23 +164,9 @@ namespace WinFormsAppTest
             _btnXoa.Text = "Xóa";
             _btnXoa.UseVisualStyleBackColor = false;
             _btnXoa.Click += btnXoa_Click;
-            
-            // 
-            // _btnGan
-            // 
-            _btnGan.BackColor = Color.FromArgb(255, 167, 38);
-            _btnGan.ForeColor = Color.Black;
-            _btnGan.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnGan.Location = new Point(700, 53);
-            _btnGan.Name = "_btnGan";
-            _btnGan.Size = new Size(140, 32);
-            _btnGan.TabIndex = 6;
-            _btnGan.Text = "Gán cho sản phẩm";
-            _btnGan.UseVisualStyleBackColor = false;
-            _btnGan.Click += btnGan_Click;
             // 
             // QuanLyDanhMucForm
-            // 
+            //
             ClientSize = new Size(1000, 650);
             Controls.Add(_dgv);
             Controls.Add(_top);

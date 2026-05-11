@@ -14,7 +14,7 @@ namespace WinFormsAppTest
         private Guna2HtmlLabel lblTenSanPham;
         private Guna2TextBox txtTenSanPham;
         private Guna2HtmlLabel lblDanhMuc;
-        private Guna2TextBox txtDanhMuc;
+        private Guna2ComboBox cboDanhMuc;
         private Guna2HtmlLabel lblGiaNhap;
         private Guna2TextBox txtGiaNhap;
         private Guna2HtmlLabel lblGiaBan;
@@ -62,7 +62,7 @@ namespace WinFormsAppTest
             lblTenSanPham = new Guna2HtmlLabel();
             txtTenSanPham = new Guna2TextBox();
             lblDanhMuc = new Guna2HtmlLabel();
-            txtDanhMuc = new Guna2TextBox();
+            cboDanhMuc = new Guna2ComboBox();
             lblGiaNhap = new Guna2HtmlLabel();
             txtGiaNhap = new Guna2TextBox();
             lblGiaBan = new Guna2HtmlLabel();
@@ -156,20 +156,23 @@ namespace WinFormsAppTest
             lblDanhMuc.TabIndex = 10;
             lblDanhMuc.Text = "Danh mục";
             // 
-            // txtDanhMuc
+            // cboDanhMuc
             // 
-            txtDanhMuc.BorderRadius = 8;
-            txtDanhMuc.CustomizableEdges = customizableEdges7;
-            txtDanhMuc.DefaultText = "";
-            txtDanhMuc.Font = new Font("Segoe UI", 9F);
-            txtDanhMuc.Location = new Point(24, 184);
-            txtDanhMuc.Margin = new Padding(3, 4, 3, 4);
-            txtDanhMuc.Name = "txtDanhMuc";
-            txtDanhMuc.PlaceholderText = "";
-            txtDanhMuc.SelectedText = "";
-            txtDanhMuc.ShadowDecoration.CustomizableEdges = customizableEdges8;
-            txtDanhMuc.Size = new Size(220, 36);
-            txtDanhMuc.TabIndex = 11;
+            cboDanhMuc.BackColor = Color.Transparent;
+            cboDanhMuc.BorderRadius = 8;
+            cboDanhMuc.CustomizableEdges = customizableEdges7;
+            cboDanhMuc.DrawMode = DrawMode.OwnerDrawFixed;
+            cboDanhMuc.DropDownStyle = ComboBoxStyle.DropDownList;
+            cboDanhMuc.FocusedState.BorderColor = Color.FromArgb(94, 148, 255);
+            cboDanhMuc.FocusedState.Parent = cboDanhMuc;
+            cboDanhMuc.Font = new Font("Segoe UI", 9F);
+            cboDanhMuc.ForeColor = Color.FromArgb(71, 69, 94);
+            cboDanhMuc.ItemHeight = 30;
+            cboDanhMuc.Location = new Point(24, 184);
+            cboDanhMuc.Name = "cboDanhMuc";
+            cboDanhMuc.ShadowDecoration.CustomizableEdges = customizableEdges8;
+            cboDanhMuc.Size = new Size(220, 36);
+            cboDanhMuc.TabIndex = 11;
             // 
             // lblGiaNhap
             // 
@@ -315,7 +318,7 @@ namespace WinFormsAppTest
             Controls.Add(lblGiaNhap);
             Controls.Add(txtGiaNhap);
             Controls.Add(lblDanhMuc);
-            Controls.Add(txtDanhMuc);
+            Controls.Add(cboDanhMuc);
             Controls.Add(lblTenSanPham);
             Controls.Add(txtTenSanPham);
             Controls.Add(lblMaSanPham);

@@ -19,7 +19,6 @@ namespace WinFormsAppTest
         private Guna2Button btnSearch;
         private Guna2Button btnResetFilter;
         private Guna2Button btnRefresh;
-        private Guna2Button btnViewDetail;
         private Guna2Button btnPrintInvoice;
         private Guna2Button btnClose;
 
@@ -98,7 +97,6 @@ namespace WinFormsAppTest
             btnSearch = new Guna2Button();
             btnResetFilter = new Guna2Button();
             btnRefresh = new Guna2Button();
-            btnViewDetail = new Guna2Button();
             btnPrintInvoice = new Guna2Button();
             btnClose = new Guna2Button();
             splitMain = new SplitContainer();
@@ -179,7 +177,6 @@ namespace WinFormsAppTest
             grpFilter.Controls.Add(btnSearch);
             grpFilter.Controls.Add(btnResetFilter);
             grpFilter.Controls.Add(btnRefresh);
-            grpFilter.Controls.Add(btnViewDetail);
             grpFilter.Controls.Add(btnPrintInvoice);
             grpFilter.Controls.Add(btnClose);
             grpFilter.CustomBorderColor = Color.FromArgb(255, 241, 118);
@@ -316,48 +313,33 @@ namespace WinFormsAppTest
             btnRefresh.Text = "Làm mới";
             btnRefresh.Click += btnRefresh_Click;
             // 
-            // btnViewDetail
-            // 
-            btnViewDetail.BorderRadius = 8;
-            btnViewDetail.CustomizableEdges = customizableEdges15;
-            btnViewDetail.FillColor = Color.FromArgb(198, 40, 40);
-            btnViewDetail.Font = new Font("Segoe UI", 9F);
-            btnViewDetail.ForeColor = Color.White;
-            btnViewDetail.Location = new Point(1054, 119);
-            btnViewDetail.Name = "btnViewDetail";
-            btnViewDetail.ShadowDecoration.CustomizableEdges = customizableEdges16;
-            btnViewDetail.Size = new Size(102, 45);
-            btnViewDetail.TabIndex = 9;
-            btnViewDetail.Text = "Xem chi tiết";
-            btnViewDetail.Click += btnViewDetail_Click;
-            // 
             // btnPrintInvoice
             // 
             btnPrintInvoice.BorderRadius = 8;
-            btnPrintInvoice.CustomizableEdges = customizableEdges17;
+            btnPrintInvoice.CustomizableEdges = customizableEdges15;
             btnPrintInvoice.FillColor = Color.FromArgb(211, 47, 47);
             btnPrintInvoice.Font = new Font("Segoe UI", 9F);
             btnPrintInvoice.ForeColor = Color.White;
-            btnPrintInvoice.Location = new Point(1162, 119);
+            btnPrintInvoice.Location = new Point(1054, 119);
             btnPrintInvoice.Name = "btnPrintInvoice";
-            btnPrintInvoice.ShadowDecoration.CustomizableEdges = customizableEdges18;
+            btnPrintInvoice.ShadowDecoration.CustomizableEdges = customizableEdges16;
             btnPrintInvoice.Size = new Size(102, 45);
-            btnPrintInvoice.TabIndex = 10;
+            btnPrintInvoice.TabIndex = 9;
             btnPrintInvoice.Text = "In hóa đơn";
             btnPrintInvoice.Click += btnPrintInvoice_Click;
             // 
             // btnClose
             // 
             btnClose.BorderRadius = 8;
-            btnClose.CustomizableEdges = customizableEdges19;
+            btnClose.CustomizableEdges = customizableEdges17;
             btnClose.FillColor = Color.FromArgb(66, 66, 66);
             btnClose.Font = new Font("Segoe UI", 9F);
             btnClose.ForeColor = Color.White;
-            btnClose.Location = new Point(1270, 119);
+            btnClose.Location = new Point(1162, 119);
             btnClose.Name = "btnClose";
-            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges20;
+            btnClose.ShadowDecoration.CustomizableEdges = customizableEdges18;
             btnClose.Size = new Size(102, 45);
-            btnClose.TabIndex = 11;
+            btnClose.TabIndex = 10;
             btnClose.Text = "Đóng";
             btnClose.Click += btnClose_Click;
             // 

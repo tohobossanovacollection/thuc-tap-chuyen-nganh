@@ -2,12 +2,14 @@ namespace WinFormsAppTest
 {
     public partial class SanPham : Form
     {
+        private readonly string _connectionString = DatabaseConfig.ConnectionString;
         public ProductItemData? Result { get; private set; }
 
         public SanPham()
         {
             InitializeComponent();
             Text = "Thêm sản phẩm";
+            LoadCategories();
         }
 
         public SanPham(ProductItemData existing)
@@ -15,13 +17,27 @@ namespace WinFormsAppTest
             InitializeComponent();
             Text = "Cập nhật sản phẩm";
             lblTitle.Text = "Cập nhật thông tin sản phẩm";
+            LoadCategories();
             txtMaSanPham.Text = existing.MaSanPham;
             txtTenSanPham.Text = existing.TenSanPham;
-            txtDanhMuc.Text = existing.DanhMuc;
+            cboDanhMuc.SelectedItem = existing.DanhMuc;
             txtGiaNhap.Text = existing.GiaNhap.ToString("0.##");
             txtGiaBan.Text = existing.GiaBan.ToString("0.##");
             txtSoLuongTon.Text = existing.SoLuongTon.ToString();
             txtMoTa.Text = existing.MoTa;
+        }
+
+        private void LoadCategories()
+        {
+            using Microsoft.Data.SqlClient.SqlConnection conn = new Microsoft.Data.SqlClient.SqlConnection(_connectionString);
+            using Microsoft.Data.SqlClient.SqlCommand cmd = new Microsoft.Data.SqlClient.SqlCommand("SELECT ten_danh_muc FROM danh_muc_san_pham ORDER BY ten_danh_muc", conn);
+            conn.Open();
+            using Microsoft.Data.SqlClient.SqlDataReader reader = cmd.ExecuteReader();
+            cboDanhMuc.Items.Clear();
+            while (reader.Read())
+            {
+                cboDanhMuc.Items.Add(reader["ten_danh_muc"].ToString());
+            }
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -35,7 +51,7 @@ namespace WinFormsAppTest
             {
                 MaSanPham = txtMaSanPham.Text.Trim(),
                 TenSanPham = txtTenSanPham.Text.Trim(),
-                DanhMuc = txtDanhMuc.Text.Trim(),
+                DanhMuc = cboDanhMuc.SelectedItem?.ToString() ?? string.Empty,
                 GiaNhap = giaNhap,
                 GiaBan = giaBan,
                 SoLuongTon = soLuongTon,
@@ -69,6 +85,13 @@ namespace WinFormsAppTest
             {
                 MessageBox.Show("Vui lòng nhập tên sản phẩm.");
                 txtTenSanPham.Focus();
+                return false;
+            }
+
+            if (cboDanhMuc.SelectedItem == null)
+            {
+                MessageBox.Show("Vui lòng chọn danh mục.");
+                cboDanhMuc.Focus();
                 return false;
             }
 

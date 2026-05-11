@@ -40,11 +40,6 @@ namespace WinFormsAppTest
             LoadInvoices();
         }
 
-        private void btnViewDetail_Click(object sender, EventArgs e)
-        {
-            LoadCurrentInvoiceDetail();
-        }
-
         private void btnPrintInvoice_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(_selectedInvoiceId))
