@@ -158,8 +158,12 @@ namespace WinFormsAppTest
             
             if (result == DialogResult.Yes)
             {
-                this.DialogResult = DialogResult.OK; // Signal to Program.cs/DangNhap to return to login
-                this.Close();
+                Hide();
+                using (DangNhap login = new DangNhap())
+                {
+                    login.ShowDialog();
+                }
+                Close();
             }
         }
 
@@ -504,7 +508,7 @@ WHERE TABLE_NAME = @tableName;";
         {
             _isQuanLyMenuExpanded = expanded;
 
-            btnMenuQuanLy.Text = expanded ? "2. Quản lý ▲" : "2. Quản lý ▼";
+            btnMenuQuanLy.Text = expanded ? "Quản lý ▲" : "Quản lý ▼";
 
             btnMenuSanPham.Visible = expanded;
             btnMenuKhachHang.Visible = expanded;

@@ -705,18 +705,24 @@ namespace WinFormsAppTest
                 {
                     const string updateGg = """
                         UPDATE giam_gia
-                        SET so_luong_su_dung = so_luong_su_dung + 1
-                        WHERE ma_giam_gia = @ma;
+                        SET so_luong_su_dung = so_luong_su_dung - 1
+                        WHERE ma_giam_gia = @ma
+                          AND so_luong_su_dung > 0;
                         """;
                     using SqlCommand cmdGg = new(updateGg, conn, tx);
                     cmdGg.Parameters.AddWithValue("@ma", _appliedDiscountCode);
-                    cmdGg.ExecuteNonQuery();
+                    if (cmdGg.ExecuteNonQuery() == 0)
+                    {
+                        throw new InvalidOperationException("Mã giảm giá đã hết lượt sử dụng.");
+                    }
                 }
 
                 tx.Commit();
 
                 decimal change = cash - thanhTienCuoi;
                 BuildLastInvoiceSnapshot(maHoaDon, tongTien, giamGia, thanhTienCuoi, cash, change);
+                WindowState = FormWindowState.Minimized;
+                PrintInvoice("K80");
 
                 MessageBox.Show($"Tạo hóa đơn thành công: {maHoaDon}\nTiền thừa: {change:N0} đ");
 
@@ -845,20 +851,24 @@ namespace WinFormsAppTest
             {
                 Width = 1000,
                 Height = 700,
+                WindowState = FormWindowState.Maximized,
                 Document = doc
             };
+            preview.PrintPreviewControl.Zoom = 1.5;
+            preview.PrintPreviewControl.Rows = 1;
+            preview.PrintPreviewControl.Columns = 1;
             preview.ShowDialog(this);
         }
 
         private static void DrawInvoice(Graphics g, Rectangle bounds, PrintInvoiceSnapshot invoice, string mode)
         {
-            using Font fTitle = new("Segoe UI", mode == "K80" ? 10 : 14, FontStyle.Bold);
-            using Font fText = new("Segoe UI", mode == "K80" ? 8 : 10);
-            using Font fBold = new("Segoe UI", mode == "K80" ? 8 : 10, FontStyle.Bold);
+            using Font fTitle = new("Segoe UI", mode == "K80" ? 14 : 18, FontStyle.Bold);
+            using Font fText = new("Segoe UI", mode == "K80" ? 11 : 13);
+            using Font fBold = new("Segoe UI", mode == "K80" ? 11 : 13, FontStyle.Bold);
 
             int x = bounds.Left;
             int y = bounds.Top;
-            int line = mode == "K80" ? 16 : 20;
+            int line = mode == "K80" ? 22 : 26;
 
             g.DrawString("WINMART+ POS", fTitle, Brushes.Black, x, y); y += line;
             g.DrawString($"HĐ: {invoice.InvoiceNo}", fText, Brushes.Black, x, y); y += line;

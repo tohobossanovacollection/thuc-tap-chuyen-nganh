@@ -13,9 +13,7 @@ namespace WinFormsAppTest
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            // Start the application with the login form
-            //Application.Run(new DangNhap());
-            Application.Run(new Dashboard("levents", "admin", "NV001", "Ban quan ly"));
+            Application.Run(new DangNhap());
         }
     }
 }

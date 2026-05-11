@@ -116,7 +116,6 @@ namespace WinFormsAppTest
             btnRemoveItem = new Guna2Button();
             btnClearCart = new Guna2Button();
             grpCheckout = new Guna2GroupBox();
-            btnSaveInvoice = new Guna2Button();
             _txtCustomerPhone = new Guna2TextBox();
             _btnFindCustomer = new Guna2Button();
             _btnQuickCustomer = new Guna2Button();
@@ -480,7 +479,6 @@ namespace WinFormsAppTest
             // 
             grpCheckout.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             grpCheckout.BorderColor = Color.FromArgb(255, 167, 38);
-            grpCheckout.Controls.Add(btnSaveInvoice);
             grpCheckout.Controls.Add(_txtCustomerPhone);
             grpCheckout.Controls.Add(_btnFindCustomer);
             grpCheckout.Controls.Add(_btnQuickCustomer);
@@ -509,21 +507,6 @@ namespace WinFormsAppTest
             grpCheckout.TabIndex = 0;
             grpCheckout.Text = "Thanh toán";
             grpCheckout.Click += grpCheckout_Click;
-            // 
-            // btnSaveInvoice
-            // 
-            btnSaveInvoice.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
-            btnSaveInvoice.BorderRadius = 10;
-            btnSaveInvoice.CustomizableEdges = customizableEdges25;
-            btnSaveInvoice.FillColor = Color.FromArgb(255, 167, 38);
-            btnSaveInvoice.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
-            btnSaveInvoice.ForeColor = Color.White;
-            btnSaveInvoice.Location = new Point(310, 209);
-            btnSaveInvoice.Name = "btnSaveInvoice";
-            btnSaveInvoice.ShadowDecoration.CustomizableEdges = customizableEdges26;
-            btnSaveInvoice.Size = new Size(203, 55);
-            btnSaveInvoice.TabIndex = 10;
-            btnSaveInvoice.Text = "LƯU HÓA ĐƠN";
             // 
             // _txtCustomerPhone
             // 
