@@ -1,3 +1,5 @@
+using Guna.UI2.WinForms;
+
 namespace WinFormsAppTest
 {
     partial class QuanLyGiamGiaForm
@@ -6,9 +8,9 @@ namespace WinFormsAppTest
         private DataGridView _dgv;
         private Panel _top;
         private Label _title;
-        private Button _btnTao;
-        private Button _btnSet;
-        private Button _btnTime;
+        private Guna2Button _btnTao;
+        private Guna2Button _btnSet;
+        private Guna2Button _btnTime;
 
         protected override void Dispose(bool disposing)
         {
@@ -20,11 +22,11 @@ namespace WinFormsAppTest
         {
             _dgv = new DataGridView();
             _top = new Panel();
-            _btnStatus = new Button();
+            _btnStatus = new Guna2Button();
             _title = new Label();
-            _btnTao = new Button();
-            _btnSet = new Button();
-            _btnTime = new Button();
+            _btnTao = new Guna2Button();
+            _btnSet = new Guna2Button();
+            _btnTime = new Guna2Button();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
@@ -33,6 +35,8 @@ namespace WinFormsAppTest
             // 
             _dgv.AllowUserToAddRows = false;
             _dgv.AllowUserToDeleteRows = false;
+            _dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.White };
+            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dgv.BackgroundColor = Color.White;
             _dgv.BorderStyle = BorderStyle.None;
             _dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -47,13 +51,13 @@ namespace WinFormsAppTest
             headerStyle.WrapMode = DataGridViewTriState.True;
             _dgv.ColumnHeadersDefaultCellStyle = headerStyle;
 
-            _dgv.ColumnHeadersHeight = 35;
+            _dgv.ColumnHeadersHeight = 29;
             _dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
             cellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             cellStyle.BackColor = Color.White;
-            cellStyle.Font = new Font("Segoe UI", 9F);
+            cellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             cellStyle.ForeColor = Color.FromArgb(71, 69, 94);
             cellStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             cellStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -63,14 +67,14 @@ namespace WinFormsAppTest
             _dgv.Dock = DockStyle.Fill;
             _dgv.EnableHeadersVisualStyles = false;
             _dgv.GridColor = Color.FromArgb(231, 229, 255);
-            _dgv.Location = new Point(0, 110);
+            _dgv.Location = new Point(0, 86);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
-            _dgv.RowTemplate.Height = 35;
+            _dgv.RowTemplate.Height = 29;
             _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            _dgv.Size = new Size(1100, 540);
+            _dgv.Size = new Size(1200, 614);
             _dgv.TabIndex = 0;
             // 
             // _top
@@ -84,28 +88,30 @@ namespace WinFormsAppTest
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
-            _top.Size = new Size(1100, 110);
+            _top.Size = new Size(1200, 86);
             _top.TabIndex = 1;
             // 
             // _btnStatus
             // 
-            _btnStatus.BackColor = Color.FromArgb(255, 167, 38);
+            _btnStatus.BorderColor = Color.White;
+            _btnStatus.BorderRadius = 8;
+            _btnStatus.BorderThickness = 1;
+            _btnStatus.FillColor = Color.FromArgb(255, 167, 38);
             _btnStatus.ForeColor = Color.Black;
-            _btnStatus.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnStatus.Location = new Point(338, 60);
+            _btnStatus.Font = new Font("Segoe UI", 9F);
+            _btnStatus.Location = new Point(1020, 22);
             _btnStatus.Name = "_btnStatus";
-            _btnStatus.Size = new Size(130, 32);
+            _btnStatus.Size = new Size(160, 40);
             _btnStatus.TabIndex = 4;
             _btnStatus.Text = "Thay đổi trạng thái";
-            _btnStatus.UseVisualStyleBackColor = false;
             _btnStatus.Click += btnStatus_Click;
             // 
             // _title
             // 
             _title.AutoSize = true;
-            _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            _title.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             _title.ForeColor = Color.FromArgb(255, 241, 118);
-            _title.Location = new Point(12, 10);
+            _title.Location = new Point(16, 20);
             _title.Name = "_title";
             _title.Size = new Size(235, 37);
             _title.TabIndex = 0;
@@ -113,46 +119,53 @@ namespace WinFormsAppTest
             // 
             // _btnTao
             // 
-            _btnTao.BackColor = Color.FromArgb(255, 167, 38);
+            _btnTao.BorderColor = Color.White;
+            _btnTao.BorderRadius = 8;
+            _btnTao.BorderThickness = 1;
+            _btnTao.FillColor = Color.FromArgb(255, 167, 38);
             _btnTao.ForeColor = Color.Black;
-            _btnTao.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnTao.Location = new Point(30, 60);
+            _btnTao.Font = new Font("Segoe UI", 9F);
+            _btnTao.Location = new Point(640, 22);
             _btnTao.Name = "_btnTao";
-            _btnTao.Size = new Size(85, 32);
+            _btnTao.Size = new Size(110, 40);
             _btnTao.TabIndex = 1;
             _btnTao.Text = "Tạo mã";
-            _btnTao.UseVisualStyleBackColor = false;
             _btnTao.Click += btnTao_Click;
             // 
             // _btnSet
             // 
-            _btnSet.BackColor = Color.FromArgb(255, 167, 38);
+            _btnSet.BorderColor = Color.White;
+            _btnSet.BorderRadius = 8;
+            _btnSet.BorderThickness = 1;
+            _btnSet.FillColor = Color.FromArgb(255, 167, 38);
             _btnSet.ForeColor = Color.Black;
-            _btnSet.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnSet.Location = new Point(120, 60);
+            _btnSet.Font = new Font("Segoe UI", 9F);
+            _btnSet.Location = new Point(760, 22);
             _btnSet.Name = "_btnSet";
-            _btnSet.Size = new Size(100, 32);
+            _btnSet.Size = new Size(110, 40);
             _btnSet.TabIndex = 2;
             _btnSet.Text = "Set % / tiền";
-            _btnSet.UseVisualStyleBackColor = false;
             _btnSet.Click += btnSet_Click;
             // 
             // _btnTime
             // 
-            _btnTime.BackColor = Color.FromArgb(255, 167, 38);
+            _btnTime.BorderColor = Color.White;
+            _btnTime.BorderRadius = 8;
+            _btnTime.BorderThickness = 1;
+            _btnTime.FillColor = Color.FromArgb(255, 167, 38);
             _btnTime.ForeColor = Color.Black;
-            _btnTime.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            _btnTime.Location = new Point(225, 60);
+            _btnTime.Font = new Font("Segoe UI", 9F);
+            _btnTime.Location = new Point(880, 22);
             _btnTime.Name = "_btnTime";
-            _btnTime.Size = new Size(100, 32);
+            _btnTime.Size = new Size(130, 40);
             _btnTime.TabIndex = 3;
             _btnTime.Text = "Set thời gian";
-            _btnTime.UseVisualStyleBackColor = false;
             _btnTime.Click += btnTime_Click;
             // 
             // QuanLyGiamGiaForm
             // 
-            ClientSize = new Size(1100, 650);
+            BackColor = Color.White;
+            ClientSize = new Size(1200, 700);
             Controls.Add(_dgv);
             Controls.Add(_top);
             Name = "QuanLyGiamGiaForm";
@@ -165,6 +178,6 @@ namespace WinFormsAppTest
             ResumeLayout(false);
         }
 
-        private Button _btnStatus;
+        private Guna2Button _btnStatus;
     }
 }

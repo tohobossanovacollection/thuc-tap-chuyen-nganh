@@ -174,7 +174,7 @@ namespace WinFormsAppTest
             btnBack.FillColor = Color.FromArgb(255, 253, 231);
             btnBack.Font = new Font("Cambria", 13F, FontStyle.Bold);
             btnBack.ForeColor = Color.FromArgb(211, 47, 47);
-            btnBack.Location = new Point(256, 610);
+            btnBack.Location = new Point(380, 500);
             btnBack.Name = "btnBack";
             btnBack.ShadowDecoration.CustomizableEdges = customizableEdges6;
             btnBack.Size = new Size(181, 51);
@@ -189,7 +189,7 @@ namespace WinFormsAppTest
             btnCreateAccount.FillColor = Color.FromArgb(211, 47, 47);
             btnCreateAccount.Font = new Font("Cambria", 13F, FontStyle.Bold);
             btnCreateAccount.ForeColor = Color.White;
-            btnCreateAccount.Location = new Point(57, 610);
+            btnCreateAccount.Location = new Point(180, 500);
             btnCreateAccount.Name = "btnCreateAccount";
             btnCreateAccount.ShadowDecoration.CustomizableEdges = customizableEdges8;
             btnCreateAccount.Size = new Size(181, 51);
@@ -231,7 +231,7 @@ namespace WinFormsAppTest
             txtConfirmPassword.CustomizableEdges = customizableEdges11;
             txtConfirmPassword.DefaultText = "";
             txtConfirmPassword.Font = new Font("Segoe UI", 12F);
-            txtConfirmPassword.Location = new Point(53, 353);
+            txtConfirmPassword.Location = new Point(180, 412);
             txtConfirmPassword.Margin = new Padding(3, 4, 3, 4);
             txtConfirmPassword.Name = "txtConfirmPassword";
             txtConfirmPassword.PasswordChar = '●';
@@ -248,7 +248,7 @@ namespace WinFormsAppTest
             lblConfirmPassword.BackColor = Color.Transparent;
             lblConfirmPassword.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblConfirmPassword.ForeColor = Color.FromArgb(97, 97, 97);
-            lblConfirmPassword.Location = new Point(53, 322);
+            lblConfirmPassword.Location = new Point(180, 383);
             lblConfirmPassword.Name = "lblConfirmPassword";
             lblConfirmPassword.TabIndex = 5;
             lblConfirmPassword.Text = "Xác Nhận Mật Khẩu";
@@ -259,7 +259,7 @@ namespace WinFormsAppTest
             txtPassword.CustomizableEdges = customizableEdges13;
             txtPassword.DefaultText = "";
             txtPassword.Font = new Font("Segoe UI", 12F);
-            txtPassword.Location = new Point(53, 262);
+            txtPassword.Location = new Point(180, 328);
             txtPassword.Margin = new Padding(3, 4, 3, 4);
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '●';
@@ -276,7 +276,7 @@ namespace WinFormsAppTest
             lblPassword.BackColor = Color.Transparent;
             lblPassword.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblPassword.ForeColor = Color.FromArgb(97, 97, 97);
-            lblPassword.Location = new Point(53, 233);
+            lblPassword.Location = new Point(180, 299);
             lblPassword.Name = "lblPassword";
             lblPassword.TabIndex = 3;
             lblPassword.Text = "Mật Khẩu";
@@ -287,7 +287,7 @@ namespace WinFormsAppTest
             txtUsername.CustomizableEdges = customizableEdges15;
             txtUsername.DefaultText = "";
             txtUsername.Font = new Font("Segoe UI", 12F);
-            txtUsername.Location = new Point(53, 171);
+            txtUsername.Location = new Point(180, 244);
             txtUsername.Margin = new Padding(3, 4, 3, 4);
             txtUsername.Name = "txtUsername";
             txtUsername.PlaceholderText = "Nhập tên đăng nhập";
@@ -302,7 +302,7 @@ namespace WinFormsAppTest
             lblUsername.BackColor = Color.Transparent;
             lblUsername.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblUsername.ForeColor = Color.FromArgb(97, 97, 97);
-            lblUsername.Location = new Point(53, 142);
+            lblUsername.Location = new Point(180, 215);
             lblUsername.Name = "lblUsername";
             lblUsername.TabIndex = 1;
             lblUsername.Text = "Tên Đăng Nhập";
@@ -313,7 +313,7 @@ namespace WinFormsAppTest
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Cambria", 32F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(191, 54, 12);
-            lblTitle.Location = new Point(57, 48);
+            lblTitle.Location = new Point(180, 50);
             lblTitle.Name = "lblTitle";
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Đăng Ký";
@@ -402,7 +402,7 @@ namespace WinFormsAppTest
             lblEmail.BackColor = Color.Transparent;
             lblEmail.Font = new Font("Cambria", 12F, FontStyle.Bold);
             lblEmail.ForeColor = Color.FromArgb(97, 97, 97);
-            lblEmail.Location = new Point(475, 411);
+            lblEmail.Location = new Point(180, 130);
             lblEmail.Name = "lblEmail";
             lblEmail.TabIndex = 17;
             lblEmail.Text = "Email";
@@ -413,13 +413,13 @@ namespace WinFormsAppTest
             txtEmail.CustomizableEdges = customizableEdges23;
             txtEmail.DefaultText = "";
             txtEmail.Font = new Font("Segoe UI", 12F);
-            txtEmail.Location = new Point(475, 442);
+            txtEmail.Location = new Point(180, 160);
             txtEmail.Margin = new Padding(3, 4, 3, 4);
             txtEmail.Name = "txtEmail";
             txtEmail.PlaceholderText = "Nhập email";
             txtEmail.SelectedText = "";
             txtEmail.ShadowDecoration.CustomizableEdges = customizableEdges24;
-            txtEmail.Size = new Size(379, 45);
+            txtEmail.Size = new Size(380, 45);
             txtEmail.TabIndex = 18;
             // 
             // lblChucVu

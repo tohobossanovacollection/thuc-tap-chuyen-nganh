@@ -1,3 +1,5 @@
+using Guna.UI2.WinForms;
+
 namespace WinFormsAppTest
 {
     partial class QuanLyNhanVienForm
@@ -6,8 +8,8 @@ namespace WinFormsAppTest
         private DataGridView _dgv;
         private Panel _top;
         private Label _title;
-        private Button btnThem;
-        private Button btnGanTk;
+        private Guna2Button btnThem;
+        private Guna2Button btnGanTk;
 
         protected override void Dispose(bool disposing)
         {
@@ -20,11 +22,11 @@ namespace WinFormsAppTest
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuanLyNhanVienForm));
             _dgv = new DataGridView();
             _top = new Panel();
-            btnXoa = new Button();
-            btnSua = new Button();
+            btnXoa = new Guna2Button();
+            btnSua = new Guna2Button();
             _title = new Label();
-            btnThem = new Button();
-            btnGanTk = new Button();
+            btnThem = new Guna2Button();
+            btnGanTk = new Guna2Button();
             ((System.ComponentModel.ISupportInitialize)_dgv).BeginInit();
             _top.SuspendLayout();
             SuspendLayout();
@@ -33,6 +35,8 @@ namespace WinFormsAppTest
             // 
             _dgv.AllowUserToAddRows = false;
             _dgv.AllowUserToDeleteRows = false;
+            _dgv.AlternatingRowsDefaultCellStyle = new DataGridViewCellStyle { BackColor = Color.White };
+            _dgv.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             _dgv.BackgroundColor = Color.White;
             _dgv.BorderStyle = BorderStyle.None;
             _dgv.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
@@ -47,13 +51,13 @@ namespace WinFormsAppTest
             headerStyle.WrapMode = DataGridViewTriState.True;
             _dgv.ColumnHeadersDefaultCellStyle = headerStyle;
 
-            _dgv.ColumnHeadersHeight = 35;
+            _dgv.ColumnHeadersHeight = 29;
             _dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
 
             DataGridViewCellStyle cellStyle = new DataGridViewCellStyle();
             cellStyle.Alignment = DataGridViewContentAlignment.MiddleLeft;
             cellStyle.BackColor = Color.White;
-            cellStyle.Font = new Font("Segoe UI", 9F);
+            cellStyle.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             cellStyle.ForeColor = Color.FromArgb(71, 69, 94);
             cellStyle.SelectionBackColor = Color.FromArgb(231, 229, 255);
             cellStyle.SelectionForeColor = Color.FromArgb(71, 69, 94);
@@ -63,14 +67,14 @@ namespace WinFormsAppTest
             _dgv.Dock = DockStyle.Fill;
             _dgv.EnableHeadersVisualStyles = false;
             _dgv.GridColor = Color.FromArgb(231, 229, 255);
-            _dgv.Location = new Point(0, 110);
+            _dgv.Location = new Point(0, 86);
             _dgv.Name = "_dgv";
             _dgv.ReadOnly = true;
             _dgv.RowHeadersVisible = false;
             _dgv.RowHeadersWidth = 51;
-            _dgv.RowTemplate.Height = 35;
+            _dgv.RowTemplate.Height = 29;
             _dgv.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            _dgv.Size = new Size(1100, 540);
+            _dgv.Size = new Size(1200, 614);
             _dgv.TabIndex = 0;
             // 
             // _top
@@ -84,45 +88,49 @@ namespace WinFormsAppTest
             _top.Dock = DockStyle.Top;
             _top.Location = new Point(0, 0);
             _top.Name = "_top";
-            _top.Size = new Size(1100, 110);
+            _top.Size = new Size(1200, 86);
             _top.TabIndex = 1;
             // 
             // btnXoa
             // 
-            btnXoa.BackColor = Color.FromArgb(211, 47, 47);
+            btnXoa.BorderColor = Color.White;
+            btnXoa.BorderRadius = 8;
+            btnXoa.BorderThickness = 1;
+            btnXoa.FillColor = Color.FromArgb(211, 47, 47);
             btnXoa.ForeColor = Color.White;
-            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnXoa.Font = new Font("Segoe UI", 9F);
             btnXoa.Image = Icons.IconGenerator.GenerateDeleteIcon();
-            btnXoa.ImageAlign = ContentAlignment.MiddleRight;
-            btnXoa.Location = new Point(210, 60);
+            btnXoa.ImageAlign = HorizontalAlignment.Right;
+            btnXoa.Location = new Point(920, 22);
             btnXoa.Name = "btnXoa";
-            btnXoa.Size = new Size(85, 32);
+            btnXoa.Size = new Size(110, 40);
             btnXoa.TabIndex = 4;
             btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
             btnXoa.Click += btnXoa_Click;
             // 
             // btnSua
             // 
-            btnSua.BackColor = Color.FromArgb(255, 167, 38);
+            btnSua.BorderColor = Color.White;
+            btnSua.BorderRadius = 8;
+            btnSua.BorderThickness = 1;
+            btnSua.FillColor = Color.FromArgb(255, 167, 38);
             btnSua.ForeColor = Color.Black;
-            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnSua.Font = new Font("Segoe UI", 9F);
             btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
-            btnSua.ImageAlign = ContentAlignment.MiddleRight;
-            btnSua.Location = new Point(120, 60);
+            btnSua.ImageAlign = HorizontalAlignment.Right;
+            btnSua.Location = new Point(800, 22);
             btnSua.Name = "btnSua";
-            btnSua.Size = new Size(85, 32);
+            btnSua.Size = new Size(110, 40);
             btnSua.TabIndex = 3;
             btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
             // 
             // _title
             // 
             _title.AutoSize = true;
-            _title.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            _title.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             _title.ForeColor = Color.FromArgb(255, 241, 118);
-            _title.Location = new Point(12, 10);
+            _title.Location = new Point(16, 20);
             _title.Name = "_title";
             _title.Size = new Size(250, 37);
             _title.TabIndex = 0;
@@ -130,35 +138,40 @@ namespace WinFormsAppTest
             // 
             // btnThem
             // 
-            btnThem.BackColor = Color.FromArgb(255, 167, 38);
+            btnThem.BorderColor = Color.White;
+            btnThem.BorderRadius = 8;
+            btnThem.BorderThickness = 1;
+            btnThem.FillColor = Color.FromArgb(255, 167, 38);
             btnThem.ForeColor = Color.Black;
-            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            btnThem.Font = new Font("Segoe UI", 9F);
             btnThem.Image = Icons.IconGenerator.GenerateAddIcon();
-            btnThem.ImageAlign = ContentAlignment.MiddleRight;
-            btnThem.Location = new Point(30, 60);
+            btnThem.ImageAlign = HorizontalAlignment.Right;
+            btnThem.Location = new Point(680, 22);
             btnThem.Name = "btnThem";
-            btnThem.Size = new Size(85, 32);
+            btnThem.Size = new Size(110, 40);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnCrud_Click;
             // 
             // btnGanTk
             // 
-            btnGanTk.BackColor = Color.FromArgb(255, 167, 38);
+            btnGanTk.BorderColor = Color.White;
+            btnGanTk.BorderRadius = 8;
+            btnGanTk.BorderThickness = 1;
+            btnGanTk.FillColor = Color.FromArgb(255, 167, 38);
             btnGanTk.ForeColor = Color.Black;
-            btnGanTk.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
-            btnGanTk.Location = new Point(300, 60);
+            btnGanTk.Font = new Font("Segoe UI", 9F);
+            btnGanTk.Location = new Point(1040, 22);
             btnGanTk.Name = "btnGanTk";
-            btnGanTk.Size = new Size(120, 32);
+            btnGanTk.Size = new Size(120, 40);
             btnGanTk.TabIndex = 5;
             btnGanTk.Text = "Gán tài khoản";
-            btnGanTk.UseVisualStyleBackColor = false;
             btnGanTk.Click += btnGanTk_Click;
             // 
             // QuanLyNhanVienForm
             // 
-            ClientSize = new Size(1100, 650);
+            BackColor = Color.White;
+            ClientSize = new Size(1200, 700);
             Controls.Add(_dgv);
             Controls.Add(_top);
             Name = "QuanLyNhanVienForm";
@@ -171,7 +184,7 @@ namespace WinFormsAppTest
             ResumeLayout(false);
         }
 
-        private Button btnXoa;
-        private Button btnSua;
+        private Guna2Button btnXoa;
+        private Guna2Button btnSua;
     }
 }

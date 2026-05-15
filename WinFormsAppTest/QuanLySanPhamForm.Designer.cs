@@ -1,3 +1,5 @@
+using Guna.UI2.WinForms;
+
 namespace WinFormsAppTest
 {
     partial class QuanLySanPhamForm
@@ -6,11 +8,11 @@ namespace WinFormsAppTest
         private Panel pnlTop;
         private Label lblTitle;
         private DataGridView dgvSanPham;
-        private Button btnThem;
-        private Button btnSua;
-        private Button btnXoa;
-        private Button btnLamMoi;
-        private Button btnDanhMuc;
+        private Guna2Button btnThem;
+        private Guna2Button btnSua;
+        private Guna2Button btnXoa;
+        private Guna2Button btnLamMoi;
+        private Guna2Button btnDanhMuc;
 
         protected override void Dispose(bool disposing)
         {
@@ -28,11 +30,11 @@ namespace WinFormsAppTest
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlTop = new Panel();
             lblTitle = new Label();
-            btnDanhMuc = new Button();
-            btnThem = new Button();
-            btnSua = new Button();
-            btnXoa = new Button();
-            btnLamMoi = new Button();
+            btnDanhMuc = new Guna2Button();
+            btnThem = new Guna2Button();
+            btnSua = new Guna2Button();
+            btnXoa = new Guna2Button();
+            btnLamMoi = new Guna2Button();
             dgvSanPham = new DataGridView();
             pnlTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvSanPham).BeginInit();
@@ -66,68 +68,78 @@ namespace WinFormsAppTest
             // 
             // btnDanhMuc
             // 
-            btnDanhMuc.BackColor = Color.FromArgb(255, 167, 38);
-            btnDanhMuc.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnDanhMuc.BorderColor = Color.White;
+            btnDanhMuc.BorderRadius = 8;
+            btnDanhMuc.BorderThickness = 1;
+            btnDanhMuc.FillColor = Color.FromArgb(255, 167, 38);
+            btnDanhMuc.Font = new Font("Segoe UI", 9F);
             btnDanhMuc.ForeColor = Color.Black;
             btnDanhMuc.Location = new Point(497, 22);
             btnDanhMuc.Name = "btnDanhMuc";
             btnDanhMuc.Size = new Size(173, 40);
             btnDanhMuc.TabIndex = 1;
             btnDanhMuc.Text = "Quản lý danh mục";
-            btnDanhMuc.UseVisualStyleBackColor = false;
             btnDanhMuc.Click += btnDanhMuc_Click;
             // 
             // btnThem
             // 
-            btnThem.BackColor = Color.FromArgb(255, 167, 38);
-            btnThem.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnThem.BorderColor = Color.White;
+            btnThem.BorderRadius = 8;
+            btnThem.BorderThickness = 1;
+            btnThem.FillColor = Color.FromArgb(255, 167, 38);
+            btnThem.Font = new Font("Segoe UI", 9F);
             btnThem.ForeColor = Color.Black;
             btnThem.Location = new Point(680, 22);
             btnThem.Name = "btnThem";
             btnThem.Size = new Size(110, 40);
             btnThem.TabIndex = 2;
             btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = false;
             btnThem.Click += btnThem_Click;
             // 
             // btnSua
             // 
-            btnSua.BackColor = Color.FromArgb(255, 167, 38);
-            btnSua.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnSua.BorderColor = Color.White;
+            btnSua.BorderRadius = 8;
+            btnSua.BorderThickness = 1;
+            btnSua.FillColor = Color.FromArgb(255, 167, 38);
+            btnSua.Font = new Font("Segoe UI", 9F);
             btnSua.ForeColor = Color.Black;
             btnSua.Location = new Point(800, 22);
             btnSua.Name = "btnSua";
             btnSua.Size = new Size(110, 40);
             btnSua.TabIndex = 3;
             btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
             btnSua.Click += btnSua_Click;
             btnSua.Image = Icons.IconGenerator.GenerateEditIcon();
             // 
             // btnXoa
             // 
-            btnXoa.BackColor = Color.FromArgb(211, 47, 47);
-            btnXoa.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnXoa.BorderColor = Color.White;
+            btnXoa.BorderRadius = 8;
+            btnXoa.BorderThickness = 1;
+            btnXoa.FillColor = Color.FromArgb(211, 47, 47);
+            btnXoa.Font = new Font("Segoe UI", 9F);
             btnXoa.ForeColor = Color.White;
             btnXoa.Location = new Point(920, 22);
             btnXoa.Name = "btnXoa";
             btnXoa.Size = new Size(110, 40);
             btnXoa.TabIndex = 4;
             btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
             btnXoa.Click += btnXoa_Click;
             // 
             // btnLamMoi
             // 
-            btnLamMoi.BackColor = Color.FromArgb(97, 97, 97);
-            btnLamMoi.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            btnLamMoi.BorderColor = Color.White;
+            btnLamMoi.BorderRadius = 8;
+            btnLamMoi.BorderThickness = 1;
+            btnLamMoi.FillColor = Color.FromArgb(97, 97, 97);
+            btnLamMoi.Font = new Font("Segoe UI", 9F);
             btnLamMoi.ForeColor = Color.White;
             btnLamMoi.Location = new Point(1040, 22);
             btnLamMoi.Name = "btnLamMoi";
             btnLamMoi.Size = new Size(120, 40);
             btnLamMoi.TabIndex = 5;
             btnLamMoi.Text = "Làm mới";
-            btnLamMoi.UseVisualStyleBackColor = false;
             btnLamMoi.Click += btnLamMoi_Click;
             // 
             // dgvSanPham

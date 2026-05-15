@@ -159,7 +159,7 @@ namespace WinFormsAppTest
             pnlHeader.Margin = new Padding(3, 2, 3, 2);
             pnlHeader.Name = "pnlHeader";
             pnlHeader.ShadowDecoration.CustomizableEdges = customizableEdges4;
-            pnlHeader.Size = new Size(1182, 68);
+            pnlHeader.Size = new Size(1182, 76);
             pnlHeader.TabIndex = 6;
             // 
             // lblTitle
@@ -167,7 +167,7 @@ namespace WinFormsAppTest
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
             lblTitle.ForeColor = Color.FromArgb(255, 241, 118);
-            lblTitle.Location = new Point(66, 9);
+            lblTitle.Location = new Point(66, 6);
             lblTitle.Margin = new Padding(3, 2, 3, 2);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(352, 34);
@@ -179,7 +179,7 @@ namespace WinFormsAppTest
             lblWelcome.BackColor = Color.Transparent;
             lblWelcome.Font = new Font("Segoe UI", 10F);
             lblWelcome.ForeColor = Color.White;
-            lblWelcome.Location = new Point(67, 39);
+            lblWelcome.Location = new Point(67, 46);
             lblWelcome.Margin = new Padding(3, 2, 3, 2);
             lblWelcome.Name = "lblWelcome";
             lblWelcome.Size = new Size(53, 19);
@@ -194,7 +194,7 @@ namespace WinFormsAppTest
             btnRefresh.FillColor = Color.FromArgb(255, 167, 38);
             btnRefresh.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             btnRefresh.ForeColor = Color.Black;
-            btnRefresh.Location = new Point(1036, 20);
+            btnRefresh.Location = new Point(1036, 24);
             btnRefresh.Margin = new Padding(3, 2, 3, 2);
             btnRefresh.Name = "btnRefresh";
             btnRefresh.ShadowDecoration.CustomizableEdges = customizableEdges2;
@@ -214,7 +214,7 @@ namespace WinFormsAppTest
             btnHome.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             btnHome.ForeColor = Color.White;
             btnHome.HoverState.FillColor = Color.Transparent;
-            btnHome.Location = new Point(10, 15);
+            btnHome.Location = new Point(10, 18);
             btnHome.Margin = new Padding(3, 2, 3, 2);
             btnHome.Name = "btnHome";
             btnHome.ShadowDecoration.CustomizableEdges = customizableEdges32;
