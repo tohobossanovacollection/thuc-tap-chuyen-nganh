@@ -53,10 +53,17 @@ namespace WinFormsAppTest
                 using SqlConnection connection = new SqlConnection(_connectionString);
                 connection.Open();
 
-                if (!TryGetUserRole(connection, username, password, out roleCode, out maNhanVien, out phongBan))
+                if (!TryGetAccountId(connection, username, password, out string maTaiKhoan))
                 {
                     MessageBox.Show("Sai tên đăng nhập hoặc mật khẩu.", "Đăng nhập thất bại",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPassword.Clear();
+                    txtPassword.Focus();
+                    return;
+                }
+
+                if (!EnsureEmployeeProfile(connection, maTaiKhoan, out roleCode, out maNhanVien, out phongBan))
+                {
                     txtPassword.Clear();
                     txtPassword.Focus();
                     return;
@@ -114,17 +121,38 @@ namespace WinFormsAppTest
             // Remove this if not needed
         }
 
-        private static bool TryGetUserRole(SqlConnection connection, string username, string password, out string roleCode, out string maNhanVien, out string phongBan)
+        private static bool TryGetAccountId(SqlConnection connection, string username, string password, out string maTaiKhoan)
         {
             const string query = """
-                SELECT nv.chuc_vu, nv.ma_nhan_vien, nv.phong_ban
-                FROM tai_khoan tk
-                INNER JOIN nhan_vien nv ON nv.ma_tai_khoan = tk.ma_tai_khoan
-                WHERE tk.ten_dang_nhap = @username AND tk.mat_khau = @password;
+                SELECT ma_tai_khoan
+                FROM tai_khoan
+                WHERE ten_dang_nhap = @username AND mat_khau = @password;
                 """;
             using SqlCommand command = new SqlCommand(query, connection);
             command.Parameters.AddWithValue("@username", username);
             command.Parameters.AddWithValue("@password", password);
+
+            object? result = command.ExecuteScalar();
+            if (result is null || result == DBNull.Value)
+            {
+                maTaiKhoan = string.Empty;
+                return false;
+            }
+
+            maTaiKhoan = result.ToString() ?? string.Empty;
+            return !string.IsNullOrWhiteSpace(maTaiKhoan);
+        }
+
+        private bool EnsureEmployeeProfile(SqlConnection connection, string maTaiKhoan, out string roleCode, out string maNhanVien, out string phongBan)
+        {
+            const string query = """
+                SELECT ma_nhan_vien, ho_ten, chuc_vu, phong_ban
+                FROM nhan_vien
+                WHERE ma_tai_khoan = @maTaiKhoan;
+                """;
+
+            using SqlCommand command = new SqlCommand(query, connection);
+            command.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
 
             using SqlDataReader reader = command.ExecuteReader();
             if (!reader.Read())
@@ -132,15 +160,84 @@ namespace WinFormsAppTest
                 roleCode = string.Empty;
                 maNhanVien = string.Empty;
                 phongBan = string.Empty;
-                return false;
+                reader.Close();
+                return CreateEmployeeProfile(connection, maTaiKhoan, out roleCode, out maNhanVien, out phongBan);
             }
 
-            roleCode = reader["chuc_vu"]?.ToString() ?? string.Empty;
             maNhanVien = reader["ma_nhan_vien"]?.ToString() ?? string.Empty;
+            string hoTen = reader["ho_ten"]?.ToString() ?? string.Empty;
+            roleCode = reader["chuc_vu"]?.ToString() ?? string.Empty;
             phongBan = reader["phong_ban"]?.ToString() ?? string.Empty;
+            reader.Close();
+
+            if (hoTen == EmployeeProfileHelper.PendingName)
+            {
+                return UpdateEmployeeProfile(connection, maNhanVien, out roleCode, out phongBan);
+            }
+
             return !string.IsNullOrWhiteSpace(roleCode)
                    && !string.IsNullOrWhiteSpace(maNhanVien)
                    && !string.IsNullOrWhiteSpace(phongBan);
+        }
+
+        private bool CreateEmployeeProfile(SqlConnection connection, string maTaiKhoan, out string roleCode, out string maNhanVien, out string phongBan)
+        {
+            using var dlg = new NhanVienProfileDialog();
+            if (dlg.ShowDialog(this) != DialogResult.OK)
+            {
+                roleCode = string.Empty;
+                maNhanVien = string.Empty;
+                phongBan = string.Empty;
+                return false;
+            }
+
+            maNhanVien = CodeGenerator.GetNextCode(_connectionString, "nhan_vien", "ma_nhan_vien", "NV");
+            roleCode = dlg.ChucVu;
+            phongBan = dlg.PhongBan;
+
+            const string insertQuery = @"INSERT INTO nhan_vien (ma_nhan_vien, ma_tai_khoan, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, email, chuc_vu, phong_ban, trang_thai)
+                                         VALUES (@ma, @maTaiKhoan, @hoTen, @ngaySinh, @diaChi, @soDienThoai, NULL, @chucVu, @phongBan, 'ACTIVE')";
+            using SqlCommand insertCommand = new SqlCommand(insertQuery, connection);
+            insertCommand.Parameters.AddWithValue("@ma", maNhanVien);
+            insertCommand.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+            insertCommand.Parameters.AddWithValue("@hoTen", dlg.HoTen.Trim());
+            insertCommand.Parameters.AddWithValue("@ngaySinh", dlg.NgaySinh.Date);
+            insertCommand.Parameters.AddWithValue("@diaChi", dlg.DiaChi.Trim());
+            insertCommand.Parameters.AddWithValue("@soDienThoai", dlg.SoDienThoai.Trim());
+            insertCommand.Parameters.AddWithValue("@chucVu", dlg.ChucVu);
+            insertCommand.Parameters.AddWithValue("@phongBan", dlg.PhongBan);
+            insertCommand.ExecuteNonQuery();
+
+            return true;
+        }
+
+        private bool UpdateEmployeeProfile(SqlConnection connection, string maNhanVien, out string roleCode, out string phongBan)
+        {
+            using var dlg = new NhanVienProfileDialog();
+            if (dlg.ShowDialog(this) != DialogResult.OK)
+            {
+                roleCode = string.Empty;
+                phongBan = string.Empty;
+                return false;
+            }
+
+            roleCode = dlg.ChucVu;
+            phongBan = dlg.PhongBan;
+
+            const string updateQuery = @"UPDATE nhan_vien
+                                         SET ho_ten = @hoTen, ngay_sinh = @ngaySinh, dia_chi = @diaChi, so_dien_thoai = @soDienThoai, chuc_vu = @chucVu, phong_ban = @phongBan
+                                         WHERE ma_nhan_vien = @ma";
+            using SqlCommand updateCommand = new SqlCommand(updateQuery, connection);
+            updateCommand.Parameters.AddWithValue("@ma", maNhanVien);
+            updateCommand.Parameters.AddWithValue("@hoTen", dlg.HoTen.Trim());
+            updateCommand.Parameters.AddWithValue("@ngaySinh", dlg.NgaySinh.Date);
+            updateCommand.Parameters.AddWithValue("@diaChi", dlg.DiaChi.Trim());
+            updateCommand.Parameters.AddWithValue("@soDienThoai", dlg.SoDienThoai.Trim());
+            updateCommand.Parameters.AddWithValue("@chucVu", dlg.ChucVu);
+            updateCommand.Parameters.AddWithValue("@phongBan", dlg.PhongBan);
+            updateCommand.ExecuteNonQuery();
+
+            return true;
         }
 
         private static string MapRoleDisplay(string roleCode)

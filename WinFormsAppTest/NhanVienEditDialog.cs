@@ -181,6 +181,12 @@ namespace WinFormsAppTest
                 DialogResult = DialogResult.None;
                 return;
             }
+
+            if (DateTime.Today < dtpNgaySinh.Value.Date.AddYears(18))
+            {
+                MessageBox.Show("Thông tin ngày sinh không hợp lệ vui lòng nhập lại.");
+                DialogResult = DialogResult.None;
+            }
         }
 
         private static void ShowInvalid(string field)
