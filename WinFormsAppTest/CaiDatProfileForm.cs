@@ -1,4 +1,5 @@
 using System.Data;
+using System.Text.RegularExpressions;
 using Microsoft.Data.SqlClient;
 
 namespace WinFormsAppTest
@@ -134,6 +135,23 @@ namespace WinFormsAppTest
 
         private void btnCapNhat_Click(object sender, EventArgs e)
         {
+            string phone = _txtSoDienThoai.Text.Trim();
+            string email = _txtEmail.Text.Trim();
+
+            if (!string.IsNullOrWhiteSpace(phone) && !Regex.IsMatch(phone, @"^\d{10}$"))
+            {
+                MessageBox.Show("Số điện thoại phải gồm đúng 10 chữ số.");
+                _txtSoDienThoai.Focus();
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(email) && !Regex.IsMatch(email, @"^[^\s@]+@[^\s@]+\.[^\s@]+$"))
+            {
+                MessageBox.Show("Email không đúng định dạng.");
+                _txtEmail.Focus();
+                return;
+            }
+
             try
             {
                 using SqlConnection conn = new SqlConnection(_connectionString);
@@ -147,8 +165,8 @@ namespace WinFormsAppTest
                 cmd.Parameters.AddWithValue("@ten", _txtHoTen.Text);
                 cmd.Parameters.AddWithValue("@ns", _dtpNgaySinh.Value);
                 cmd.Parameters.AddWithValue("@dc", _txtDiaChi.Text);
-                cmd.Parameters.AddWithValue("@sdt", _txtSoDienThoai.Text);
-                cmd.Parameters.AddWithValue("@email", _txtEmail.Text);
+                cmd.Parameters.AddWithValue("@sdt", string.IsNullOrWhiteSpace(phone) ? (object)DBNull.Value : phone);
+                cmd.Parameters.AddWithValue("@email", string.IsNullOrWhiteSpace(email) ? (object)DBNull.Value : email);
                 cmd.Parameters.AddWithValue("@maNV", _maNhanVien.Trim());
 
                 cmd.ExecuteNonQuery();
