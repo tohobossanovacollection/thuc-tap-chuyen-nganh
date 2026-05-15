@@ -25,7 +25,12 @@ namespace WinFormsAppTest
         public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
         public string ChucVu { get => txtChucVu.Text; set => txtChucVu.Text = value; }
         public string PhongBan { get => txtPhongBan.Text; set => txtPhongBan.Text = value; }
-        public string TrangThai { get => cboTrangThai.SelectedItem?.ToString() ?? "Hoạt động"; set => cboTrangThai.SelectedItem = value; }
+        public string TrangThai { get => cboTrangThai.SelectedItem?.ToString() ?? "ACTIVE"; set => cboTrangThai.SelectedItem = value; }
+
+        public void SetMaReadOnly(bool readOnly)
+        {
+            txtMa.ReadOnly = readOnly;
+        }
 
         public NhanVienEditDialog()
         {
@@ -95,8 +100,8 @@ namespace WinFormsAppTest
                 DropDownStyle = ComboBoxStyle.DropDownList,
                 Font = new Font("Segoe UI", 9F)
             };
-            cboTrangThai.Items.AddRange(new[] { "Hoạt động", "Ngừng hoạt động", "Nghỉ phép" });
-            cboTrangThai.SelectedItem = "Hoạt động";
+            cboTrangThai.Items.AddRange(new[] { "ACTIVE", "INACTIVE" });
+            cboTrangThai.SelectedItem = "ACTIVE";
             y += rowHeight;
 
             // Buttons
@@ -143,6 +148,44 @@ namespace WinFormsAppTest
 
             AcceptButton = btnOk;
             CancelButton = btnCancel;
+
+            btnOk.Click += OnOkClick;
+        }
+
+        private void OnOkClick(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMa.Text))
+            {
+                ShowInvalid("mã nhân viên");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!InputValidator.IsValidName(txtHoTen.Text))
+            {
+                ShowInvalid("họ tên");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtSoDienThoai.Text) && !InputValidator.IsValidPhone(txtSoDienThoai.Text))
+            {
+                ShowInvalid("số điện thoại");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtEmail.Text) && !InputValidator.IsValidEmail(txtEmail.Text))
+            {
+                ShowInvalid("email");
+                DialogResult = DialogResult.None;
+                return;
+            }
+        }
+
+        private static void ShowInvalid(string field)
+        {
+            MessageBox.Show($"Thông tin {field} không hợp lệ vui lòng nhập lại.");
         }
 
         private Label CreateLabel(string text, int x, int y, int width)

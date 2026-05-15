@@ -63,25 +63,18 @@ namespace WinFormsAppTest
         private void btnTao_Click(object sender, EventArgs e)
         {
             using var dlg = new GiamGiaEditDialog();
+            dlg.Ma = CodeGenerator.GetNextCode(_connectionString, "giam_gia", "ma_giam_gia", "GG");
+            dlg.SetMaReadOnly(true);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ma))
-                {
-                    MessageBox.Show("Vui lòng nhập mã giảm giá.");
-                    return;
-                }
-
-                if (dlg.PhanTramGiam == 0 && dlg.SoTienGiam == 0)
-                {
-                    MessageBox.Show("Vui lòng nhập phần trăm giảm hoặc số tiền giảm.");
-                    return;
-                }
-
                 if (dlg.NgayKetThuc < dlg.NgayBatDau)
                 {
                     MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày bắt đầu.");
                     return;
                 }
+
+                decimal phanTram = dlg.IsPercentDiscount ? dlg.PhanTramGiam : 0;
+                decimal soTien = dlg.IsPercentDiscount ? 0 : dlg.SoTienGiam;
 
                 const string query = @"INSERT INTO giam_gia (ma_giam_gia, phan_tram_giam, so_tien_giam, 
                                                              so_luong_su_dung, ngay_bat_dau, ngay_ket_thuc, trang_thai) 
@@ -91,8 +84,8 @@ namespace WinFormsAppTest
                     using SqlConnection conn = new SqlConnection(_connectionString);
                     using SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@ma", dlg.Ma.Trim());
-                    cmd.Parameters.AddWithValue("@phanTram", dlg.PhanTramGiam);
-                    cmd.Parameters.AddWithValue("@soTien", dlg.SoTienGiam);
+                    cmd.Parameters.AddWithValue("@phanTram", phanTram);
+                    cmd.Parameters.AddWithValue("@soTien", soTien);
                     cmd.Parameters.AddWithValue("@soLuong", dlg.SoLuongSuDung);
                     cmd.Parameters.AddWithValue("@ngayBatDau", dlg.NgayBatDau);
                     cmd.Parameters.AddWithValue("@ngayKetThuc", dlg.NgayKetThuc);
@@ -137,20 +130,19 @@ namespace WinFormsAppTest
             dlg.Text = "Cập nhật mã giảm giá";
             // Make Ma read-only for edits
             dlg.SetMaReadOnly(true);
+            dlg.SetLoaiGiamGia(phanTram > 0);
+            dlg.EnableValueOnlyEdit();
 
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (dlg.PhanTramGiam == 0 && dlg.SoTienGiam == 0)
-                {
-                    MessageBox.Show("Vui lòng nhập phần trăm giảm hoặc số tiền giảm.");
-                    return;
-                }
-
                 if (dlg.NgayKetThuc < dlg.NgayBatDau)
                 {
                     MessageBox.Show("Ngày kết thúc không được nhỏ hơn ngày bắt đầu.");
                     return;
                 }
+
+                decimal updatedPhanTram = dlg.IsPercentDiscount ? dlg.PhanTramGiam : 0;
+                decimal updatedSoTien = dlg.IsPercentDiscount ? 0 : dlg.SoTienGiam;
 
                 const string query = @"UPDATE giam_gia 
                                        SET phan_tram_giam = @phanTram, so_tien_giam = @soTien, 
@@ -162,8 +154,8 @@ namespace WinFormsAppTest
                     using SqlConnection conn = new SqlConnection(_connectionString);
                     using SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@ma", ma);
-                    cmd.Parameters.AddWithValue("@phanTram", dlg.PhanTramGiam);
-                    cmd.Parameters.AddWithValue("@soTien", dlg.SoTienGiam);
+                    cmd.Parameters.AddWithValue("@phanTram", updatedPhanTram);
+                    cmd.Parameters.AddWithValue("@soTien", updatedSoTien);
                     cmd.Parameters.AddWithValue("@soLuong", dlg.SoLuongSuDung);
                     cmd.Parameters.AddWithValue("@ngayBatDau", dlg.NgayBatDau);
                     cmd.Parameters.AddWithValue("@ngayKetThuc", dlg.NgayKetThuc);
@@ -206,6 +198,7 @@ namespace WinFormsAppTest
             dlg.NgayKetThuc = ngayKetThuc;
             dlg.TrangThai = trangThai;
             dlg.Text = "Cập nhật thời gian giảm giá";
+            dlg.SetLoaiGiamGia(phanTram > 0);
 
             // Disable all controls except date controls
             foreach (Control ctrl in dlg.Controls)

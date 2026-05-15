@@ -64,14 +64,10 @@ namespace WinFormsAppTest
         private void btnThem_Click(object sender, EventArgs e)
         {
             using var dlg = new NhaCungCapEditDialog();
+            dlg.Ma = CodeGenerator.GetNextCode(_connectionString, "nha_cung_cap", "ma_nha_cung_cap", "NCC");
+            dlg.SetMaReadOnly(true);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ma) || string.IsNullOrWhiteSpace(dlg.Ten))
-                {
-                    MessageBox.Show("Vui lòng nhập mã và tên nhà cung cấp.");
-                    return;
-                }
-
                 const string query = @"INSERT INTO nha_cung_cap (ma_nha_cung_cap, ten_nha_cung_cap, so_dien_thoai, dia_chi, email) 
                                        VALUES (@ma, @ten, @dienthoai, @diachi, @email)";
                 try
@@ -108,6 +104,7 @@ namespace WinFormsAppTest
 
             using var dlg = new NhaCungCapEditDialog();
             dlg.Ma = ma;
+            dlg.SetMaReadOnly(true);
             dlg.Ten = row.Cells["ten_nha_cung_cap"].Value?.ToString() ?? "";
             dlg.DienThoai = row.Cells["so_dien_thoai"].Value?.ToString() ?? "";
             dlg.DiaChi = row.Cells["dia_chi"].Value?.ToString() ?? "";
@@ -115,12 +112,6 @@ namespace WinFormsAppTest
 
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ten))
-                {
-                    MessageBox.Show("Vui lòng nhập tên nhà cung cấp.");
-                    return;
-                }
-
                 const string query = @"UPDATE nha_cung_cap 
                                        SET ten_nha_cung_cap = @ten, so_dien_thoai = @dienthoai, dia_chi = @diachi, email = @email
                                        WHERE ma_nha_cung_cap = @ma";

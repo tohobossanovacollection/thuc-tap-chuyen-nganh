@@ -71,31 +71,45 @@ namespace WinFormsAppTest
         private void btnCrud_Click(object sender, EventArgs e)
         {
             using var dlg = new NhanVienEditDialog();
+            dlg.Ma = CodeGenerator.GetNextCode(_connectionString, "nhan_vien", "ma_nhan_vien", "NV");
+            dlg.SetMaReadOnly(true);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ma) || string.IsNullOrWhiteSpace(dlg.HoTen))
-                {
-                    MessageBox.Show("Vui lòng nhập mã và họ tên nhân viên.");
-                    return;
-                }
-
-                const string query = @"INSERT INTO nhan_vien (ma_nhan_vien, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, email, chuc_vu, phong_ban, trang_thai) 
-                                       VALUES (@ma, @hoten, @ngaysinh, @diachi, @sdienthoai, @email, @chucvu, @phongban, @trangthai)";
                 try
                 {
                     using SqlConnection conn = new SqlConnection(_connectionString);
-                    using SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ma", dlg.Ma.Trim());
-                    cmd.Parameters.AddWithValue("@hoten", dlg.HoTen.Trim());
-                    cmd.Parameters.AddWithValue("@ngaysinh", dlg.NgaySinh ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@diachi", dlg.DiaChi?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@sdienthoai", dlg.SoDienThoai?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@email", dlg.Email?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@chucvu", dlg.ChucVu?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@phongban", dlg.PhongBan?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@trangthai", dlg.TrangThai?.Trim() ?? "Hoạt động");
                     conn.Open();
-                    cmd.ExecuteNonQuery();
+                    using SqlTransaction tx = conn.BeginTransaction();
+
+                    string maTaiKhoan = $"TK{DateTime.Now:yyyyMMddHHmmssfff}";
+                    const string insertAccount = @"INSERT INTO tai_khoan (ma_tai_khoan, ten_dang_nhap, mat_khau)
+                                                   VALUES (@ma, @tenDangNhap, @matKhau)";
+                    using (SqlCommand accountCmd = new SqlCommand(insertAccount, conn, tx))
+                    {
+                        accountCmd.Parameters.AddWithValue("@ma", maTaiKhoan);
+                        accountCmd.Parameters.AddWithValue("@tenDangNhap", dlg.Ma.Trim());
+                        accountCmd.Parameters.AddWithValue("@matKhau", "123456");
+                        accountCmd.ExecuteNonQuery();
+                    }
+
+                    const string insertEmployee = @"INSERT INTO nhan_vien (ma_nhan_vien, ma_tai_khoan, ho_ten, ngay_sinh, dia_chi, so_dien_thoai, email, chuc_vu, phong_ban, trang_thai) 
+                                                   VALUES (@ma, @maTaiKhoan, @hoten, @ngaysinh, @diachi, @sdienthoai, @email, @chucvu, @phongban, @trangthai)";
+                    using (SqlCommand cmd = new SqlCommand(insertEmployee, conn, tx))
+                    {
+                        cmd.Parameters.AddWithValue("@ma", dlg.Ma.Trim());
+                        cmd.Parameters.AddWithValue("@maTaiKhoan", maTaiKhoan);
+                        cmd.Parameters.AddWithValue("@hoten", dlg.HoTen.Trim());
+                        cmd.Parameters.AddWithValue("@ngaysinh", dlg.NgaySinh ?? (object)DBNull.Value);
+                        cmd.Parameters.AddWithValue("@diachi", dlg.DiaChi?.Trim() ?? "");
+                        cmd.Parameters.AddWithValue("@sdienthoai", dlg.SoDienThoai?.Trim() ?? "");
+                        cmd.Parameters.AddWithValue("@email", dlg.Email?.Trim() ?? "");
+                        cmd.Parameters.AddWithValue("@chucvu", dlg.ChucVu?.Trim() ?? "");
+                        cmd.Parameters.AddWithValue("@phongban", dlg.PhongBan?.Trim() ?? "");
+                        cmd.Parameters.AddWithValue("@trangthai", dlg.TrangThai?.Trim() ?? "ACTIVE");
+                        cmd.ExecuteNonQuery();
+                    }
+
+                    tx.Commit();
                     LoadEmployees();
                     MessageBox.Show("Thêm nhân viên thành công.");
                 }
@@ -119,6 +133,7 @@ namespace WinFormsAppTest
 
             using var dlg = new NhanVienEditDialog();
             dlg.Ma = ma;
+            dlg.SetMaReadOnly(true);
             dlg.HoTen = row.Cells["ho_ten"].Value?.ToString() ?? "";
             dlg.NgaySinh = row.Cells["ngay_sinh"].Value as DateTime?;
             dlg.DiaChi = row.Cells["dia_chi"].Value?.ToString() ?? "";
@@ -126,16 +141,10 @@ namespace WinFormsAppTest
             dlg.Email = row.Cells["email"].Value?.ToString() ?? "";
             dlg.ChucVu = row.Cells["chuc_vu"].Value?.ToString() ?? "";
             dlg.PhongBan = row.Cells["phong_ban"].Value?.ToString() ?? "";
-            dlg.TrangThai = row.Cells["trang_thai"].Value?.ToString() ?? "Hoạt động";
+            dlg.TrangThai = row.Cells["trang_thai"].Value?.ToString() ?? "ACTIVE";
 
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.HoTen))
-                {
-                    MessageBox.Show("Vui lòng nhập họ tên nhân viên.");
-                    return;
-                }
-
                 const string query = @"UPDATE nhan_vien 
                                        SET ho_ten = @hoten, ngay_sinh = @ngaysinh, dia_chi = @diachi, so_dien_thoai = @sdienthoai, 
                                            email = @email, chuc_vu = @chucvu, phong_ban = @phongban, trang_thai = @trangthai
@@ -152,7 +161,7 @@ namespace WinFormsAppTest
                     cmd.Parameters.AddWithValue("@email", dlg.Email?.Trim() ?? "");
                     cmd.Parameters.AddWithValue("@chucvu", dlg.ChucVu?.Trim() ?? "");
                     cmd.Parameters.AddWithValue("@phongban", dlg.PhongBan?.Trim() ?? "");
-                    cmd.Parameters.AddWithValue("@trangthai", dlg.TrangThai?.Trim() ?? "Hoạt động");
+                    cmd.Parameters.AddWithValue("@trangthai", dlg.TrangThai?.Trim() ?? "ACTIVE");
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     LoadEmployees();

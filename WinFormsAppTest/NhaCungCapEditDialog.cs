@@ -19,6 +19,11 @@ namespace WinFormsAppTest
         public string DiaChi { get => txtDiaChi.Text; set => txtDiaChi.Text = value; }
         public string Email { get => txtEmail.Text; set => txtEmail.Text = value; }
 
+        public void SetMaReadOnly(bool readOnly)
+        {
+            txtMa.ReadOnly = readOnly;
+        }
+
         public NhaCungCapEditDialog()
         {
             Text = "Thêm/Sửa nhà cung cấp";
@@ -143,6 +148,44 @@ namespace WinFormsAppTest
 
             AcceptButton = btnOk;
             CancelButton = btnCancel;
+
+            btnOk.Click += OnOkClick;
+        }
+
+        private void OnOkClick(object? sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtMa.Text))
+            {
+                ShowInvalid("mã nhà cung cấp");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!InputValidator.IsValidName(txtTen.Text))
+            {
+                ShowInvalid("tên nhà cung cấp");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtDienThoai.Text) && !InputValidator.IsValidPhone(txtDienThoai.Text))
+            {
+                ShowInvalid("số điện thoại");
+                DialogResult = DialogResult.None;
+                return;
+            }
+
+            if (!string.IsNullOrWhiteSpace(txtEmail.Text) && !InputValidator.IsValidEmail(txtEmail.Text))
+            {
+                ShowInvalid("email");
+                DialogResult = DialogResult.None;
+                return;
+            }
+        }
+
+        private static void ShowInvalid(string field)
+        {
+            MessageBox.Show($"Thông tin {field} không hợp lệ vui lòng nhập lại.");
         }
     }
 }

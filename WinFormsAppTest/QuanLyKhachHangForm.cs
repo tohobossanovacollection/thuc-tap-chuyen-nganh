@@ -60,14 +60,10 @@ namespace WinFormsAppTest
         private void btnThem_Click(object sender, EventArgs e)
         {
             using var dlg = new KhachHangEditDialog();
+            dlg.Ma = CodeGenerator.GetNextCode(_connectionString, "khach_hang", "ma_khach_hang", "KH");
+            dlg.SetMaReadOnly(true);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ma) || string.IsNullOrWhiteSpace(dlg.Ten))
-                {
-                    MessageBox.Show("Vui lòng nhập mã và tên khách hàng.");
-                    return;
-                }
-
                 const string query = @"INSERT INTO khach_hang (ma_khach_hang, ten_khach_hang, so_dien_thoai, dia_chi) 
                                        VALUES (@ma, @ten, @dienthoai, @diachi)";
                 try
@@ -106,18 +102,13 @@ namespace WinFormsAppTest
 
             using var dlg = new KhachHangEditDialog();
             dlg.Ma = ma;
+            dlg.SetMaReadOnly(true);
             dlg.Ten = ten;
             dlg.DienThoai = dienthoai;
             dlg.DiaChi = diachi;
 
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                if (string.IsNullOrWhiteSpace(dlg.Ten))
-                {
-                    MessageBox.Show("Vui lòng nhập tên khách hàng.");
-                    return;
-                }
-
                 const string query = @"UPDATE khach_hang 
                                        SET ten_khach_hang = @ten, so_dien_thoai = @dienthoai, dia_chi = @diachi
                                        WHERE ma_khach_hang = @ma";

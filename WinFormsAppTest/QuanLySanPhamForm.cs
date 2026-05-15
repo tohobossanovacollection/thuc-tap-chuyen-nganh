@@ -20,6 +20,8 @@ namespace WinFormsAppTest
         private void btnThem_Click(object sender, EventArgs e)
         {
             using SanPham popup = new SanPham();
+            string nextCode = CodeGenerator.GetNextCode(_connectionString, "san_pham", "ma_san_pham", "SP");
+            popup.SetMaSanPham(nextCode, true);
             if (popup.ShowDialog(this) != DialogResult.OK || popup.Result is null)
             {
                 return;

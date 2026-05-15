@@ -12,6 +12,12 @@ namespace WinFormsAppTest
             LoadCategories();
         }
 
+        public void SetMaSanPham(string maSanPham, bool readOnly)
+        {
+            txtMaSanPham.Text = maSanPham;
+            txtMaSanPham.ReadOnly = readOnly;
+        }
+
         public SanPham(ProductItemData existing)
         {
             InitializeComponent();
@@ -76,47 +82,52 @@ namespace WinFormsAppTest
 
             if (string.IsNullOrWhiteSpace(txtMaSanPham.Text))
             {
-                MessageBox.Show("Vui lòng nhập mã sản phẩm.");
+                ShowInvalid("mã sản phẩm");
                 txtMaSanPham.Focus();
                 return false;
             }
 
             if (string.IsNullOrWhiteSpace(txtTenSanPham.Text))
             {
-                MessageBox.Show("Vui lòng nhập tên sản phẩm.");
+                ShowInvalid("tên sản phẩm");
                 txtTenSanPham.Focus();
                 return false;
             }
 
             if (cboDanhMuc.SelectedItem == null)
             {
-                MessageBox.Show("Vui lòng chọn danh mục.");
+                ShowInvalid("danh mục");
                 cboDanhMuc.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(txtGiaNhap.Text.Trim(), out giaNhap) || giaNhap < 0)
             {
-                MessageBox.Show("Giá nhập không hợp lệ.");
+                ShowInvalid("giá nhập");
                 txtGiaNhap.Focus();
                 return false;
             }
 
             if (!decimal.TryParse(txtGiaBan.Text.Trim(), out giaBan) || giaBan < 0)
             {
-                MessageBox.Show("Giá bán không hợp lệ.");
+                ShowInvalid("giá bán");
                 txtGiaBan.Focus();
                 return false;
             }
 
             if (!int.TryParse(txtSoLuongTon.Text.Trim(), out soLuongTon) || soLuongTon < 0)
             {
-                MessageBox.Show("Số lượng tồn không hợp lệ.");
+                ShowInvalid("số lượng tồn");
                 txtSoLuongTon.Focus();
                 return false;
             }
 
             return true;
+        }
+
+        private static void ShowInvalid(string field)
+        {
+            MessageBox.Show($"Thông tin {field} không hợp lệ vui lòng nhập lại.");
         }
     }
 
